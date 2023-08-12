@@ -9,8 +9,7 @@ Description: Provides methods to calculate diagnostics for multicollinearity amo
   "Where’s Waldo: Visualizing Collinearity Diagnostics", The American Statistician, 63, 56–65.
   These include a semi-graphic tableplot of the diagnostics and a collinearity biplot of the smallest dimensions
   of predictor space, where collinearity is most apparent.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: GPL (>=3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

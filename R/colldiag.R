@@ -59,6 +59,7 @@
 #' Friendly, M., & Kwan, E. (2009).
 #' Where’s Waldo: Visualizing Collinearity Diagnostics. \emph{The American Statistician}, \bold{63}, 56–65.
 #' @export
+#' @importFrom stats na.omit
 #' @examples
 #' # None yet
 #'
@@ -107,10 +108,11 @@ colldiag <- function(mod,
 #' @param fuzzchar Character for small variance decomposition proportion values
 #' @param ...      arguments to be passed on to or from other methods (unused)
 #'
-#' @return
-#' @exportS3Method colldiag print
+#' @rdname colldiag
+#' @exportS3Method print colldiag
 #'
 #' @examples
+#' # None yet
 print.colldiag <- function(x,
                            dec.places = 3,
                            fuzz = NULL,
