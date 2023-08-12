@@ -49,7 +49,7 @@
 #'     \code{[car]}\code{\link[car]{vif}}, \code{[rms]}\code{\link[rms]{vif}}
 #'
 #' @references
-#' D. Belsley, E. Kuh, and R. Welsch (1980).
+#' Belsley, D.A.,  Kuh, E. and Welsch, R. (1980).
 #' \cite{Regression Diagnostics}, New York: John Wiley & Sons.
 #'
 #' Belsley, D.A. (1991).
