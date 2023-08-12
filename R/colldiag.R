@@ -21,6 +21,15 @@
 #' these variables may be causing collinearity problems.  Belsley et al suggest that a \emph{large} proportion is
 #' 50 percent or more.
 #'
+#' Note that such collinearity diagnostics are often provided by other software
+#' for the model matrix including
+#' the constant term for the intercept (e.g., SAS PROC REG, with the option COLLIN).
+#' However, these are generally useless and misleading unless the intercept has some
+#' real interpretation and the origin of the regressors is contained within the
+#' prediction space, as explained by Fox (1997, p. 351). The default values
+#' for \code{scale}, \code{center} and \code{add.intercept} exclude the contant
+#' term, and correspond to the SAS option COLLINNOINT.
+#'
 #' @note
 #' Missing data is silently omitted in these calculations
 #'
@@ -55,6 +64,9 @@
 #' Belsley, D.A. (1991).
 #' \cite{Conditioning diagnostics, collinearity and weak data in regression}.
 #' New York: John Wiley & Sons.
+#'
+#' Fox, J. (1997). \cite{Applied Regression Analysis, Linear Models, and Related Methods}.
+#' thousand Oaks, CA: Sage Publications.
 #'
 #' Friendly, M., & Kwan, E. (2009).
 #' Where’s Waldo: Visualizing Collinearity Diagnostics. \emph{The American Statistician}, \bold{63}, 56–65.
