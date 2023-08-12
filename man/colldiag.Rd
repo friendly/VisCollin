@@ -3,7 +3,7 @@
 \alias{print.colldiag}
 \title{Condition indexes and variance decomposition proportions}
 \description{
-  Calculates condition indexes and variance decomposition proportions in order to test for collinearity among the independent variables of a regression model and identifies the sources of collinearity if present
+  Calculates condition indexes and variance decomposition proportions in order to test for collinearity among the independent variables of a regression model. The variance proportions are used to identify the sources of collinearity if present.
 }
 \usage{
 colldiag(mod, scale = TRUE, center = FALSE, add.intercept = TRUE)
@@ -73,7 +73,7 @@ cd
 print(cd,fuzz=.3)
 
 \dontrun{
-# Example of reading UCLA data files from 
+# Example of reading UCLA data files from
 # https://stats.idre.ucla.edu/r/webbook/regression-with-rchapter-4-beyond-ols/
 library(foreign)
 elemapi <- read.dta("https://stats.idre.ucla.edu/stat/stata/webbooks/reg/elemapi.dta")
