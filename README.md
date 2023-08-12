@@ -16,10 +16,15 @@ The `VisCollin` package provides methods to calculate diagnostics for
 multicollinearity among predictors in a linear or generalized linear
 model. Also provides methods to visualize those diagnostics following
 Friendly & Kwan (2009), “Where’s Waldo: Visualizing Collinearity
-Diagnostics”, The American Statistician, 63, 56–65. These include a
-semi-graphic tableplot of the diagnostics and a collinearity biplot of
-the smallest dimensions of predictor space, where collinearity is most
-apparent.
+Diagnostics”, *The American Statistician*, **63**, 56–65.
+
+These include:
+
+- better tabular presentation of collinearity diagnostics that highlight
+  the important numbers.
+- a semi-graphic tableplot of the diagnostics and
+- a collinearity biplot of the *smallest dimensions* of predictor space,
+  where collinearity is most apparent.
 
 ## Installation
 
