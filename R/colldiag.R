@@ -21,6 +21,8 @@
 #' these variables may be causing collinearity problems.  Belsley et al suggest that a \emph{large} proportion is
 #' 50 percent or more.
 #'
+#' @note
+#' Missing data is silently omitted in these calculations
 #'
 #' @param mod     A model object, such as computed by \code{} or \code{glm}, or a data-frame to be used as predictors in
 #'    such a model.
@@ -117,6 +119,7 @@ print.colldiag <- function(x,
   stopifnot(fuzz > 0 & fuzz < 1)
   stopifnot(is.character(fuzzchar))
   stopifnot(nchar(fuzzchar) == 1)
+
   fuzzchar <- paste(" ", fuzzchar, sep = "")
   width <- dec.places + 2
   pi <- formatC(x$pi, format = "f", width = width, digits = dec.places)
