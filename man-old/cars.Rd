@@ -39,7 +39,7 @@ Donoho, David and Ramos, Ernesto (1982), ``PRIMDATA: Data Sets for Use With PRIM
 }
 \examples{
 data(cars)
-maybe str(cars)
+str(cars)
 #plot(cars) ...
 }
 \keyword{datasets}

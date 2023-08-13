@@ -9,7 +9,7 @@ These functions were taken from the (now defunct) \code{perturb} package by John
 He credits the Stata program \code{coldiag} by Joseph Harkness \email{joe.harkness@jhu.edu}, Johns Hopkins University.
 }
 \usage{
-colldiag(mod, scale = TRUE, center = FALSE, add.intercept = TRUE)
+colldiag(mod, scale = TRUE, center = FALSE, add.intercept = FALSE)
 
 \method{print}{colldiag}(x, dec.places = 3, fuzz = NULL, fuzzchar = ".", ...)
 }
@@ -21,9 +21,9 @@ such a model.}
 to mean 0 and variance 1 using \code{\link[base]{scale}}.
 Default is \code{TRUE}.}
 
-\item{center}{If TRUE, data are centered. Default is FALSE}
+\item{center}{If TRUE, data are centered. Default is \code{FALSE}.}
 
-\item{add.intercept}{if \code{TRUE}, an intercept is added. Default is \code{TRUE}}
+\item{add.intercept}{if \code{TRUE}, an intercept is added. Default is \code{FALSE}.}
 
 \item{x}{A \code{colldiag} object}
 
@@ -61,6 +61,15 @@ the \emph{variance decomposition proportions} associated with each condition ind
 If a large condition index is associated two or more variables with \emph{large} variance decomposition proportions,
 these variables may be causing collinearity problems.  Belsley et al suggest that a \emph{large} proportion is
 50 percent or more.
+
+Note that such collinearity diagnostics are often provided by other software
+for the model matrix including
+the constant term for the intercept (e.g., SAS PROC REG, with the option COLLIN).
+However, these are generally useless and misleading unless the intercept has some
+real interpretation and the origin of the regressors is contained within the
+prediction space, as explained by Fox (1997, p. 351). The default values
+for \code{scale}, \code{center} and \code{add.intercept} exclude the contant
+term, and correspond to the SAS option COLLINNOINT.
 }
 \note{
 Missing data is silently omitted in these calculations
@@ -71,12 +80,15 @@ Missing data is silently omitted in these calculations
 # None yet
 }
 \references{
-D. Belsley, E. Kuh, and R. Welsch (1980).
+Belsley, D.A.,  Kuh, E. and Welsch, R. (1980).
 \cite{Regression Diagnostics}, New York: John Wiley & Sons.
 
 Belsley, D.A. (1991).
 \cite{Conditioning diagnostics, collinearity and weak data in regression}.
 New York: John Wiley & Sons.
+
+Fox, J. (1997). \cite{Applied Regression Analysis, Linear Models, and Related Methods}.
+thousand Oaks, CA: Sage Publications.
 
 Friendly, M., & Kwan, E. (2009).
 Where’s Waldo: Visualizing Collinearity Diagnostics. \emph{The American Statistician}, \bold{63}, 56–65.
