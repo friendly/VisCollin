@@ -44,8 +44,7 @@ devtools::install_github("friendly/VisCollin")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
+This example uses the `cars` data set.
 ```{r cars}
 library(VisCollin)
 library(car)
