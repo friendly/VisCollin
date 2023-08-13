@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 The `VisCollin` package provides
 methods to calculate diagnostics for multicollinearity among predictors in a linear or
-generalized linear model. Also provides methods to visualize those diagnostics following Friendly & Kwan (2009),
+generalized linear model. It also provides methods to visualize those diagnostics following Friendly & Kwan (2009),
 "Where’s Waldo: Visualizing Collinearity Diagnostics", _The American Statistician_, **63**, 56–65.
 
 These include:
@@ -35,16 +35,18 @@ These include:
 
 ## Installation
 
+`VisCollin` is not yet on CRAN.
 You can install the development version of VisCollin from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("friendly/VisCollin")
+# install.packages("remotes")
+remotes::install_github("friendly/VisCollin")
 ```
 
 ## Example
 
-This example uses the `cars` data set.
+This example uses the `cars` data set containing various measures of size and performance on 406 models of automobiles
+from 1982.
 ```{r cars}
 library(VisCollin)
 library(car)
@@ -53,27 +55,84 @@ data(cars)
 str(cars)
 ```
 
-Fit model
+Fit a model predicting gas mileage (`mpg`) from the number of cylinders, engine displacement, horsepower, weight,
+time to
+accelerate from 0 -- 60 mph and model year (1970--1982). Perhaps surprisingly, only `weight` and `year` appear to
+significantly predict gas mileage. What's going on here?
 ```{r cars-mod}
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year, 
                 data=cars)
 Anova(cars.mod)
 ```
+`lmtest::coeftest()` shows the coefficients, $\hat{\beta_j}$, their standard errors $s(\hat{\beta_j})$
+and associated t statistics, $t = \hat{\beta_j} / s(\hat{\beta_j})$. As we will see, 
+the standard errors of the non-significant predictors have been inflated due to high multiple correlations
+among the predictors, making the $t$ statistics smaller.
+```{r coeftest}
+lmtest::coeftest(cars.mod)
+```
 
-Check the VIFs
+### Variance inflation factors
+
+Variance inflation factors measure the effect of multicollinearity on the standard errors of the 
+estimated coefficients and are proportional to $1 / (1 - R^2_{x_j | \text{others}})$.
+
+We check the variance inflation factors, using `car::vif()`. We see that most predictors have very high
+VIFs, indicating severe multicollinearity.
 
 ```{r}
 vif(cars.mod)
+sqrt(vif(cars.mod))
 ```
 
-Diagnostics
+According to $\sqrt{VIF}$, the standard error of `cylinder` has been multiplied by 3.26 compared with the
+case when all predictors are uncorrelated.
 
-```{r}
-cd <- colldiag(cars.mod, 
-               add.intercept=FALSE, center=TRUE)
+### Diagnostics
 
-print(cd, fuzz = 0.3)
+The diagnostic measures introduced by Belesley (1991) are based on the eigenvalues $\lambda_1, \lambda_2, \dots \lambda_p$
+of the correlation matrix $R_{X}$ of the predictors (preferably centered and scaled, and not including the constant term
+for the intercept), and the corresponding eigenvectors in the columns of $\mathbf{V}_{p \times p}$.
+
+`colldiag()` calculates:
+
+* **Condition indices**: 
+The smallest of the eigenvalues, those for which $\lambda_j \approx 0$,
+indicate collinearity and the number of small values indicates the number of near collinear relations.  
+Because the sum of the eigenvalues, $\Sigma \lambda_i = p$ which increases with the number
+of predictors, it is useful to scale them
+all in relation to the largest.  This leads to _condition indices_, defined as
+$\kappa_j = \sqrt{ \lambda_1 / \lambda_j}$. These have the property that the resulting numbers
+have common interpretations regardless of the number of predictors.
+For completely uncorrelated predictors, all $\kappa_j = 1$.
+
+* **Variance decomposition proportions**:
+Large VIFs indicate variables that are involved in _some_ nearly collinear
+relations, but they don't indicate _which_ other variable(s) each is involved with.
+For this purpose, Belsley et. al. (1980) and Belsley (1991) proposed calculation of
+the proportions of variance of each variable associated with each principal component
+as a decomposition of the coefficient variance for each dimension.
+
+For the current model, the usual display contains both the condition indices and
+variance proportions. However, even for a small example, it is often difficult to know
+what numbers to pay attention to.
+```{r colldiag1}
+(cd <- colldiag(cars.mod, center=TRUE))
 ```
+Belesley (1991) recommends that the sources of collinearity be diagnosed 
+(a) only for those components with large $\kappa_j$, and
+(b) for those components for which the variance proportion is large (say, $\ge 0.5$) on _two_ or more predictors.
+The print method for `"colldiag"` objects has a `fuzz` argument controlling this.
+
+```{r colldiag2}
+print(cd, fuzz = 0.5)
+```
+
+The mystery is solved: There are two nearly collinear relations among the predictors, corresponding to the two
+smallest dimensions. 
+
+* Dimension 5 reflects the high correlation between horsepower and weight,
+* Dimension 6 reflects the high corelation between number of cylinders and engine displacement.
 
 
 ## References

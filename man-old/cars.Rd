@@ -22,7 +22,7 @@ The data set was collected by Ernesto Ramos and David Donoho on characteristics 
     \item{\code{horse}}{horsepower, a numeric vector}
     \item{\code{weight}}{vehicle weight (lbs.), a numeric vector}
     \item{\code{accel}}{time to accelerate from O to 60 mph (sec.), a numeric vector}
-    \item{\code{year}}{model year (modulo 100), a numeric vector}
+    \item{\code{year}}{model year (modulo 100), a numeric vector ranging from 70 -- 82}
     \item{\code{origin}}{region of origin, a factor with levels \code{Amer} \code{Eur} \code{Japan}}
   }
 }

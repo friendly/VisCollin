@@ -38,8 +38,8 @@
 #' @param scale   If \code{FALSE}, the data are left unscaled. If \code{TRUE}, the data are scaled, typically
 #'    to mean 0 and variance 1 using \code{\link[base]{scale}}.
 #'    Default is \code{TRUE}.
-#' @param center  If TRUE, data are centered. Default is FALSE
-#' @param add.intercept  if \code{TRUE}, an intercept is added. Default is \code{TRUE}
+#' @param center  If TRUE, data are centered. Default is \code{FALSE}.
+#' @param add.intercept  if \code{TRUE}, an intercept is added. Default is \code{FALSE}.
 #'
 #' @return
 #' A \code{"colldiag"} object, containing:
@@ -78,7 +78,7 @@
 colldiag <- function(mod,
                      scale = TRUE,
                      center = FALSE,
-                     add.intercept = TRUE) {
+                     add.intercept = FALSE) {
   result <- NULL
   if (center) add.intercept <- FALSE
   if (is.matrix(mod) || is.data.frame(mod)) {
