@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+
 ```
 
 # VisCollin
@@ -45,9 +46,34 @@ devtools::install_github("friendly/VisCollin")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r cars}
 library(VisCollin)
-## basic example code
+library(car)
+
+data(cars)
+str(cars)
+```
+
+Fit model
+```{r cars-mod}
+cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year, 
+                data=cars)
+Anova(cars.mod)
+```
+
+Check the VIFs
+
+```{r}
+vif(cars.mod)
+```
+
+Diagnostics
+
+```{r}
+cd <- colldiag(cars.mod, 
+               add.intercept=FALSE, center=TRUE)
+
+print(cd, fuzz = 0.3)
 ```
 
 
