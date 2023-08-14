@@ -9,10 +9,7 @@ Description: Provides methods to calculate diagnostics for multicollinearity amo
   "Where’s Waldo: Visualizing Collinearity Diagnostics", The American Statistician, 63, 56–65.
   These include better tabular presentation of collinearity diagnostics that highlight the important numbers,
   a semi-graphic tableplot of the diagnostics to make warning and danger levels more salient,
-  and a collinearity biplot of the smallest dimensions
-  of predictor space, where collinearity is most apparent. These include better tabular displays to highlight
-  the important numbers, a semi-graphic a semi-graphic tableplot of the diagnostics and a collinearity biplot of the 
-  smallest dimensions of predictor space, where collinearity is most apparent.
+  and a "collinearity biplot"" of the smallest dimensions of predictor space, where collinearity is most apparent. 
 Depends: R (>= 3.5.0)
 Suggests: 
   car,
