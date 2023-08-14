@@ -29,11 +29,14 @@
 #' corresponds to levels of a factor for which the first two dimensions are to be compared
 #' are handled by superimposing symbols.
 #'
+#' The specifications for each cell are given by the \code{types} argument, whose elements refer
+#' to the attributes specified in \code{patterns.}
 #'
 #' @param values A matrix or 3-dimensional array of values to be displayed in a tableplot
 #' @param types  Matrix of specification assignments, of the same size as the first two dimensions
-#'        of \code{values}. Entries refer to the sub-lists of \code{cell.specs}.
-#'        Defaults to \code{matrix(1, dim(values)[1], dim(values[2]))}.
+#'        of \code{values}. Entries refer to the sub-lists of \code{patterns}.
+#'        Defaults to a matrix of all 1s, \code{matrix(1, dim(values)[1], dim(values[2]))},
+#'        indicating that all cells use the same pattern specificagtion.
 #' @param patterns List of lists; each list is one specification for the arguments to \code{cellgram}.
 #' @param title    Main title
 #' @param side.label  a character vector providing labels for the rows of the tableplot

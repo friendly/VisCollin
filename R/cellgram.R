@@ -14,13 +14,13 @@
 #'                    in the cell.
 #' @param shape.col   Outline color(s) for the shape(s)
 #' @param shape.lty   Outline line type(s) for the shape(s)
-#' @param scale.max   scale values to this maximum
 #' @param cell.fill   inside color of |smallest| shape in a cell
 #' @param back.fill   background color of cell
 #' @param label       how many cell values will be labeled in the cell; max is 4
 #' @param label.size  size of cell label(s)
 #' @param ref.col     color of reference lines
 #' @param ref.grid    whether to draw ref lines or not
+#' @param scale.max   scale values to this maximum
 #' @param shape.name  character string to uniquely identify shapes to help fill in smallest one
 #'
 #' @return None. Used for its graphic side effect
@@ -40,14 +40,13 @@ cellgram = function(
 
 	## Arguments that will never be vectorized:
 
-	scale.max=1,
-
 	cell.fill="white", # fill color of smallest cell value
 	back.fill="white", # back fill color
 	label=0,		       # how many cell values will be printed; max is 4
 	label.size=0.7,
 	ref.col="grey80",
 	ref.grid="no",
+	scale.max=1,
 	shape.name="")	 # uniquely identify shapes to help fill in smallest one
 
 	{

@@ -31,8 +31,9 @@ tableplot(values, ...)
 \item{...}{Arguments passed down to \code{tableplot.default}}
 
 \item{types}{Matrix of specification assignments, of the same size as the first two dimensions
-of \code{values}. Entries refer to the sub-lists of \code{cell.specs}.
-Defaults to \code{matrix(1, dim(values)[1], dim(values[2]))}.}
+of \code{values}. Entries refer to the sub-lists of \code{patterns}.
+Defaults to a matrix of all 1s, \code{matrix(1, dim(values)[1], dim(values[2]))},
+indicating that all cells use the same pattern specificagtion.}
 
 \item{patterns}{List of lists; each list is one specification for the arguments to \code{cellgram}.}
 
@@ -72,6 +73,9 @@ by symbols with size proportional to cell value(s), and with other visual attrib
 essential to direct visual understanding.  Three-way arrays, where the last dimension
 corresponds to levels of a factor for which the first two dimensions are to be compared
 are handled by superimposing symbols.
+
+The specifications for each cell are given by the \code{types} argument, whose elements refer
+to the attributes specified in \code{patterns.}
 }
 \examples{
 # None yet
