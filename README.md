@@ -128,14 +128,16 @@ multicollinearity.
 vif(cars.mod)
 #>  cylinder    engine     horse    weight     accel      year 
 #> 10.633049 19.641683  9.398043 10.731681  2.625581  1.244829
+
 sqrt(vif(cars.mod))
 #> cylinder   engine    horse   weight    accel     year 
 #> 3.260836 4.431894 3.065623 3.275924 1.620364 1.115719
 ```
 
 According to $\sqrt{VIF}$, the standard error of `cylinder` has been
-multiplied by 3.26 compared with the case when all predictors are
-uncorrelated.
+multiplied by 3.26 and it’s $t$-value divided by this number, compared
+with the case when all predictors are uncorrelated. `engine`, `horse`
+and `weight` suffer a similar fate.
 
 ### Diagnostics
 
@@ -149,14 +151,22 @@ corresponding eigenvectors in the columns of $\mathbf{V}_{p \times p}$.
 
 - **Condition indices**: The smallest of the eigenvalues, those for
   which $\lambda_j \approx 0$, indicate collinearity and the number of
-  small values indicates the number of near collinear relations.  
-  Because the sum of the eigenvalues, $\Sigma \lambda_i = p$ which
-  increases with the number of predictors, it is useful to scale them
-  all in relation to the largest. This leads to *condition indices*,
-  defined as $\kappa_j = \sqrt{ \lambda_1 / \lambda_j}$. These have the
-  property that the resulting numbers have common interpretations
-  regardless of the number of predictors. For completely uncorrelated
-  predictors, all $\kappa_j = 1$.
+  small values indicates the number of near collinear relations. Because
+  the sum of the eigenvalues, $\Sigma \lambda_i = p$ increases with the
+  number of predictors $p$, it is useful to scale them all in relation
+  to the largest. This leads to *condition indices*, defined as
+  $\kappa_j = \sqrt{ \lambda_1 / \lambda_j}$. These have the property
+  that the resulting numbers have common interpretations regardless of
+  the number of predictors.
+
+  - For completely uncorrelated predictors, all $\kappa_j = 1$.
+
+  - $\kappa_j \rightarrow \infty$ as any $\lambda_k \rightarrow 0$.
+
+  - In terms of the eigen-decomposition, variance inflation factors can
+    be expressed as $$
+    \text{VIF}_j = \sum_{k=1}^{p} \frac{V^2_{jk}}{\lambda_k} \; .
+    $$
 
 - **Variance decomposition proportions**: Large VIFs indicate variables
   that are involved in *some* nearly collinear relations, but they don’t
