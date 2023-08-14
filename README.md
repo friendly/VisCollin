@@ -5,9 +5,10 @@
 
 <!-- badges: start -->
 
-[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin)
+[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![Last
 Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
 <!-- badges: end -->
@@ -22,7 +23,8 @@ These include:
 
 - better tabular presentation of collinearity diagnostics that highlight
   the important numbers.
-- a semi-graphic tableplot of the diagnostics and
+- a semi-graphic tableplot of the diagnostics to make warning and danger
+  levels more salient and
 - a collinearity biplot of the *smallest dimensions* of predictor space,
   where collinearity is most apparent.
 
@@ -215,14 +217,34 @@ display that presents numerical information in a table using shapes
 proportional to the value in a cell and other visual attributes (shape
 type, color fill, and so forth) to encode other information.
 
+For collinearity diagnostics, these show:
+
+- the condition indices, using using *squares* whose background color is
+  red for condition indices \> 10, green for values \> 5 and green
+  otherwise, reflecting danger, warning and OK respectively. The value
+  of the condition index is encoded within this using a white square
+  whose side is proportional to the value (up to some maximum value,
+  `cond.max`).
+- Variance decomposition proportions are shown by filled *circles* whose
+  radius is proportional to those values and are filled (by default)
+  with shades ranging from white through pink to red. Rounded values of
+  those diagnostics are printed in the cells.
+
 The tableplot below encodes all the information from the values of
-`colldiag()` printed above (but using `fuzz = 0.3`).
+`colldiag()` printed above (but using `prop.col` color breaks such that
+variance proportions \< 0.3 are shaded white). The visual message is
+that one should attend to collinearities with large condition indices
+**and** large variance proportions implicating two or more predictors.
+
+<!-- ```{r cars-tableplot0} -->
+<!-- knitr::include_graphics("man/figures/cars-tableplot.png") -->
+<!-- ``` -->
 
 ``` r
-knitr::include_graphics("man/figures/cars-tableplot.png")
+tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 ```
 
-<img src="man/figures/cars-tableplot.png" width="100%" />
+<img src="man/figures/README-cars-tableplot-1.png" width="100%" />
 
 ## References
 

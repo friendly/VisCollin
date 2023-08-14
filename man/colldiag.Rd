@@ -14,7 +14,7 @@ colldiag(mod, scale = TRUE, center = FALSE, add.intercept = FALSE)
 \method{print}{colldiag}(x, dec.places = 3, fuzz = NULL, fuzzchar = ".", ...)
 }
 \arguments{
-\item{mod}{A model object, such as computed by \code{} or \code{glm}, or a data-frame to be used as predictors in
+\item{mod}{A model object, such as computed by \code{lm} or \code{glm}, or a data-frame to be used as predictors in
 such a model.}
 
 \item{scale}{If \code{FALSE}, the data are left unscaled. If \code{TRUE}, the data are scaled, typically
@@ -75,7 +75,21 @@ term, and correspond to the SAS option COLLINNOINT.
 Missing data is silently omitted in these calculations
 }
 \examples{
-# None yet
+data(cars)
+cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+                data=cars)
+vif(cars.mod)
+
+# SAS PROC REG / COLLIN option, including the intercept
+colldiag(cars.mod, add.intercept = TRUE)
+
+# Default settings: scaled, not centered, no intercept, like SAS PROC REG / COLLINNOINT
+colldiag(cars.mod)
+
+(cd <- colldiag(cars.mod, center=TRUE))
+
+# fuzz small values
+print(cd, fuzz = 0.5)
 
 # None yet
 }

@@ -77,12 +77,27 @@ are handled by superimposing symbols.
 The specifications for each cell are given by the \code{types} argument, whose elements refer
 to the attributes specified in \code{patterns.}
 }
+\note{
+The original version of tableplots was in the now-defunct tableplot package
+\url{https://cran.r-project.org/package=tableplot}. The current implementation
+is a modest re-design focused on its use for collinearity diagnostics, but usable in
+more general contexts.
+}
 \examples{
-# None yet
+data(cars)
+cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+                data=cars)
+vif(cars.mod)
+
+(cd <- colldiag(cars.mod, center=TRUE))
+tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 
 }
 \references{
 Kwan, E. (2008).
 Improving Factor Analysis in Psychology: Innovations Based on the Null Hypothesis Significance
 Testing Controversy. Ph. D. thesis,  York University.
+}
+\author{
+Ernest Kwan and Michael Friendly
 }

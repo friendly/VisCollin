@@ -29,11 +29,11 @@
 
 \item{...}{other arguments, for consistency with generic}
 
-\item{prop.col}{A vector of colors used for the variance proportions}
+\item{prop.col}{A vector of colors used for the variance proportions. The default is \code{c("white", "pink", "red")}.}
 
 \item{cond.col}{A vector of colors used for the condition indices}
 
-\item{cond.max}{Maximum value to scale the condition indices}
+\item{cond.max}{Maximum value to scale the white squares for the condition indices}
 
 \item{prop.breaks}{Scale breaks for the variance proportions}
 
@@ -51,9 +51,17 @@ These methods produce a tableplot of collinearity diagnostics, showing the condi
 proportions for predictors in a linear or generalized linear regression model. This encodes the
 condition indices using \emph{squares} whose background color is red for condition indices > 10,
 green for values > 5 and green otherwise, reflecting danger, warning and OK respectively.
+The value of the condition index is encoded within this using a white square proportional to the value
+(up to some maximum value, \code{cond.max}),
+
 Variance decomposition proportions are shown by filled \emph{circles} whose radius is proportional to those values
 and are filled (by default) with shades ranging from white through pink to red. Rounded values of those diagnostics
 are printed in the cells.
+}
+\note{
+Tableplots are produced using \code{grid} graphics using viewports to draw each successive cell in the display.
+For use in Rmd documents using \code{knitr}, you should use the chunk option \code{fig.keep = "last"}
+so that only the final figure is shown in the output.
 }
 \examples{
 # None yet

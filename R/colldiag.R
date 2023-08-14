@@ -33,7 +33,7 @@
 #' @note
 #' Missing data is silently omitted in these calculations
 #'
-#' @param mod     A model object, such as computed by \code{} or \code{glm}, or a data-frame to be used as predictors in
+#' @param mod     A model object, such as computed by \code{lm} or \code{glm}, or a data-frame to be used as predictors in
 #'    such a model.
 #' @param scale   If \code{FALSE}, the data are left unscaled. If \code{TRUE}, the data are scaled, typically
 #'    to mean 0 and variance 1 using \code{\link[base]{scale}}.
@@ -73,7 +73,21 @@
 #' @export
 #' @importFrom stats na.omit
 #' @examples
-#' # None yet
+#' data(cars)
+#' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+#'                 data=cars)
+#' vif(cars.mod)
+#'
+#' # SAS PROC REG / COLLIN option, including the intercept
+#' colldiag(cars.mod, add.intercept = TRUE)
+#'
+#' # Default settings: scaled, not centered, no intercept, like SAS PROC REG / COLLINNOINT
+#' colldiag(cars.mod)
+#'
+#' (cd <- colldiag(cars.mod, center=TRUE))
+#'
+#' # fuzz small values
+#' print(cd, fuzz = 0.5)
 #'
 colldiag <- function(mod,
                      scale = TRUE,

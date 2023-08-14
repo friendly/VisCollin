@@ -32,6 +32,11 @@
 #' The specifications for each cell are given by the \code{types} argument, whose elements refer
 #' to the attributes specified in \code{patterns.}
 #'
+#' @note The original version of tableplots was in the now-defunct tableplot package
+#' \url{https://cran.r-project.org/package=tableplot}. The current implementation
+#' is a modest re-design focused on its use for collinearity diagnostics, but usable in
+#' more general contexts.
+#'
 #' @param values A matrix or 3-dimensional array of values to be displayed in a tableplot
 #' @param types  Matrix of specification assignments, of the same size as the first two dimensions
 #'        of \code{values}. Entries refer to the sub-lists of \code{patterns}.
@@ -56,6 +61,7 @@
 #' @param ...         Arguments passed down to \code{tableplot.default}
 #'
 #' @import grid
+#' @author Ernest Kwan and Michael Friendly
 #' @references
 #' Kwan, E. (2008).
 #' Improving Factor Analysis in Psychology: Innovations Based on the Null Hypothesis Significance
@@ -65,7 +71,13 @@
 #' @export
 #'
 #' @examples
-#' # None yet
+#' data(cars)
+#' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+#'                 data=cars)
+#' vif(cars.mod)
+#'
+#' (cd <- colldiag(cars.mod, center=TRUE))
+#' tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 #'
 tableplot <-
   function(values,  ...) UseMethod("tableplot")

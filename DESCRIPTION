@@ -7,7 +7,9 @@ Authors@R: c(person("Michael", "Friendly", , "friendly@yorku.ca", role = c("aut"
 Description: Provides methods to calculate diagnostics for multicollinearity among predictors in a linear or
   generalized linear model. It also provides methods to visualize those diagnostics following Friendly & Kwan (2009),
   "Where’s Waldo: Visualizing Collinearity Diagnostics", The American Statistician, 63, 56–65.
-  These include a semi-graphic tableplot of the diagnostics and a collinearity biplot of the smallest dimensions
+  These include better tabular presentation of collinearity diagnostics that highlight the important numbers,
+  a semi-graphic tableplot of the diagnostics to make warning and danger levels more salient,
+  and a collinearity biplot of the smallest dimensions
   of predictor space, where collinearity is most apparent. These include better tabular displays to highlight
   the important numbers, a semi-graphic a semi-graphic tableplot of the diagnostics and a collinearity biplot of the 
   smallest dimensions of predictor space, where collinearity is most apparent.
