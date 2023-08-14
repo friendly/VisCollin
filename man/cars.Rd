@@ -32,9 +32,14 @@ The data set was collected by Ernesto Ramos and David Donoho on characteristics 
 }
 \examples{
 data(cars)
-str(cars)
-#plot(cars) ...
+cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+                data=cars)
+car::vif(cars.mod)
 
+(cd <- colldiag(cars.mod, center=TRUE))
+
+# simplified display
+print(cd, fuzz=.3)
 }
 \references{
 Donoho, David and Ramos, Ernesto (1982), ``PRIMDATA: Data Sets for Use With PRIM-H'' (Draft).

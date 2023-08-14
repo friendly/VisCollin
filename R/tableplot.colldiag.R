@@ -17,7 +17,7 @@
 #'
 #' @note
 #' Tableplots are produced using \code{grid} graphics using viewports to draw each successive cell in the display.
-#' For use in Rmd documents using \code{knitr}, you should use the chunk option \code{fig.keep = "last"}
+#' For use in \code{.Rmd} documents using \code{knitr}, you should use the chunk option \code{fig.keep = "last"}
 #' so that only the final figure is shown in the output.
 #'
 #' @name tableplot.colldig
@@ -33,6 +33,12 @@
 #' @param title      title used for the resulting graphic
 #' @param patterns   pattern matrix used for table plot.
 #' @param ...        other arguments, for consistency with generic
+#'
+#' @author Michael Friendly
+#' @references
+#' Friendly, M., & Kwan, E. (2009).
+#' "Where’s Waldo: Visualizing Collinearity Diagnostics." \emph{The American Statistician}, \bold{63}, 56–65.
+#' Online: \url{https://www.datavis.ca/papers/viscollin-tast.pdf}.
 #'
 #' @importFrom stats xtabs
 #' @return NULL

@@ -15,14 +15,15 @@ New submission
 
 Possibly misspelled words in DESCRIPTION:
   Collinearity (2:20, 9:33)
-  biplot (12:22, 14:104)
-  collinearity (10:48, 12:9, 13:29, 14:91, 15:49)
+  biplot (12:23)
+  collinearity (10:48, 12:10, 12:85)
   multicollinearity (7:60)
-  tableplot (11:18, 14:56)
+  tableplot (11:18)
 
 These spellcheck results are spurious -- all of the above are legitimate words and it would not look good for
 them to be quoted in the DESCRIPTION.
 
 ## Version 0.1.0
 
-* This is a new release.
+* This is a new release. It implements the function `colldiag()` and `tableplot()` methods for collinearity
+diagnostics.

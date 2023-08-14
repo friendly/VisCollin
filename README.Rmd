@@ -181,4 +181,6 @@ New York: John Wiley & Sons.
 
 Friendly, M., & Kwan, E. (2009).
 "Where’s Waldo: Visualizing Collinearity Diagnostics." _The American Statistician_, **63**, 56–65.
+Online: [https://www.datavis.ca/papers/viscollin-tast.pdf](https://www.datavis.ca/papers/viscollin-tast.pdf).
+Supp. materials: [https://www.datavis.ca/papers/viscollin/](https://www.datavis.ca/papers/viscollin/)
 

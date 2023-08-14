@@ -256,3 +256,5 @@ data in regression*. New York: John Wiley & Sons.
 
 Friendly, M., & Kwan, E. (2009). “Where’s Waldo: Visualizing
 Collinearity Diagnostics.” *The American Statistician*, **63**, 56–65.
+Online: <https://www.datavis.ca/papers/viscollin-tast.pdf>. Supp.
+materials: <https://www.datavis.ca/papers/viscollin/>

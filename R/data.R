@@ -67,12 +67,74 @@ NULL
 #' @keywords dataset
 #' @examples
 #' data(cars)
-#' str(cars)
-#' #plot(cars) ...
+#' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+#'                 data=cars)
+#' car::vif(cars.mod)
 #'
+#' (cd <- colldiag(cars.mod, center=TRUE))
+#'
+#' # simplified display
+#' print(cd, fuzz=.3)
 NULL
 
+#' @name linthurst
+#' @docType data
+#' @title Linthurst Data: Biomass Production in the Cape Fear Estuary
+#' @description
+#' Data collected by Rick Linthurst (1979) at North Carolina State University for the
+#' purpose of identifying the important soil characteristics influencing aerial
+#' biomass production of the marsh grass \emph{Spartina alterniflora} in the
+#' Cape Fear Estuary of North Carolina. Three types of Spartina vegetation areas
+#' (devegetated “dead” areas, “short” Spartina areas, and “tall” Spartina areas)
+#' were sampled in each of three locations (Oak Island, Smith Island, and Snows
+#' Marsh)
+#'
+#' Samples of the soil substrate from 5 random sites within
+#' each location–vegetation type (giving 45 total samples) were analyzed for
+#' 14 soil physicochemical characteristics each month for several months.
+#'
+#' @format   A data frame with 45 observations on the following 17 variables.
+#' \describe{
+#'  \item{\code{loc}}{location, a factor with levels \code{OI} \code{SI} \code{SM}}
+#'   \item{\code{type}}{area type, a factor with levels \code{DVEG} \code{SHRT} \code{TALL}}
+#'   \item{\code{biomass}}{aerial biomass in \eqn{gm^{-2}}, a numeric vector}
+#'   \item{\code{H2S}}{hydrogen silfide ppm, a numeric vector}
+#'   \item{\code{sal}}{percent salinity, a numeric vector}
+#'   \item{\code{Eh7}}{ester-hydrolase, a numeric vector}
+#'   \item{\code{pH}}{acidity as measured in water, a numeric vector}
+#'   \item{\code{buf}}{a numeric vector}
+#'   \item{\code{P}}{phosphorus ppm, a numeric vector}
+#'   \item{\code{K}}{potassium ppm, a numeric vector}
+#'   \item{\code{Ca}}{calcium ppm, a numeric vector}
+#'   \item{\code{Mg}}{magnesium ppm, a numeric vector}
+#'   \item{\code{Na}}{sodium ppm, a numeric vector}
+#'   \item{\code{Mn}}{manganese ppm, a numeric vector}
+#'   \item{\code{Zn}}{zinc ppm, a numeric vector}
+#'   \item{\code{Cu}}{copper ppm, a numeric vector}
+#'   \item{\code{NH4}}{ammonium ion ppm, a numeric vector}
+#' }
+#' @source
+#' Rawlings, J. O., Pantula, S. G., & Dickey, D. A. (2001).
+#' \emph{Applied Regression Analysis: A Research Tool}, 2nd Ed., Springer New York.
+#' Table 5.1.
+#' @references
+#' R. A. Linthurst. Aeration, nitrogen, pH and salinity as factors affecting \emph{Spartina Alterniflora} growth and dieback.
+#' PhD thesis, North Carolina State University, 1979.
+#' @keywords dataset
+#' @examples
+#' data(linhurst)
+#' str(linhurst)
+#' linth.mod <- lm (biomass ~ H2S + sal + Eh7 + pH + buf + P + K + Ca + Mg + Na +
+#'                            Mn + Zn + Cu + NH4,
+#'                  data=linthurst)
+#' car::vif(linth.mod)
+#'
+#' (cd <- colldiag(linth.mod, add.intercept=FALSE, center=TRUE))
+#' # simplified display
+#' print(cd, fuzz=.3)
 
+
+NULL
 
 
 
