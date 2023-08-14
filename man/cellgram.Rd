@@ -14,7 +14,7 @@ cellgram(
   label = 0,
   label.size = 0.7,
   ref.col = "grey80",
-  ref.grid = "no",
+  ref.grid = FALSE,
   scale.max = 1,
   shape.name = ""
 )
@@ -40,7 +40,7 @@ in the cell.}
 
 \item{ref.col}{color of reference lines}
 
-\item{ref.grid}{whether to draw ref lines or not}
+\item{ref.grid}{whether to draw ref lines in the cells or not}
 
 \item{scale.max}{scale values to this maximum}
 

@@ -77,7 +77,7 @@ tableplot.colldiag <- function(
       scale.max = rep(c(100, cond.max), each = 3),
       label = 1,
       label.size = 1,
-      ref.grid = rep(c("yes", "no"), each = 3)
+      ref.grid = rep(c(TRUE, FALSE), each = 3)
     )
   }
 

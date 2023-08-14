@@ -19,7 +19,7 @@
 #' @param label       how many cell values will be labeled in the cell; max is 4
 #' @param label.size  size of cell label(s)
 #' @param ref.col     color of reference lines
-#' @param ref.grid    whether to draw ref lines or not
+#' @param ref.grid    whether to draw ref lines in the cells or not
 #' @param scale.max   scale values to this maximum
 #' @param shape.name  character string to uniquely identify shapes to help fill in smallest one
 #'
@@ -34,20 +34,20 @@ cellgram = function(
 	## Arguments that may be vectorized:
 
 	cell,  		      # actual cell value(s)
-	shape=0,		    # shape of cell value(s); 0="circle", 1="diamond", 2="square"
-	shape.col="black", # color of shape(s), outline only
-	shape.lty=1,	 # line type used for shape(s)
+	shape = 0,		    # shape of cell value(s); 0 = "circle", 1 = "diamond", 2 = "square"
+	shape.col = "black", # color of shape(s), outline only
+	shape.lty = 1,	 # line type used for shape(s)
 
 	## Arguments that will never be vectorized:
 
-	cell.fill="white", # fill color of smallest cell value
-	back.fill="white", # back fill color
-	label=0,		       # how many cell values will be printed; max is 4
-	label.size=0.7,
-	ref.col="grey80",
-	ref.grid="no",
-	scale.max=1,
-	shape.name="")	 # uniquely identify shapes to help fill in smallest one
+	cell.fill = "white", # fill color of smallest cell value
+	back.fill = "white", # back fill color
+	label = 0,		       # how many cell values will be printed; max is 4
+	label.size = 0.7,
+	ref.col = "grey80",
+	ref.grid = FALSE,
+	scale.max = 1,
+	shape.name = "")	 # uniquely identify shapes to help fill in smallest one
 
 	{
 
@@ -59,7 +59,7 @@ cellgram = function(
 
 	## Draw grid reference lines:
 
-	if (ref.grid=="yes") {
+	if (ref.grid==TRUE) {
 		grid.segments(x0=0,y0=.5,x1=1,y1=.5, gp=gpar(col=ref.col, lwd=0.2))
 		grid.segments(x0=.5,y0=0,x1=.5,y1=1, gp=gpar(col=ref.col, lwd=0.2))
 		}

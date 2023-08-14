@@ -24,7 +24,7 @@
 #' @param label       how many cell values will be labeled in the cell; max is 4
 #' @param label.size  size of cell label(s)
 #' @param ref.col     color of reference lines
-#' @param ref.grid    whether to draw ref lines or not
+#' @param ref.grid    whether to draw ref lines in the cells or not
 #' @param scale.max   scale values to this maximum
 #' @param as.data.frame whether to return a data.frame or a list.
 #' @return Returns either a data.frame of a list. If a data.frame, the pattern specifications appear as columns
@@ -43,7 +43,7 @@ make.patterns <- function(
     label = 0,
     label.size = 0.7,
     ref.col = "gray80",
-    ref.grid = "no",
+    ref.grid = FALSE,
     scale.max = 1,
     as.data.frame = FALSE) {
 
