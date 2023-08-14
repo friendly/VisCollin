@@ -3,7 +3,12 @@
 
 #' Tableplot for Collinearity Diagnostics
 #'
-#' @param values     A \code{"colldiag"} object
+#' These methods produce a tableplot of collinearity diagnostics, showing the condition indices and variance
+#' proportions for predictors in a linear or generalized linear regression model.
+#'
+#' @name tableplot.colldig
+#' @aliases tableplot.colldig tableplot.lm tableplot.glm
+#' @param values     A \code{"colldiag"}, \code{"lm"} or \code{"glm"} object
 #' @param prop.col   A vector of colors used for the variance proportions
 #' @param cond.col   A vector of colors used for the condition indices
 #' @param cond.max   Maximum value to scale the condition indices
@@ -21,6 +26,24 @@
 #' @examples
 #' # None yet
 #'
+
+#' @rdname tableplot.colldiag
+#' @exportS3Method tableplot lm
+tableplot.lm <- function(values, ...) {
+  x <- colldiag(values, add.intercept = FALSE, center = TRUE)
+  tableplot.colldiag(x, ...)
+}
+
+#' @rdname tableplot.colldiag
+#' @exportS3Method tableplot glm
+tableplot.glm <- function(values, ...) {
+  x <- colldiag(values, add.intercept = FALSE, center = TRUE)
+  tableplot.colldiag(x, ...)
+}
+
+
+#' @rdname tableplot.colldiag
+#' @exportS3Method tableplot colldiag
 tableplot.colldiag <- function(
        values,
        prop.col = c("white", "pink", "red"),        # colors for variance proportions
@@ -32,11 +55,12 @@ tableplot.colldiag <- function(
        title = "",
        patterns,
        ...) {
-  if (inherits(x, "lm")) {
-    x <- colldiag(x, add.intercept = FALSE, center = TRUE)
-  } else {
-    stop('Must be a "colldiag" object')
-  }
+  x <- values
+  # if (inherits(x, "lm")) {
+  #   x <- colldiag(x, add.intercept = FALSE, center = TRUE)
+  # } else {
+  #   stopif('Must be a "colldiag" object')
+  # }
 
   collin <- round(100 * x$pi) # variance proportions
   condind <- round(x$condindx, 2) # condition indices

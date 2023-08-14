@@ -3,6 +3,8 @@
 S3method(print,colldiag)
 S3method(tableplot,colldiag)
 S3method(tableplot,default)
+S3method(tableplot,glm)
+S3method(tableplot,lm)
 export(cellgram)
 export(colldiag)
 export(make.patterns)
