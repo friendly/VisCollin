@@ -6,7 +6,7 @@
 #' These methods produce a tableplot of collinearity diagnostics, showing the condition indices and variance
 #' proportions for predictors in a linear or generalized linear regression model. This encodes the
 #' condition indices using \emph{squares} whose background color is red for condition indices > 10,
-#' green for valuse > 5 and green otherwise, reflecting danger, warning and OK respectively.
+#' green for values > 5 and green otherwise, reflecting danger, warning and OK respectively.
 #' Variance decomposition proportions are shown by filled \emph{circles} whose radius is proportional to those values
 #' and are filled (by default) with shades ranging from white through pink to red. Rounded values of those diagnostics
 #' are printed in the cells.

@@ -135,7 +135,7 @@ uncorrelated.
 
 ### Diagnostics
 
-The diagnostic measures introduced by Belesley (1991) are based on the
+The diagnostic measures introduced by Belsley (1991) are based on the
 eigenvalues $\lambda_1, \lambda_2, \dots \lambda_p$ of the correlation
 matrix $R_{X}$ of the predictors (preferably centered and scaled, and
 not including the constant term for the intercept), and the
@@ -179,7 +179,7 @@ is often difficult to know what numbers to pay attention to.
 #> 6  10.818 0.563    0.981  0.032 0.176  0.013 0.004
 ```
 
-Belesley (1991) recommends that the sources of collinearity be diagnosed
+Belsley (1991) recommends that the sources of collinearity be diagnosed
 (a) only for those components with large $\kappa_j$, and (b) for those
 components for which the variance proportion is large (say, $\ge 0.5$)
 on *two* or more predictors. The print method for `"colldiag"` objects

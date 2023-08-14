@@ -68,7 +68,7 @@ the constant term for the intercept (e.g., SAS PROC REG, with the option COLLIN)
 However, these are generally useless and misleading unless the intercept has some
 real interpretation and the origin of the regressors is contained within the
 prediction space, as explained by Fox (1997, p. 351). The default values
-for \code{scale}, \code{center} and \code{add.intercept} exclude the contant
+for \code{scale}, \code{center} and \code{add.intercept} exclude the constant
 term, and correspond to the SAS option COLLINNOINT.
 }
 \note{

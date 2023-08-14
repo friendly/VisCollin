@@ -33,7 +33,7 @@ tableplot(values, ...)
 \item{types}{Matrix of specification assignments, of the same size as the first two dimensions
 of \code{values}. Entries refer to the sub-lists of \code{patterns}.
 Defaults to a matrix of all 1s, \code{matrix(1, dim(values)[1], dim(values[2]))},
-indicating that all cells use the same pattern specificagtion.}
+indicating that all cells use the same pattern specification.}
 
 \item{patterns}{List of lists; each list is one specification for the arguments to \code{cellgram}.}
 
@@ -52,10 +52,10 @@ indicating that all cells use the same pattern specificagtion.}
 \item{gap}{Width of the gap in each partition, if partitions are requested by \code{v.parts}
 and/or \code{h.parts}}
 
-\item{v.parts}{An integer vector giving the number of columns in two or more partititions of
+\item{v.parts}{An integer vector giving the number of columns in two or more partitions of
 the table. If provided, sum must equal number of columns.}
 
-\item{h.parts}{An integer vector giving the number of rows in two or more partititions of
+\item{h.parts}{An integer vector giving the number of rows in two or more partitions of
 the table. If provided, sum must equal number of rows.}
 
 \item{cor.matrix}{Logical. \code{TRUE} for a correlation matrix}
