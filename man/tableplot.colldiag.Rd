@@ -39,7 +39,8 @@
 
 \item{cond.breaks}{Scale breaks for the condition indices}
 
-\item{show.rows}{Rows to show in the display}
+\item{show.rows}{Rows of the eigenvalue decompositon of the model matrix to show in the display. The default \code{nvar:1}
+puts the smallest dimensions at the top of the display.}
 
 \item{title}{title used for the resulting graphic}
 
@@ -47,7 +48,12 @@
 }
 \description{
 These methods produce a tableplot of collinearity diagnostics, showing the condition indices and variance
-proportions for predictors in a linear or generalized linear regression model.
+proportions for predictors in a linear or generalized linear regression model. This encodes the
+condition indices using \emph{squares} whose background color is red for condition indices > 10,
+green for valuse > 5 and green otherwise, reflecting danger, warning and OK respectively.
+Variance decomposition proportions are shown by filled \emph{circles} whose radius is proportional to those values
+and are filled (by default) with shades ranging from white through pink to red. Rounded values of those diagnostics
+are printed in the cells.
 }
 \examples{
 # None yet

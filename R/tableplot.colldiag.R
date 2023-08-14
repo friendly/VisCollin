@@ -4,7 +4,12 @@
 #' Tableplot for Collinearity Diagnostics
 #'
 #' These methods produce a tableplot of collinearity diagnostics, showing the condition indices and variance
-#' proportions for predictors in a linear or generalized linear regression model.
+#' proportions for predictors in a linear or generalized linear regression model. This encodes the
+#' condition indices using \emph{squares} whose background color is red for condition indices > 10,
+#' green for valuse > 5 and green otherwise, reflecting danger, warning and OK respectively.
+#' Variance decomposition proportions are shown by filled \emph{circles} whose radius is proportional to those values
+#' and are filled (by default) with shades ranging from white through pink to red. Rounded values of those diagnostics
+#' are printed in the cells.
 #'
 #' @name tableplot.colldig
 #' @aliases tableplot.colldig tableplot.lm tableplot.glm
@@ -14,14 +19,15 @@
 #' @param cond.max   Maximum value to scale the condition indices
 #' @param prop.breaks Scale breaks for the variance proportions
 #' @param cond.breaks Scale breaks for the condition indices
-#' @param show.rows  Rows to show in the display
+#' @param show.rows  Rows of the eigenvalue decompositon of the model matrix to show in the display. The default \code{nvar:1}
+#'        puts the smallest dimensions at the top of the display.
 #' @param title      title used for the resulting graphic
 #' @param patterns   pattern matrix used for table plot.
 #' @param ...        other arguments, for consistency with generic
 #'
 #' @importFrom stats xtabs
 #' @return NULL
-#' @export
+#' @exportS3Method tableplot colldiag
 #'
 #' @examples
 #' # None yet
@@ -55,17 +61,13 @@ tableplot.colldiag <- function(
        title = "",
        patterns,
        ...) {
-  x <- values
-  # if (inherits(x, "lm")) {
-  #   x <- colldiag(x, add.intercept = FALSE, center = TRUE)
-  # } else {
-  #   stopif('Must be a "colldiag" object')
-  # }
 
-  collin <- round(100 * x$pi) # variance proportions
-  condind <- round(x$condindx, 2) # condition indices
-  vars <- colnames(x$pi) # variable names
-  nvar <- ncol(x$pi) # number of variables
+  x <- values
+
+  collin <- round(100 * x$pi)      # variance proportions
+  condind <- round(x$condindx, 2)  # condition indices
+  vars <- colnames(x$pi)           # variable names
+  nvar <- ncol(x$pi)               # number of variables
 
   if (missing(patterns)) {
     patterns <- make.patterns(
