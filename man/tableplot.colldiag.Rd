@@ -5,7 +5,7 @@
 \title{Tableplot for Collinearity Diagnostics}
 \usage{
 \method{tableplot}{colldiag}(
-  x,
+  values,
   prop.col = c("white", "pink", "red"),
   cond.col = c("#A8F48D", "#DDAB3E", "red"),
   cond.max = 100,
@@ -13,11 +13,12 @@
   cond.breaks = c(0, 5, 10, 1000),
   show.rows = nvar:1,
   title = "",
-  patterns
+  patterns,
+  ...
 )
 }
 \arguments{
-\item{x}{A \code{"colldiag"} object}
+\item{values}{A \code{"colldiag"} object}
 
 \item{prop.col}{A vector of colors used for the variance proportions}
 
@@ -34,6 +35,8 @@
 \item{title}{title used for the resulting graphic}
 
 \item{patterns}{pattern matrix used for table plot.}
+
+\item{...}{other arguments, for consistency with generic}
 }
 \description{
 Tableplot for Collinearity Diagnostics

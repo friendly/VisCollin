@@ -25,6 +25,7 @@
 #' @param label.size  size of cell label(s)
 #' @param ref.col     color of reference lines
 #' @param ref.grid    whether to draw ref lines or not
+#' @param scale.max   scale values to this maximum
 #' @param as.data.frame whether to return a data.frame or a list.
 #' @return Returns either a data.frame of a list. If a data.frame, the pattern specifications appear as columns
 #' @export

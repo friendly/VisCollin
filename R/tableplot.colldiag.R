@@ -3,7 +3,7 @@
 
 #' Tableplot for Collinearity Diagnostics
 #'
-#' @param x          A \code{"colldiag"} object
+#' @param values     A \code{"colldiag"} object
 #' @param prop.col   A vector of colors used for the variance proportions
 #' @param cond.col   A vector of colors used for the condition indices
 #' @param cond.max   Maximum value to scale the condition indices
@@ -12,6 +12,7 @@
 #' @param show.rows  Rows to show in the display
 #' @param title      title used for the resulting graphic
 #' @param patterns   pattern matrix used for table plot.
+#' @param ...        other arguments, for consistency with generic
 #'
 #' @importFrom stats xtabs
 #' @return NULL
@@ -20,7 +21,8 @@
 #' @examples
 #' # None yet
 #'
-tableplot.colldiag <- function(x,
+tableplot.colldiag <- function(
+       values,
        prop.col = c("white", "pink", "red"),        # colors for variance proportions
        cond.col = c("#A8F48D", "#DDAB3E", "red"),   # colors for condition indices
        cond.max = 100,                              # scale.max for condition indices
@@ -28,7 +30,8 @@ tableplot.colldiag <- function(x,
        cond.breaks = c(0, 5, 10, 1000),
        show.rows = nvar:1,
        title = "",
-       patterns) {
+       patterns,
+       ...) {
   if (inherits(x, "lm")) {
     x <- colldiag(x, add.intercept = FALSE, center = TRUE)
   } else {

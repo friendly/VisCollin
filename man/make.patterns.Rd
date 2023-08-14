@@ -42,6 +42,8 @@ in the cell.}
 
 \item{ref.grid}{whether to draw ref lines or not}
 
+\item{scale.max}{scale values to this maximum}
+
 \item{as.data.frame}{whether to return a data.frame or a list.}
 }
 \value{
