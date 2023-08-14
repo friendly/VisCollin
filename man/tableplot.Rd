@@ -87,7 +87,7 @@ more general contexts.
 data(cars)
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data=cars)
-vif(cars.mod)
+car::vif(cars.mod)
 
 (cd <- colldiag(cars.mod, center=TRUE))
 tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )

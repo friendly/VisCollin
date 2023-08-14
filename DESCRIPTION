@@ -13,6 +13,7 @@ Description: Provides methods to calculate diagnostics for multicollinearity amo
   of predictor space, where collinearity is most apparent. These include better tabular displays to highlight
   the important numbers, a semi-graphic a semi-graphic tableplot of the diagnostics and a collinearity biplot of the 
   smallest dimensions of predictor space, where collinearity is most apparent.
+Depends: R (>= 3.5.0)
 Suggests: 
   car,
   lmtest,

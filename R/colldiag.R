@@ -76,7 +76,7 @@
 #' data(cars)
 #' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
 #'                 data=cars)
-#' vif(cars.mod)
+#' car::vif(cars.mod)
 #'
 #' # SAS PROC REG / COLLIN option, including the intercept
 #' colldiag(cars.mod, add.intercept = TRUE)
