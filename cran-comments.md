@@ -25,5 +25,6 @@ them to be quoted in the DESCRIPTION.
 
 ## Version 0.1.0
 
-* This is a new release. It implements the function `colldiag()` and `tableplot()` methods for collinearity
-diagnostics.
+* Implements the function `colldiag()` and `tableplot()` methods for collinearity diagnostics.
+* Added cars, linthurst data
+* Initial CRAN submission. 

@@ -45,8 +45,8 @@ each location–vegetation type (giving 45 total samples) were analyzed for
 14 soil physicochemical characteristics each month for several months.
 }
 \examples{
-data(linhurst)
-str(linhurst)
+data(linthurst)
+str(linthurst)
 linth.mod <- lm (biomass ~ H2S + sal + Eh7 + pH + buf + P + K + Ca + Mg + Na +
                            Mn + Zn + Cu + NH4,
                  data=linthurst)

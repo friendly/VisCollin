@@ -122,8 +122,8 @@ NULL
 #' PhD thesis, North Carolina State University, 1979.
 #' @keywords dataset
 #' @examples
-#' data(linhurst)
-#' str(linhurst)
+#' data(linthurst)
+#' str(linthurst)
 #' linth.mod <- lm (biomass ~ H2S + sal + Eh7 + pH + buf + P + K + Ca + Mg + Na +
 #'                            Mn + Zn + Cu + NH4,
 #'                  data=linthurst)
