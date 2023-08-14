@@ -203,8 +203,26 @@ the predictors, corresponding to the two smallest dimensions.
 
 - Dimension 5 reflects the high correlation between horsepower and
   weight,
-- Dimension 6 reflects the high corelation between number of cylinders
+- Dimension 6 reflects the high correlation between number of cylinders
   and engine displacement.
+
+### Tableplot
+
+The simplified tabular display above can be improved to make the
+patterns of collinearity more visually apparent and to signify warnings
+directly to the eyes. A “tableplot” (Kwan, 2009) is a semi-graphic
+display that presents numerical information in a table using shapes
+proportional to the value in a cell and other visual attributes (shape
+type, color fill, and so forth) to encode other information.
+
+The tableplot below encodes all the information from the values of
+`colldiag()` printed above (but using `fuzz = 0.3`).
+
+``` r
+knitr::include_graphics("man/figures/cars-tableplot.png")
+```
+
+<img src="man/figures/cars-tableplot.png" width="100%" />
 
 ## References
 
