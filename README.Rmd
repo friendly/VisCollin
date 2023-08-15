@@ -6,11 +6,15 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+
+options(digits=3)
 
 ```
 
@@ -32,9 +36,9 @@ generalized linear model. It also provides methods to visualize those diagnostic
 
 These include:
 
-* better tabular presentation of collinearity diagnostics that highlight the important numbers.
-* a semi-graphic tableplot of the diagnostics to make warning and danger levels more salient and 
-* a collinearity biplot of the _smallest dimensions_ of predictor space, where collinearity is most apparent.
+* better **tabular presentation** of collinearity diagnostics that highlight the important numbers.
+* a semi-graphic **tableplot** of the diagnostics to make warning and danger levels more salient and 
+* a **collinearity biplot** of the _smallest dimensions_ of predictor space, where collinearity is most apparent.
 
 ## Installation
 
@@ -46,18 +50,21 @@ You can install the development version of VisCollin from [GitHub](https://githu
 remotes::install_github("friendly/VisCollin")
 ```
 
-## Example
+## Tutorial example
 
 This example uses the `cars` data set containing various measures of size and performance on 406 models of automobiles
 from 1982.
 ```{r cars}
 library(VisCollin)
+library(dplyr)
+library(tidyr)
 library(car)
 
 data(cars)
 str(cars)
 ```
 
+### Fit a model
 Fit a model predicting gas mileage (`mpg`) from the number of cylinders, engine displacement, horsepower, weight,
 time to
 accelerate from 0 -- 60 mph and model year (1970--1982). Perhaps surprisingly, only `weight` and `year` appear to
@@ -94,7 +101,7 @@ multiplied by 3.26 and it's $t$-value divided by this number,
 compared with the case when all predictors are
 uncorrelated. `engine`, `horse` and `weight` suffer a similar fate.
 
-### Diagnostics
+### Collinearity diagnostics
 
 The diagnostic measures introduced by Belsley (1991) are based on the eigenvalues $\lambda_1, \lambda_2, \dots \lambda_p$
 of the correlation matrix $R_{X}$ of the predictors (preferably centered and scaled, and not including the constant term
@@ -181,6 +188,86 @@ large variance proportions implicating two or more predictors.
 tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 ```
 
+### Collinearity biplot
+
+The standard biplot (Gabriel, 1971; Gower& Hand 1996) can be regarded as
+a multivariate analog of a scatterplot,
+obtained by projecting a
+multivariate sample into a low-dimensional space
+(typically of 2 or 3 dimensions)
+accounting for the greatest variance in the data.
+With the symmetric (PCA) scaling used here, this is 
+equivalent to a plot of principal component scores of the mean-centered 
+matrix $\widetilde{\mathbf{X}} = \mathbf{X} - \bar{\mathbf{X}}$ of predictors
+for the observations (shown as points or case labels),
+together with principal component coefficients
+for the variables (shown as vectors) in the same 2D (or 3D) space. 
+
+However the standard biplot is less useful for visualizing the relations among the
+predictors that lead to nearly collinear relations.  Instead, biplots of
+the **smallest dimensions** show these relations directly, and can show other
+features of the data as well, such as outliers and leverage points.
+We use `prcomp(X, scale.=TRUE)` to obtain the PCA of the correlation matrix
+of the predictors:
+
+```{r cars-pca}
+cars.X <- cars |>
+  select(where(is.numeric)) |>
+  select(-mpg) |>
+  tidyr::drop_na()
+cars.pca <- prcomp(cars.X, scale. = TRUE)
+cars.pca
+```
+
+The standard deviations above are the square roots $\sqrt{\lambda_j}$ of the eigenvalues of the
+correlation matrix, and are returned in the `sdev` component of the `"prcomp"` object.
+The eigenvectors are returned in the `rotation` component, whose directions are arbitrary.
+```{r cars-biplot-prep}
+# Make labels for dimensions include % of variance
+pct <- 100 *(cars.pca$sdev^2) / sum(cars.pca$sdev^2)
+lab <- glue::glue("Dimension {1:6} ({round(pct, 2)}%)")
+
+# Direction of eigenvectors is arbitrary. Reflect them
+cars.pca$rotation <- -cars.pca$rotation
+```
+
+The collinearity biplot is then constructed as follows:
+```{r cars-biplot}
+#| fig.show = "hold",
+#| out.width = "100%"
+op <- par(lwd = 2, xpd = NA )
+biplot(cars.pca,
+       choices=6:5,           # only the last two dimensions
+       scale=0.5,             # symmetric biplot scaling
+       cex=c(0.6, 1),         # character sizes for points and vectors
+       col = c("black", "blue"),
+       expand = 1.7,          # expand variable vectors for visibility
+       xlab = lab[6],
+       ylab = lab[5],
+       xlim = c(-0.7, 0.5),
+       ylim = c(-0.8, 0.5)
+      )
+par(op)
+```
+
+The projections of the variable vectors
+on the Dimension 5 and Dimension 6 axes are proportional to 
+their variance proportions shown above.
+The relative lengths of these variable vectors can be considered
+to indicate the extent to which each variable contributes to collinearity
+for these two near-singular dimensions.
+
+Thus, we see again that Dimension 6
+is largely determined by `engine` size, with a substantial relation
+to `cylinder`.  Dimension 5 has its' strongest relations to `Weight`
+and `horse`. 
+
+Moreover, there is one observation, #20, that stands out as
+an outlier in predictor space, far from the centroid.
+It turns out that this vehicle, a Buick Estate wagon, is an early-year (1970) American behemoth,
+with an 8-cylinder, 455 cu. in, 225 horse-power engine, and able to go from 0 to 60 mph
+in 10 sec.
+(Its MPG is only slightly under-predicted from the regression model, however.)
 
 ## References
 
@@ -196,3 +283,6 @@ Friendly, M., & Kwan, E. (2009).
 Online: [https://www.datavis.ca/papers/viscollin-tast.pdf](https://www.datavis.ca/papers/viscollin-tast.pdf).
 Supp. materials: [https://www.datavis.ca/papers/viscollin/](https://www.datavis.ca/papers/viscollin/)
 
+Gabriel, K. R. (1971). The Biplot Graphic Display of Matrices with Application to Principal Components Analysis. _Biometrics_, **58**, 453–467.
+
+Gower, J. C., & Hand, D. J. (1996). _Biplots_. London: Chapman & Hall.

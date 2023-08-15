@@ -2,6 +2,7 @@
 
 
 library(car)         # for vif
+library(dplyr)
 #library(perturb)     # for colldiag
 
 data(cars)
@@ -29,27 +30,49 @@ print(colldiag(cars.mod, add.intercept=FALSE, center=TRUE), fuzz=.3)
 tableplot.colldiag(cd)
 
 # Biplots
-cars.numeric  <- cars[,sapply(cars,is.numeric)]
-cars.complete <- cars.numeric[complete.cases(cars.numeric),]
+# cars.numeric  <- cars[,sapply(cars,is.numeric)]
+# cars.complete <- cars.numeric[complete.cases(cars.numeric),]
+
+cars.X <- cars |>
+  select(where(is.numeric)) |>
+  select(-mpg) |>
+  tidyr::drop_na()
+cars.pca <- prcomp(cars.X, scale. = TRUE)
+cars.pca
 
 # NB: The relative scaling of the variable vectors and scores differs
 #     from the SAS versions.
 # standard biplot of predictors
-cars.pca <- prcomp(cars.complete[,-1], scale. = TRUE)
-biplot( cars.pca, scale=0.5, cex=c(0.6,1), cex=c(0.6,1))
+
+# Make labels for dimensions include % of variance
+pct <- 100 *(cars.pca$sdev^2) / sum(cars.pca$sdev^2)
+lab <- glue::glue("Dimension {1:6} ({round(pct, 2)}%)")
+
+# reflect dimensions
+cars.pca$rotation <- -cars.pca$rotation
+
+op <- par(lwd = 2, xpd = NA )
+biplot( cars.pca,
+        scale=0.5,
+        cex=c(0.6,1),
+        col = c("black", "blue"),
+        expand = 1.7,
+        xlab = lab[6],
+        ylab = lab[5]
+)
+par(op)
 
 #last 2 dimensions for VIF
-pct <- 100 *(cars.pca$sdev^2) / sum(cars.pca$sdev^2)
-lab <- glue::glue("PCA Dimension {1:6} ({round(pct, 2)}%)")
 op <- par(lwd = 2, xpd = NA )
 biplot(cars.pca,
-       scale=0.5, choices=6:5,
-       cex=c(0.6, 1),
+       choices=6:5,           # only the last two dimensions
+       scale=0.5,             # symmetric biplot scaling
+       cex=c(0.6, 1),         # character sizes for points and vectors
        col = c("black", "blue"),
-       expand = 1.6,
+       expand = 1.7,          # expand variable vectors for visibility
        xlab = lab[6],
        ylab = lab[5],
        xlim = c(-0.7, 0.5),
-       ylim = c(-0.7, 0.5)
+       ylim = c(-0.8, 0.5)
 )
 par(op)

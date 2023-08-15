@@ -23,12 +23,12 @@ Diagnostics”, *The American Statistician*, **63**, 56–65.
 
 These include:
 
-- better tabular presentation of collinearity diagnostics that highlight
-  the important numbers.
-- a semi-graphic tableplot of the diagnostics to make warning and danger
-  levels more salient and
-- a collinearity biplot of the *smallest dimensions* of predictor space,
-  where collinearity is most apparent.
+- better **tabular presentation** of collinearity diagnostics that
+  highlight the important numbers.
+- a semi-graphic **tableplot** of the diagnostics to make warning and
+  danger levels more salient and
+- a **collinearity biplot** of the *smallest dimensions* of predictor
+  space, where collinearity is most apparent.
 
 ## Installation
 
@@ -40,15 +40,16 @@ of VisCollin from [GitHub](https://github.com/) with:
 remotes::install_github("friendly/VisCollin")
 ```
 
-## Example
+## Tutorial example
 
 This example uses the `cars` data set containing various measures of
 size and performance on 406 models of automobiles from 1982.
 
 ``` r
 library(VisCollin)
+library(dplyr)
+library(tidyr)
 library(car)
-#> Loading required package: carData
 
 data(cars)
 str(cars)
@@ -65,6 +66,8 @@ str(cars)
 #>  $ origin  : Factor w/ 3 levels "Amer","Eur","Japan": 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
+### Fit a model
+
 Fit a model predicting gas mileage (`mpg`) from the number of cylinders,
 engine displacement, horsepower, weight, time to accelerate from 0 – 60
 mph and model year (1970–1982). Perhaps surprisingly, only `weight` and
@@ -78,14 +81,14 @@ Anova(cars.mod)
 #> Anova Table (Type II tests)
 #> 
 #> Response: mpg
-#>           Sum Sq  Df  F value Pr(>F)    
-#> cylinder    11.6   1   0.9865 0.3212    
-#> engine      12.9   1   1.0891 0.2973    
-#> horse        0.0   1   0.0008 0.9775    
-#> weight    1213.6   1 102.8374 <2e-16 ***
-#> accel        8.2   1   0.6984 0.4038    
-#> year      2419.1   1 204.9945 <2e-16 ***
-#> Residuals 4543.3 385                    
+#>           Sum Sq  Df F value Pr(>F)    
+#> cylinder      12   1    0.99   0.32    
+#> engine        13   1    1.09   0.30    
+#> horse          0   1    0.00   0.98    
+#> weight      1214   1  102.84 <2e-16 ***
+#> accel          8   1    0.70   0.40    
+#> year        2419   1  204.99 <2e-16 ***
+#> Residuals   4543 385                   
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -102,14 +105,14 @@ lmtest::coeftest(cars.mod)
 #> 
 #> t test of coefficients:
 #> 
-#>                Estimate  Std. Error  t value  Pr(>|t|)    
-#> (Intercept) -1.4535e+01  4.7639e+00  -3.0511  0.002438 ** 
-#> cylinder    -3.2986e-01  3.3210e-01  -0.9932  0.321217    
-#> engine       7.6784e-03  7.3577e-03   1.0436  0.297332    
-#> horse       -3.9136e-04  1.3837e-02  -0.0283  0.977450    
-#> weight      -6.7946e-03  6.7002e-04 -10.1409 < 2.2e-16 ***
-#> accel        8.5273e-02  1.0204e-01   0.8357  0.403830    
-#> year         7.5337e-01  5.2618e-02  14.3176 < 2.2e-16 ***
+#>              Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept) -1.45e+01   4.76e+00   -3.05   0.0024 ** 
+#> cylinder    -3.30e-01   3.32e-01   -0.99   0.3212    
+#> engine       7.68e-03   7.36e-03    1.04   0.2973    
+#> horse       -3.91e-04   1.38e-02   -0.03   0.9775    
+#> weight      -6.79e-03   6.70e-04  -10.14   <2e-16 ***
+#> accel        8.53e-02   1.02e-01    0.84   0.4038    
+#> year         7.53e-01   5.26e-02   14.32   <2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -126,12 +129,12 @@ multicollinearity.
 
 ``` r
 vif(cars.mod)
-#>  cylinder    engine     horse    weight     accel      year 
-#> 10.633049 19.641683  9.398043 10.731681  2.625581  1.244829
+#> cylinder   engine    horse   weight    accel     year 
+#>    10.63    19.64     9.40    10.73     2.63     1.24
 
 sqrt(vif(cars.mod))
 #> cylinder   engine    horse   weight    accel     year 
-#> 3.260836 4.431894 3.065623 3.275924 1.620364 1.115719
+#>     3.26     4.43     3.07     3.28     1.62     1.12
 ```
 
 According to $\sqrt{VIF}$, the standard error of `cylinder` has been
@@ -139,7 +142,7 @@ multiplied by 3.26 and it’s $t$-value divided by this number, compared
 with the case when all predictors are uncorrelated. `engine`, `horse`
 and `weight` suffer a similar fate.
 
-### Diagnostics
+### Collinearity diagnostics
 
 The diagnostic measures introduced by Belsley (1991) are based on the
 eigenvalues $\lambda_1, \lambda_2, \dots \lambda_p$ of the correlation
@@ -258,6 +261,97 @@ tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 
 <img src="man/figures/README-cars-tableplot-1.png" width="100%" />
 
+### Collinearity biplot
+
+The standard biplot (Gabriel, 1971; Gower& Hand 1996) can be regarded as
+a multivariate analog of a scatterplot, obtained by projecting a
+multivariate sample into a low-dimensional space (typically of 2 or 3
+dimensions) accounting for the greatest variance in the data. With the
+symmetric (PCA) scaling used here, this is equivalent to a plot of
+principal component scores of the mean-centered matrix
+$\widetilde{\mathbf{X}} = \mathbf{X} - \bar{\mathbf{X}}$ of predictors
+for the observations (shown as points or case labels), together with
+principal component coefficients for the variables (shown as vectors) in
+the same 2D (or 3D) space.
+
+However the standard biplot is less useful for visualizing the relations
+among the predictors that lead to nearly collinear relations. Instead,
+biplots of the **smallest dimensions** show these relations directly,
+and can show other features of the data as well, such as outliers and
+leverage points. We use `prcomp(X, scale.=TRUE)` to obtain the PCA of
+the correlation matrix of the predictors:
+
+``` r
+cars.X <- cars |>
+  select(where(is.numeric)) |>
+  select(-mpg) |>
+  tidyr::drop_na()
+cars.pca <- prcomp(cars.X, scale. = TRUE)
+cars.pca
+#> Standard deviations (1, .., p=6):
+#> [1] 2.070 0.911 0.809 0.367 0.245 0.189
+#> 
+#> Rotation (n x k) = (6 x 6):
+#>             PC1    PC2    PC3    PC4     PC5     PC6
+#> cylinder -0.454 0.1869 -0.168  0.659 -0.2711  0.4725
+#> engine   -0.467 0.1628 -0.134  0.193 -0.0109 -0.8364
+#> horse    -0.462 0.0177  0.123 -0.620 -0.6123  0.1067
+#> weight   -0.444 0.2598 -0.278 -0.350  0.6860  0.2539
+#> accel     0.330 0.2098 -0.865 -0.143 -0.2774 -0.0337
+#> year      0.237 0.9092  0.335 -0.025 -0.0624 -0.0142
+```
+
+The standard deviations above are the square roots $\sqrt{\lambda_j}$ of
+the eigenvalues of the correlation matrix, and are returned in the
+`sdev` component of the `"prcomp"` object. The eigenvectors are returned
+in the `rotation` component, whose directions are arbitrary.
+
+``` r
+# Make labels for dimensions include % of variance
+pct <- 100 *(cars.pca$sdev^2) / sum(cars.pca$sdev^2)
+lab <- glue::glue("Dimension {1:6} ({round(pct, 2)}%)")
+
+# Direction of eigenvectors is arbitrary. Reflect them
+cars.pca$rotation <- -cars.pca$rotation
+```
+
+The collinearity biplot is then constructed as follows:
+
+``` r
+op <- par(lwd = 2, xpd = NA )
+biplot(cars.pca,
+       choices=6:5,           # only the last two dimensions
+       scale=0.5,             # symmetric biplot scaling
+       cex=c(0.6, 1),         # character sizes for points and vectors
+       col = c("black", "blue"),
+       expand = 1.7,          # expand variable vectors for visibility
+       xlab = lab[6],
+       ylab = lab[5],
+       xlim = c(-0.7, 0.5),
+       ylim = c(-0.8, 0.5)
+      )
+par(op)
+```
+
+<img src="man/figures/README-cars-biplot-1.png" width="100%" />
+
+The projections of the variable vectors on the Dimension 5 and Dimension
+6 axes are proportional to their variance proportions shown above. The
+relative lengths of these variable vectors can be considered to indicate
+the extent to which each variable contributes to collinearity for these
+two near-singular dimensions.
+
+Thus, we see again that Dimension 6 is largely determined by `engine`
+size, with a substantial relation to `cylinder`. Dimension 5 has its’
+strongest relations to `Weight` and `horse`.
+
+Moreover, there is one observation, \#20, that stands out as an outlier
+in predictor space, far from the centroid. It turns out that this
+vehicle, a Buick Estate wagon, is an early-year (1970) American
+behemoth, with an 8-cylinder, 455 cu. in, 225 horse-power engine, and
+able to go from 0 to 60 mph in 10 sec. (Its MPG is only slightly
+under-predicted from the regression model, however.)
+
 ## References
 
 Belsley, D.A., Kuh, E. and Welsch, R. (1980). *Regression Diagnostics*,
@@ -270,3 +364,9 @@ Friendly, M., & Kwan, E. (2009). “Where’s Waldo: Visualizing
 Collinearity Diagnostics.” *The American Statistician*, **63**, 56–65.
 Online: <https://www.datavis.ca/papers/viscollin-tast.pdf>. Supp.
 materials: <https://www.datavis.ca/papers/viscollin/>
+
+Gabriel, K. R. (1971). The Biplot Graphic Display of Matrices with
+Application to Principal Components Analysis. *Biometrics*, **58**,
+453–467.
+
+Gower, J. C., & Hand, D. J. (1996). *Biplots*. London: Chapman & Hall.
