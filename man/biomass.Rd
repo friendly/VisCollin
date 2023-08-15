@@ -10,7 +10,7 @@ A data frame with 45 observations on the following 17 variables.
 \item{\code{loc}}{location, a factor with levels \code{OI} \code{SI} \code{SM}}
 \item{\code{type}}{area type, a factor with levels \code{DVEG} \code{SHRT} \code{TALL}}
 \item{\code{biomass}}{aerial biomass in \eqn{gm^{-2}}, a numeric vector}
-\item{\code{H2S}}{hydrogen silfide ppm, a numeric vector}
+\item{\code{H2S}}{hydrogen sulfide ppm, a numeric vector}
 \item{\code{sal}}{percent salinity, a numeric vector}
 \item{\code{Eh7}}{ester-hydrolase, a numeric vector}
 \item{\code{pH}}{acidity as measured in water, a numeric vector}
@@ -42,7 +42,7 @@ Marsh)
 
 Samples of the soil substrate from 5 random sites within
 each location–vegetation type (giving 45 total samples) were analyzed for
-14 soil physicochemical characteristics each month for several months.
+14 soil physico-chemical characteristics each month for several months.
 }
 \examples{
 data(biomass)
