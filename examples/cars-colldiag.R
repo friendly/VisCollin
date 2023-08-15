@@ -37,7 +37,19 @@ cars.complete <- cars.numeric[complete.cases(cars.numeric),]
 # standard biplot of predictors
 cars.pca <- prcomp(cars.complete[,-1], scale. = TRUE)
 biplot( cars.pca, scale=0.5, cex=c(0.6,1), cex=c(0.6,1))
-#last 2 dimensions for VIF
-biplot( cars.pca,
-        scale=0.5, choices=5:6, cex=c(0.6,1))
 
+#last 2 dimensions for VIF
+pct <- 100 *(cars.pca$sdev^2) / sum(cars.pca$sdev^2)
+lab <- glue::glue("PCA Dimension {1:6} ({round(pct, 2)}%)")
+op <- par(lwd = 2, xpd = NA )
+biplot(cars.pca,
+       scale=0.5, choices=6:5,
+       cex=c(0.6, 1),
+       col = c("black", "blue"),
+       expand = 1.6,
+       xlab = lab[6],
+       ylab = lab[5],
+       xlim = c(-0.7, 0.5),
+       ylim = c(-0.7, 0.5)
+)
+par(op)

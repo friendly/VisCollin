@@ -17,23 +17,23 @@
 
 # read the data, slightly awkward in R because there are 2 lines/case
 mat <-
-  matrix(scan(here::here("data-raw", "linthurst.dat"),
+  matrix(scan(here::here("data-raw", "biomass.dat"),
               what=""),
          ncol=17, byrow=TRUE)
-linthurst <- data.frame(mat[-1,], stringsAsFactors=TRUE)
+biomass <- data.frame(mat[-1,], stringsAsFactors=TRUE)
 
-linthurst[] <- lapply(linthurst, type.convert)
-names(linthurst) <- mat[1,]
-colnames(linthurst)[3] <- "biomass"
+biomass[] <- lapply(biomass, type.convert)
+names(biomass) <- mat[1,]
+colnames(biomass)[3] <- "biomass"
 
 library(dplyr)
-linthurst <- linthurst |>
+biomass <- biomass |>
   mutate(loc = factor(loc),
          type = factor(type))
 
-str(linthurst)
+str(biomass)
 
-save(linthurst, file=here::here("data", "linthurst.RData"))
+save(biomass, file=here::here("data", "biomass.RData"))
 
-prompt(linthurst, filename = here::here("man-old", "linthurst.Rd"))
+prompt(biomass, filename = here::here("man-old", "biomass.Rd"))
 

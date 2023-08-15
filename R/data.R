@@ -77,9 +77,9 @@ NULL
 #' print(cd, fuzz=.3)
 NULL
 
-#' @name linthurst
+#' @name biomass
 #' @docType data
-#' @title Linthurst Data: Biomass Production in the Cape Fear Estuary
+#' @title Biomass Production in the Cape Fear Estuary
 #' @description
 #' Data collected by Rick Linthurst (1979) at North Carolina State University for the
 #' purpose of identifying the important soil characteristics influencing aerial
@@ -122,14 +122,14 @@ NULL
 #' PhD thesis, North Carolina State University, 1979.
 #' @keywords dataset
 #' @examples
-#' data(linthurst)
-#' str(linthurst)
-#' linth.mod <- lm (biomass ~ H2S + sal + Eh7 + pH + buf + P + K + Ca + Mg + Na +
+#' data(biomass)
+#' str(biomass)
+#' biomass.mod <- lm (biomass ~ H2S + sal + Eh7 + pH + buf + P + K + Ca + Mg + Na +
 #'                            Mn + Zn + Cu + NH4,
-#'                  data=linthurst)
-#' car::vif(linth.mod)
+#'                  data=biomass)
+#' car::vif(biomass.mod)
 #'
-#' (cd <- colldiag(linth.mod, add.intercept=FALSE, center=TRUE))
+#' (cd <- colldiag(biomass.mod, add.intercept=FALSE, center=TRUE))
 #' # simplified display
 #' print(cd, fuzz=.3)
 
