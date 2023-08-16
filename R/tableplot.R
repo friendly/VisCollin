@@ -42,7 +42,7 @@
 #'        of \code{values}. Entries refer to the sub-lists of \code{patterns}.
 #'        Defaults to a matrix of all 1s, \code{matrix(1, dim(values)[1], dim(values[2]))},
 #'        indicating that all cells use the same pattern specification.
-#' @param patterns List of lists; each list is one specification for the arguments to \code{cellgram}.
+#' @param patterns List of lists; each list is one specification for the arguments to \code{\link{cellgram}}.
 #' @param title    Main title
 #' @param side.label  a character vector providing labels for the rows of the tableplot
 #' @param top.label   a character vector providing labels for the columns of the tableplot
@@ -62,6 +62,7 @@
 #'
 #' @import grid
 #' @author Ernest Kwan and Michael Friendly
+#' @seealso \code{\link{cellgram}}
 #' @references
 #' Kwan, E. (2008).
 #' Improving Factor Analysis in Psychology: Innovations Based on the Null Hypothesis Significance
@@ -89,7 +90,7 @@ tableplot.default <- function(
 	values, 		# Matrix of values; can be a matrix, or an array of 3 dimensions. If an array, the numbers
 	            # along the 3rd dimension are
 	types,		  # Matrix of pattern designations (types).
-	patterns = list(list(0, "black", 1, "white", "white", 0, 0.5, "grey80", "no", 1)),
+	patterns = list(list(0, "black", 1, "white", "white", 0, 0.5, "grey80", FALSE, 1)),
 
 	title="Tableplot",
 

@@ -20,23 +20,26 @@ cellgram(
 )
 }
 \arguments{
-\item{cell}{Value(s) to be depicted in the table cell}
+\item{cell}{Numeric value(s) to be depicted in the table cell}
 
-\item{shape}{Shape(s) used to encode the numerical value of \code{cell}.
+\item{shape}{Integer(s) or character string(s) specifying the shape(s) used to encode the numerical value of
+\code{cell}.
 Any of \code{0="circle", 1="diamond", 2="square"}. Recycled to match the number of values
 in the cell.}
 
-\item{shape.col}{Outline color(s) for the shape(s)}
+\item{shape.col}{Outline color(s) for the shape(s). Recycled to match the number of values
+in the cell.}
 
-\item{shape.lty}{Outline line type(s) for the shape(s)}
+\item{shape.lty}{Outline line type(s) for the shape(s). Recycled to match the number of values
+in the cell.}
 
-\item{cell.fill}{inside color of |smallest| shape in a cell}
+\item{cell.fill}{Inside color of |smallest| shape in a cell}
 
-\item{back.fill}{background color of cell}
+\item{back.fill}{Background color of cell}
 
-\item{label}{how many cell values will be labeled in the cell; max is 4}
+\item{label}{Number of cell values to be printed in the corners of the cell; max is 4}
 
-\item{label.size}{size of cell label(s)}
+\item{label.size}{Character size of cell label(s)}
 
 \item{ref.col}{color of reference lines}
 
@@ -50,9 +53,10 @@ in the cell.}
 None. Used for its graphic side effect
 }
 \description{
-Draws a graphic representing one or more values for one cell in a tableplot
-using shapes whose size is proportional to the cell values. Several values can be shown
-in a cell, using different proportional shapes.
+Draws a graphic representing one or more values for one cell in a tableplot,
+using shapes whose size is proportional to the cell values and other visual attributes
+(outline color, fill color, outline line type, ...).
+Several values can be shown in a cell, using different proportional shapes.
 }
 \examples{
 # None

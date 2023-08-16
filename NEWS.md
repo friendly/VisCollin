@@ -1,3 +1,9 @@
+# VisCollin 0.1.1
+
+* Correct minor CRAN nits in DESCRIPTION
+* Add baseball data and example in `examples/`
+* Lifecycle: stable
+
 # VisCollin 0.1.0
 
 * Implements the function `colldiag()` and `tableplot()` methods for collinearity diagnostics.

@@ -1,19 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
+
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin)
+[![Last
+Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
+<!-- badges: end -->
 
 # VisCollin <img src="man/figures/logo.png" style="float:right; height:200px;" />
 
 **Visualizing Collinearity Diagnostics**
 
-<!-- badges: start -->
-
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin)
-[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Last
-Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
-<!-- badges: end -->
+Version 0.1.1
 
 The `VisCollin` package provides methods to calculate diagnostics for
 multicollinearity among predictors in a linear or generalized linear
@@ -43,7 +44,8 @@ remotes::install_github("friendly/VisCollin")
 ## Tutorial example
 
 This example uses the `cars` data set containing various measures of
-size and performance on 406 models of automobiles from 1982.
+size and performance on 406 models of automobiles from 1982. Interest is
+focused on predicting gas mileage, `mpg`.
 
 ``` r
 library(VisCollin)
@@ -222,6 +224,10 @@ the predictors, corresponding to the two smallest dimensions.
   weight,
 - Dimension 6 reflects the high correlation between number of cylinders
   and engine displacement.
+
+Note that the high variance proportion for `year` (0.787) on the second
+component creates no problem and should be ignored because (a) the
+condition index is low and (b) it shares nothing with other predictors.
 
 ### Tableplot
 

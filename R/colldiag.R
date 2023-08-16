@@ -43,8 +43,9 @@
 #'
 #' @return
 #' A \code{"colldiag"} object, containing:
-#'   \item{condindx}{A vector of condition indexes}
-#'   \item{pi}{A matrix of variance decomposition proportions}
+#'   \item{condindx}{A one-column matrix of condition indexes}
+#'   \item{pi}{A square matrix of variance decomposition proportions. The rows refer to the principal component dimensions,
+#'             the columns to the predictor variables.}
 #'
 #' \code{print.colldiag} prints the condition indexes as the first column of a table with the variance decomposition
 #' proportions beside them. \code{print.colldiag} has a \code{fuzz} option to suppress printing of small numbers.
@@ -89,6 +90,19 @@
 #' # fuzz small values
 #' print(cd, fuzz = 0.5)
 #'
+#' # Biomass data
+#' data(biomass)
+#'
+#' biomass.mod <- lm (biomass ~ H2S + sal + Eh7 + pH + buf + P + K +
+#'                              Ca + Mg + Na + Mn + Zn + Cu + NH4,
+#'                    data=biomass)
+#' car::vif(biomass.mod)
+#'
+#' cd <- colldiag(biomass.mod, center=TRUE)
+#' # simplified display
+#' print(colldiag(biomass.mod, center=TRUE), fuzz=.3)
+#'
+
 colldiag <- function(mod,
                      scale = TRUE,
                      center = FALSE,

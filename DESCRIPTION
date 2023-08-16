@@ -1,12 +1,12 @@
 Package: VisCollin
 Title: Visualizing Collinearity Diagnostics
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(person("Michael", "Friendly", , "friendly@yorku.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3237-0941"))
            )
 Description: Provides methods to calculate diagnostics for multicollinearity among predictors in a linear or
   generalized linear model. It also provides methods to visualize those diagnostics following Friendly & Kwan (2009),
-  "Where’s Waldo: Visualizing Collinearity Diagnostics", The American Statistician, 63, 56–65.
+  "Where’s Waldo: Visualizing Collinearity Diagnostics", <doi:10.1198/tast.2009.0012>.
   These include better tabular presentation of collinearity diagnostics that highlight the important numbers,
   a semi-graphic tableplot of the diagnostics to make warning and danger levels more salient,
   and a "collinearity biplot" of the smallest dimensions of predictor space, where collinearity is most apparent. 

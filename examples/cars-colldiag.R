@@ -1,6 +1,7 @@
 # cars data - collinearity diagnostics examples
 
 
+library(VisCollin)
 library(car)         # for vif
 library(dplyr)
 #library(perturb)     # for colldiag
@@ -14,7 +15,7 @@ vif(cars.mod)
 # SAS: / collin option
 #colldiag(cars.mod)
 
-# SAS: / collinoint option
+# SAS: / collinnoint option
 cd <- colldiag(cars.mod, add.intercept=FALSE, center=TRUE)
 
 # simplified display

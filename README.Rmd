@@ -18,16 +18,18 @@ options(digits=3)
 
 ```
 
+<!-- badges: start -->
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html) 
+[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin) 
+[![Last Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
+<!-- badges: end -->
+
 # VisCollin <img src="man/figures/logo.png" style="float:right; height:200px;" />
 
 **Visualizing Collinearity Diagnostics**
 
-<!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin) 
-[![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html) 
-[![Last Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
-<!-- badges: end -->
+Version `r packageDescription("VisCollin")$Version`
 
 The `VisCollin` package provides
 methods to calculate diagnostics for multicollinearity among predictors in a linear or
@@ -52,8 +54,7 @@ remotes::install_github("friendly/VisCollin")
 
 ## Tutorial example
 
-This example uses the `cars` data set containing various measures of size and performance on 406 models of automobiles
-from 1982.
+This example uses the `cars` data set containing various measures of size and performance on 406 models of automobiles from 1982. Interest is focused on predicting gas mileage, `mpg`.
 ```{r cars}
 library(VisCollin)
 library(dplyr)
@@ -69,6 +70,7 @@ Fit a model predicting gas mileage (`mpg`) from the number of cylinders, engine 
 time to
 accelerate from 0 -- 60 mph and model year (1970--1982). Perhaps surprisingly, only `weight` and `year` appear to
 significantly predict gas mileage. What's going on here?
+
 ```{r cars-mod}
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year, 
                 data=cars)
@@ -153,6 +155,9 @@ smallest dimensions.
 
 * Dimension 5 reflects the high correlation between horsepower and weight,
 * Dimension 6 reflects the high correlation between number of cylinders and engine displacement.
+
+Note that the high variance proportion for `year` (0.787) on the second component creates no problem and
+should be ignored because (a) the condition index is low and (b) it shares nothing with other predictors.
 
 ### Tableplot
 

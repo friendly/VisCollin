@@ -46,6 +46,9 @@ puts the smallest dimensions at the top of the display.}
 
 \item{patterns}{pattern matrix used for table plot.}
 }
+\value{
+None. Used for its graphic side-effect
+}
 \description{
 These methods produce a tableplot of collinearity diagnostics, showing the condition indices and variance
 proportions for predictors in a linear or generalized linear regression model. This encodes the

@@ -10,7 +10,7 @@ tableplot(values, ...)
 \method{tableplot}{default}(
   values,
   types,
-  patterns = list(list(0, "black", 1, "white", "white", 0, 0.5, "grey80", "no", 1)),
+  patterns = list(list(0, "black", 1, "white", "white", 0, 0.5, "grey80", FALSE, 1)),
   title = "Tableplot",
   side.label = "row",
   top.label = "col",
@@ -35,7 +35,7 @@ of \code{values}. Entries refer to the sub-lists of \code{patterns}.
 Defaults to a matrix of all 1s, \code{matrix(1, dim(values)[1], dim(values[2]))},
 indicating that all cells use the same pattern specification.}
 
-\item{patterns}{List of lists; each list is one specification for the arguments to \code{cellgram}.}
+\item{patterns}{List of lists; each list is one specification for the arguments to \code{\link{cellgram}}.}
 
 \item{title}{Main title}
 
@@ -97,6 +97,9 @@ tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 Kwan, E. (2008).
 Improving Factor Analysis in Psychology: Innovations Based on the Null Hypothesis Significance
 Testing Controversy. Ph. D. thesis,  York University.
+}
+\seealso{
+\code{\link{cellgram}}
 }
 \author{
 Ernest Kwan and Michael Friendly

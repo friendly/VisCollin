@@ -3,21 +3,25 @@
 
 #' Draw one cell in a tableplot
 #'
-#' @description Draws a graphic representing one or more values for one cell in a tableplot
-#' using shapes whose size is proportional to the cell values. Several values can be shown
-#' in a cell, using different proportional shapes.
+#' @description Draws a graphic representing one or more values for one cell in a tableplot,
+#' using shapes whose size is proportional to the cell values and other visual attributes
+#' (outline color, fill color, outline line type, ...).
+#' Several values can be shown in a cell, using different proportional shapes.
 #'
 #'
-#' @param cell        Value(s) to be depicted in the table cell
-#' @param shape       Shape(s) used to encode the numerical value of \code{cell}.
+#' @param cell        Numeric value(s) to be depicted in the table cell
+#' @param shape       Integer(s) or character string(s) specifying the shape(s) used to encode the numerical value of
+#'                    \code{cell}.
 #'                    Any of \code{0="circle", 1="diamond", 2="square"}. Recycled to match the number of values
 #'                    in the cell.
-#' @param shape.col   Outline color(s) for the shape(s)
-#' @param shape.lty   Outline line type(s) for the shape(s)
-#' @param cell.fill   inside color of |smallest| shape in a cell
-#' @param back.fill   background color of cell
-#' @param label       how many cell values will be labeled in the cell; max is 4
-#' @param label.size  size of cell label(s)
+#' @param shape.col   Outline color(s) for the shape(s). Recycled to match the number of values
+#'                    in the cell.
+#' @param shape.lty   Outline line type(s) for the shape(s). Recycled to match the number of values
+#'                    in the cell.
+#' @param cell.fill   Inside color of |smallest| shape in a cell
+#' @param back.fill   Background color of cell
+#' @param label       Number of cell values to be printed in the corners of the cell; max is 4
+#' @param label.size  Character size of cell label(s)
 #' @param ref.col     color of reference lines
 #' @param ref.grid    whether to draw ref lines in the cells or not
 #' @param scale.max   scale values to this maximum
@@ -33,17 +37,17 @@ cellgram = function(
 
 	## Arguments that may be vectorized:
 
-	cell,  		      # actual cell value(s)
-	shape = 0,		    # shape of cell value(s); 0 = "circle", 1 = "diamond", 2 = "square"
+	cell,  		           # actual cell value(s)
+	shape = 0,		       # shape of cell value(s); 0 = "circle", 1 = "diamond", 2 = "square"
 	shape.col = "black", # color of shape(s), outline only
-	shape.lty = 1,	 # line type used for shape(s)
+	shape.lty = 1,	     # line type used for shape(s)
 
 	## Arguments that will never be vectorized:
 
 	cell.fill = "white", # fill color of smallest cell value
 	back.fill = "white", # back fill color
 	label = 0,		       # how many cell values will be printed; max is 4
-	label.size = 0.7,
+	label.size = 0.7,    # size of cell label(s)
 	ref.col = "grey80",
 	ref.grid = FALSE,
 	scale.max = 1,
@@ -104,7 +108,10 @@ cellgram = function(
 	## Labels
 	if (label > 0){
 		cell = sort(cell,decreasing=T)
-		d = matrix(c(1,1,0,0,0,1,1,0),4,2)
+		d = matrix(c(1, 1,
+		             0, 0,
+		             0, 1,
+		             1, 0), 4,2)
 		for (k in 1:min(label,4,length(cell))){
 			grid.text(cell[k], gp=gpar(cex=label.size),
 			    x=unit(c(.97,.97,.03,.03)[k],"npc"),

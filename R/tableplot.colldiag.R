@@ -34,6 +34,8 @@
 #' @param patterns   pattern matrix used for table plot.
 #' @param ...        other arguments, for consistency with generic
 #'
+#' @return None. Used for its graphic side-effect
+#'
 #' @author Michael Friendly
 #' @references
 #' Friendly, M., & Kwan, E. (2009).
