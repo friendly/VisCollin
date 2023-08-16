@@ -43,16 +43,19 @@ remotes::install_github("friendly/VisCollin")
 
 ## Tutorial example
 
-This example uses the `cars` data set containing various measures of
-size and performance on 406 models of automobiles from 1982. Interest is
-focused on predicting gas mileage, `mpg`.
-
 ``` r
 library(VisCollin)
 library(dplyr)
 library(tidyr)
 library(car)
+library(corrgram)
+```
 
+This example uses the `cars` data set containing various measures of
+size and performance on 406 models of automobiles from 1982. Interest is
+focused on predicting gas mileage, `mpg`.
+
+``` r
 data(cars)
 str(cars)
 #> 'data.frame':    406 obs. of  10 variables:
@@ -96,7 +99,7 @@ Anova(cars.mod)
 ```
 
 `lmtest::coeftest()` shows the coefficients, $\hat{\beta_j}$, their
-standard errors $s(\hat{\beta_j})$ and associated t statistics,
+standard errors $s(\hat{\beta_j})$ and associated $t$ statistics,
 $t = \hat{\beta_j} / s(\hat{\beta_j})$. As we will see, the standard
 errors of the non-significant predictors have been inflated due to high
 multiple correlations among the predictors, making the $t$ statistics
@@ -118,6 +121,45 @@ lmtest::coeftest(cars.mod)
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+
+### Correlation matrix
+
+It is often recommended to examine the correlation matrix of the
+predictors to diagnose collinearity problems. In the general case, this
+advice is misguided, because it is not the 0-order correlations that
+matter, but rather the **multiple correlations** predicting each
+independent variable from the others, $R_{x_j | \text{others}}$.
+
+Nonetheless, it is instructive to examine the correlations.
+
+``` r
+R <- cars |> 
+  select(cylinder:year) |> 
+  tidyr::drop_na() |>
+  cor()
+
+100 * R |> round(digits = 2)
+#>          cylinder engine horse weight accel year
+#> cylinder      100     95    84     90   -52  -36
+#> engine         95    100    90     93   -56  -38
+#> horse          84     90   100     87   -70  -42
+#> weight         90     93    87    100   -43  -32
+#> accel         -52    -56   -70    -43   100   30
+#> year          -36    -38   -42    -32    30  100
+```
+
+Or, better yet, use `corrgram::corrgram()` to visualize them, using
+color and shading of glyphs,
+
+``` r
+corrgram(R, upper.panel = panel.pie)
+```
+
+<img src="man/figures/README-cars-corrgram-1.png" width="60%" />
+
+The message here seems to be that there are two clusters of predictors
+with high correlations: {`cylinder`, `engine`, `horse` and `weight`},
+and {`accel`, `year`}.
 
 ### Variance inflation factors
 
@@ -357,6 +399,55 @@ vehicle, a Buick Estate wagon, is an early-year (1970) American
 behemoth, with an 8-cylinder, 455 cu. in, 225 horse-power engine, and
 able to go from 0 to 60 mph in 10 sec. (Its MPG is only slightly
 under-predicted from the regression model, however.)
+
+### Remedies for collinearity: What to do?
+
+Collinearity is often a **data** problem, for which there is no magic
+cure. Nevertheless there are some general guidelines and useful
+techniques to address this problem.
+
+- **Pure prediction**: If we are only interested in predicting /
+  explaining an outcome, and not the model coefficients or which are
+  “significant”, collinearity can be largely ignored. The fitted values
+  are unaffected by collinearity.
+
+- **structural collinearity**: Sometimes collinearity results from
+  structural relations among the variables:
+
+  - For example, polynomial terms, like $x, x^2, x^3$ or interaction
+    terms like $x_1, x_2, x_1 * x_2$ are necessarily correlated. A
+    simple cure is to *center* the predictors at their means, using
+    $x - \bar{x}, (x - \bar{x})^2, (x - \bar{x})^3$ or
+    $(x_1 - \bar{x}_1), (x_2 - \bar{x}_2), (x_1 - \bar{x}_1) * (x_2 - \bar{x}_2)$
+
+  - When some predictors share a common cause, as in GNP or population
+    in time-series or cross-national data, you can reduce collinearity
+    by re-defining predictors to reflect *per capita measures*.
+
+- **Model re-specification**:
+
+  - Drop one or more regressors that have a high VIF if they are not
+    deemed to be essential
+
+  - Replace highly correlated regressors with linear combination(s) of
+    them. For example, two related variables, $x_1$ and $x_2$ can be
+    replaced without any loss of information by replacing them with
+    their sum and difference, $z_1 = x_1 + x_2$ and $z_2 = x_1 - x_2$.
+
+- **Statistical remedies**:
+
+  - Transform the predictors to uncorrelated principal components
+
+  - use regularization methods such as ridge regression and lasso, which
+    correct for collinearity by introducing a small amount of bias,
+    shrinking coefficients towards 0. See the
+    [genridge](https://CRAN.R-project.org/package=genridge) and its
+    [`pkgdown` documentation](https://friendly.github.io/genridge/) for
+    visualization methods.
+
+  - use Bayesian regression; if multicollinearity prevents a regression
+    coefficient from being estimated precisely, then a prior on that
+    coefficient will help to reduce its posterior variance.
 
 ## References
 

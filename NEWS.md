@@ -3,6 +3,7 @@
 * Correct minor CRAN nits in DESCRIPTION
 * Add baseball data and example in `examples/`
 * Lifecycle: stable
+* Extend README with `corrgram::corrgram()` and Remedies
 
 # VisCollin 0.1.0
 
