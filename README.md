@@ -8,6 +8,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecy
 [![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin)
 [![Last
 Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
+[![Downloads](https://cranlogs.r-pkg.org/badges/statquotes?color=brightgreen)](https://www.r-pkg.org:443/pkg/VisCollin)
 <!-- badges: end -->
 
 # VisCollin <img src="man/figures/logo.png" style="float:right; height:200px;" />
