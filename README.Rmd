@@ -59,7 +59,7 @@ library(VisCollin)
 library(dplyr)
 library(tidyr)
 library(car)
-library(corrgram)
+library(corrplot)
 ```
 
 This example uses the `cars` data set containing various measures of size and performance on 406 models of automobiles from 1982. Interest is focused on predicting gas mileage, `mpg`.
@@ -104,12 +104,12 @@ R <- cars |>
 100 * R |> round(digits = 2)
 ```
 
-Or, better yet, use `corrgram::corrgram()` to visualize them, using color and shading of glyphs,
+Or, better yet, use `corrplot::corrplot.mixed()` to visualize them, using color and shading of glyphs,
 ```{r cars-corrgram}
 #| fig.width = 6,
 #| fig.height = 6,
 #| out.width = "60%"
-corrgram(R, upper.panel = panel.pie)
+corrplot.mixed(R, lower = "square", upper = "ellipse", tl.col = "black")
 ```
 
 The message here seems to be that there are two clusters of predictors with

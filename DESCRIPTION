@@ -13,7 +13,7 @@ Description: Provides methods to calculate diagnostics for multicollinearity amo
 Depends: R (>= 3.5.0)
 Suggests: 
   car,
-  corrgram,
+  corrplot,
   dplyr,
   lmtest,
   knitr,

@@ -48,7 +48,7 @@ library(VisCollin)
 library(dplyr)
 library(tidyr)
 library(car)
-library(corrgram)
+library(corrplot)
 ```
 
 This example uses the `cars` data set containing various measures of
@@ -148,11 +148,11 @@ R <- cars |>
 #> year          -36    -38   -42    -32    30  100
 ```
 
-Or, better yet, use `corrgram::corrgram()` to visualize them, using
-color and shading of glyphs,
+Or, better yet, use `corrplot::corrplot.mixed()` to visualize them,
+using color and shading of glyphs,
 
 ``` r
-corrgram(R, upper.panel = panel.pie)
+corrplot.mixed(R, lower = "square", upper = "ellipse", tl.col = "black")
 ```
 
 <img src="man/figures/README-cars-corrgram-1.png" width="60%" />
