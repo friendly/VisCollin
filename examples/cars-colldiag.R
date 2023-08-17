@@ -8,8 +8,22 @@ library(dplyr)
 
 data(cars)
 
+# correlation matrix of predictors
 
-cars.mod <- lm (mpg ~ cylinder+engine+horse+weight+accel+year, data=cars)
+R <- cars |>
+  select(cylinder:year) |>
+  tidyr::drop_na() |>
+  cor()
+
+100 * R |> round(digits = 2)
+
+library(corrplot)
+corrplot.mixed(R, lower = "square", upper = "ellipse", tl.col = "black")
+
+
+# model
+cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+                data=cars)
 vif(cars.mod)
 
 # SAS: / collin option
