@@ -34,13 +34,10 @@ These include:
 
 ## Installation
 
-`VisCollin` is not yet on CRAN. You can install the development version
-of VisCollin from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("remotes")
-remotes::install_github("friendly/VisCollin")
-```
+|                     |                                                 |
+|---------------------|-------------------------------------------------|
+| CRAN version        | `install.packages("VisCollin")`                 |
+| Development version | `remotes::install_github("friendly/VisCollin")` |
 
 ## Tutorial example
 
@@ -169,7 +166,7 @@ the standard errors of the estimated coefficients and are proportional
 to $1 / (1 - R^2_{x_j | \text{others}})$.
 
 We check the variance inflation factors, using `car::vif()`. We see that
-most predictors have very high VIFs, indicating severe
+most predictors have very high VIFs, indicating moderately severe
 multicollinearity.
 
 ``` r
@@ -182,10 +179,10 @@ sqrt(vif(cars.mod))
 #>     3.26     4.43     3.07     3.28     1.62     1.12
 ```
 
-According to $\sqrt{VIF}$, the standard error of `cylinder` has been
-multiplied by 3.26 and it’s $t$-value divided by this number, compared
-with the case when all predictors are uncorrelated. `engine`, `horse`
-and `weight` suffer a similar fate.
+According to $\sqrt{\text{VIF}}$, the standard error of `cylinder` has
+been multiplied by 3.26 and it’s $t$-value divided by this number,
+compared with the case when all predictors are uncorrelated. `engine`,
+`horse` and `weight` suffer a similar fate.
 
 ### Collinearity diagnostics
 

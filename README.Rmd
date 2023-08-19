@@ -45,13 +45,13 @@ These include:
 
 ## Installation
 
-`VisCollin` is not yet on CRAN.
-You can install the development version of VisCollin from [GitHub](https://github.com/) with:
 
-``` r
-# install.packages("remotes")
-remotes::install_github("friendly/VisCollin")
-```
++-------------------+---------------------------------------------------+
+| CRAN version      | `install.packages("VisCollin")`                   |
++-------------------+---------------------------------------------------+
+| Development       | `remotes::install_github("friendly/VisCollin")`   |
+| version           |                                                   |
++-------------------+---------------------------------------------------+
 
 ## Tutorial example
 
@@ -123,15 +123,15 @@ Variance inflation factors measure the effect of multicollinearity on the standa
 estimated coefficients and are proportional to $1 / (1 - R^2_{x_j | \text{others}})$.
 
 We check the variance inflation factors, using `car::vif()`. We see that most predictors have very high
-VIFs, indicating severe multicollinearity.
+VIFs, indicating moderately severe multicollinearity.
 
-```{r}
+```{r cars-vif}
 vif(cars.mod)
 
 sqrt(vif(cars.mod))
 ```
 
-According to $\sqrt{VIF}$, the standard error of `cylinder` has been
+According to $\sqrt{\text{VIF}}$, the standard error of `cylinder` has been
 multiplied by 3.26 and it's $t$-value divided by this number,
 compared with the case when all predictors are
 uncorrelated. `engine`, `horse` and `weight` suffer a similar fate.
