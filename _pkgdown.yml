@@ -6,3 +6,25 @@ template:
     heading_font: {google: "Roboto Slab"}
     code_font: {google: "JetBrains Mono"}
 
+reference:
+- title: "Collinearity diagnostics"
+  desc: >
+    Function for computing collinearity diagnostics
+  contents:
+    - colldiag
+
+- title: "Tableplots"
+  contents:
+    - tableplot
+    - tableplot.lm
+    - tableplot.glm
+    - tableplot.colldiag
+    - make.patterns
+    - cellgram
+
+- title: "Datasets"
+  contents:
+    - biomass
+    - cars
+    - consumption
+
