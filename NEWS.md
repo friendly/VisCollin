@@ -1,3 +1,7 @@
+# VisCollin 0.1.
+
+* Fix the viewports in `cellgram()` so tableplot does not produce many images, requiring knitr option `fig.keep="last"`
+
 # VisCollin 0.1.1
 
 * Correct minor CRAN nits in DESCRIPTION

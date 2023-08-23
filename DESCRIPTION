@@ -1,6 +1,6 @@
 Package: VisCollin
 Title: Visualizing Collinearity Diagnostics
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("Michael", "Friendly", , "friendly@yorku.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3237-0941"))
            )
