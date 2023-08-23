@@ -1,5 +1,6 @@
 # last modified 7/29/2008 2:36PM by MF
 #  -- allow named shapes in addition to 0,1,2
+#  Replaced call to grid.edit with gpar(fill)
 
 #' Draw one cell in a tableplot
 #'
@@ -87,23 +88,27 @@ cellgram = function(
 			if (cell[k] < 0) this.shape = 1 else this.shape=shape[k]
 
 			if (this.shape==0 || this.shape=="circle")
-				grid.circle(name=paste(shape.name, k, sep=""),
-					r=abs(s.cell[k]/2),
-					gp=gpar(col=this.col, lty=this.lty, lwd=0.1))
+			  grid.circle(name=paste(shape.name, k, sep=""),
+			              r=abs(s.cell[k]/2),
+			              gp=gpar(col=this.col, lty=this.lty, lwd=0.1,
+			                      fill = if(cell[k] == min(cell)) cell.fill else NULL) )
 
 			if (this.shape==1 || this.shape=="diamond") {
-				r1 = 0.5 - 0.5*abs(s.cell[k])
-				r2 = 0.5*abs(s.cell[k]) + 0.5
-				grid.polygon(name=paste(shape.name,k,sep=""),
-					x=c(r1, .5, r2, .5), y=c(.5, r2, .5, r1),
-					gp=gpar(col=this.col, lty=this.lty, lwd=0.1)) }
+			  r1 = 0.5 - 0.5*abs(s.cell[k])
+			  r2 = 0.5*abs(s.cell[k]) + 0.5
+			  grid.polygon(name=paste(shape.name,k,sep=""),
+			               x=c(r1, .5, r2, .5), y=c(.5, r2, .5, r1),
+			               gp=gpar(col=this.col, lty=this.lty, lwd=0.1,
+			                       fill = if(cell[k] == min(cell)) cell.fill else NULL) )
+			}
 
 			if (this.shape==2 || this.shape=="square")
 				grid.rect(name=paste(shape.name,k,sep=""), height=abs(s.cell[k]), width=abs(s.cell[k]),
-					gp=gpar(col=this.col, lty=this.lty))
+					gp=gpar(col=this.col, lty=this.lty,
+					        fill = if(cell[k] == min(cell)) cell.fill else NULL))
 		}}
 
-	grid.edit(paste(shape.name,which.min(abs(cell)),sep=""), gp=gpar(fill=cell.fill))
+#	grid.edit(paste(shape.name,which.min(abs(cell)),sep=""), gp=gpar(fill=cell.fill))
 
 	## Labels
 	if (label > 0){

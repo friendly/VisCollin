@@ -92,6 +92,16 @@ car::vif(cars.mod)
 (cd <- colldiag(cars.mod, center=TRUE))
 tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 
+data(baseball, package = "corrgram")
+
+baseball$Years7 <- pmin(baseball$Years,7)
+
+base.mod <- lm(logSal ~ Years7 + Atbatc + Hitsc + Homerc + Runsc + RBIc + Walksc,
+               data=baseball)
+car::vif(base.mod)
+
+cd <- colldiag(base.mod, center=TRUE)
+tableplot(cd)
 }
 \references{
 Kwan, E. (2008).

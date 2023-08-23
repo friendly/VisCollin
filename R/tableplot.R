@@ -15,7 +15,7 @@
 # -- Should allow to automatically round or format the values printed in the cells
 # -- title should either be NULL by default or use deparse(substitute(values)) to
 #    print "Tableplot of X"
-# -- Fix the viewports so tableplot does not produce many images, requiring knitr option fig.keep="last"
+# DONE Fix the viewports so tableplot does not produce many images, requiring knitr option fig.keep="last"
 
 #' Tableplot: A Semi-graphic Display of a Table
 #'
@@ -79,6 +79,18 @@
 #' (cd <- colldiag(cars.mod, center=TRUE))
 #' tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 #'
+#' data(baseball, package = "corrgram")
+#'
+#' baseball$Years7 <- pmin(baseball$Years,7)
+#'
+#' base.mod <- lm(logSal ~ Years7 + Atbatc + Hitsc + Homerc + Runsc + RBIc + Walksc,
+#'                data=baseball)
+#' car::vif(base.mod)
+#'
+#' cd <- colldiag(base.mod, center=TRUE)
+#' tableplot(cd)
+
+
 tableplot <-
   function(values,  ...) UseMethod("tableplot")
 

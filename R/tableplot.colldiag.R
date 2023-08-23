@@ -15,11 +15,6 @@
 #' and are filled (by default) with shades ranging from white through pink to red. Rounded values of those diagnostics
 #' are printed in the cells.
 #'
-#' @note
-#' Tableplots are produced using \code{grid} graphics using viewports to draw each successive cell in the display.
-#' For use in \code{.Rmd} documents using \code{knitr}, you should use the chunk option \code{fig.keep = "last"}
-#' so that only the final figure is shown in the output.
-#'
 #' @name tableplot.colldig
 #' @aliases tableplot.colldig tableplot.lm tableplot.glm
 #' @param values     A \code{"colldiag"}, \code{"lm"} or \code{"glm"} object
