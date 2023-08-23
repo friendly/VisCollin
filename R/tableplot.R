@@ -85,10 +85,10 @@
 #'
 #' base.mod <- lm(logSal ~ Years7 + Atbatc + Hitsc + Homerc + Runsc + RBIc + Walksc,
 #'                data=baseball)
-#' vif(base.mod)
+#' car::vif(base.mod)
 #'
 #' cd <- colldiag(base.mod, center=TRUE)
-#' tableplot.colldiag(cd)
+#' tableplot(cd)
 
 
 tableplot <-

@@ -18,10 +18,10 @@ cd <- colldiag(base.mod, center=TRUE)
 # simplified display
 print(colldiag(base.mod, center=TRUE), fuzz=.3)
 
-tableplot.colldiag(cd)
+tableplot(cd)
 
 # same result, using the lm() object:
-# tableplot.colldiag(base.mod)
+# tableplot(base.mod)
 
 # do collinearity biplot
 base.pca <- princomp( ~ Years7 + Atbatc + Hitsc + Homerc + Runsc + RBIc + Walksc,
