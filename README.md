@@ -273,10 +273,11 @@ condition index is low and (b) it shares nothing with other predictors.
 
 The simplified tabular display above can be improved to make the
 patterns of collinearity more visually apparent and to signify warnings
-directly to the eyes. A “tableplot” (Kwan, 2009) is a semi-graphic
-display that presents numerical information in a table using shapes
-proportional to the value in a cell and other visual attributes (shape
-type, color fill, and so forth) to encode other information.
+directly to the eyes. A “tableplot” (Kwan et-al., 2009) is a
+semi-graphic display that presents numerical information in a table
+using shapes proportional to the value in a cell and other visual
+attributes (shape type, color fill, and so forth) to encode other
+information.
 
 For collinearity diagnostics, these show:
 
@@ -388,8 +389,8 @@ the extent to which each variable contributes to collinearity for these
 two near-singular dimensions.
 
 Thus, we see again that Dimension 6 is largely determined by `engine`
-size, with a substantial relation to `cylinder`. Dimension 5 has its’
-strongest relations to `Weight` and `horse`.
+size, with a substantial (negative) relation to `cylinder`. Dimension 5
+has its’ strongest relations to `weight` and `horse`.
 
 Moreover, there is one observation, \#20, that stands out as an outlier
 in predictor space, far from the centroid. It turns out that this
@@ -465,3 +466,7 @@ Application to Principal Components Analysis. *Biometrics*, **58**,
 453–467.
 
 Gower, J. C., & Hand, D. J. (1996). *Biplots*. London: Chapman & Hall.
+
+Kwan, E., Lu, I. R. R., & Friendly, M. (2009). Tableplot: A new tool for
+assessing precise predictions. *Zeitschrift Für Psychologie / Journal of
+Psychology*, **217**, 38–48.

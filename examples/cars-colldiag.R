@@ -4,7 +4,6 @@
 library(VisCollin)
 library(car)         # for vif
 library(dplyr)
-#library(perturb)     # for colldiag
 
 data(cars)
 
@@ -35,12 +34,6 @@ cd <- colldiag(cars.mod, add.intercept=FALSE, center=TRUE)
 # simplified display
 print(colldiag(cars.mod, add.intercept=FALSE, center=TRUE), fuzz=.3)
 
-# source("c:/R/tableplot/tableplot.R")
-# source("c:/R/tableplot/cellgram.R")
-# source("c:/R/tableplot/make.patterns.R")
-# source("c:/R/tableplot/tableplot.colldiag.R")
-#
-# library(tableplot)
 
 tableplot.colldiag(cd)
 
@@ -55,6 +48,8 @@ cars.X <- cars |>
 cars.pca <- prcomp(cars.X, scale. = TRUE)
 cars.pca
 
+cars.pca.save <- cars.pca
+
 # NB: The relative scaling of the variable vectors and scores differs
 #     from the SAS versions.
 # standard biplot of predictors
@@ -63,7 +58,7 @@ cars.pca
 pct <- 100 *(cars.pca$sdev^2) / sum(cars.pca$sdev^2)
 lab <- glue::glue("Dimension {1:6} ({round(pct, 2)}%)")
 
-# reflect dimensions
+# reflect and scale dimensions
 cars.pca$rotation <- -cars.pca$rotation
 
 op <- par(lwd = 2, xpd = NA )
@@ -91,3 +86,40 @@ biplot(cars.pca,
        ylim = c(-0.8, 0.5)
 )
 par(op)
+
+# try factoextra
+
+library(factoextra)
+
+# scale the variable vectors
+
+cars.pca <- cars.pca.save
+cars.pca$rotation <- -2.5 * cars.pca$rotation
+
+ggp <-
+fviz_pca_biplot(cars.pca,
+                axes = 6:5,
+                geom = "point",
+                col.var = "blue",
+                labelsize = 5,
+                pointsize = 1.5,
+                arrowsize = 1.5,
+                addEllipses = TRUE,
+                ggtheme = ggplot2::theme_bw(base_size = 14),
+                title = "Collinearity biplot for cars data")
+#  ggplot2::coord_equal()
+
+# add point labels for outlying points
+dsq <- heplots::Mahalanobis(cars.pca$x[, 6:5])
+scores <- as.data.frame(cars.pca$x[, 6:5])
+scores$name <- rownames(scores)
+
+library(ggrepel)
+ggp + geom_text_repel(data = scores[dsq > qchisq(0.95, df = 6),],
+                aes(x = PC6,
+                    y = PC5,
+                    label = name),
+                vjust = -0.5,
+                size = 5)
+
+

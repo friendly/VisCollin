@@ -196,7 +196,7 @@ should be ignored because (a) the condition index is low and (b) it shares nothi
 
 The simplified tabular display above can be improved to make the patterns of collinearity more 
 visually apparent and to signify warnings directly to the eyes.
-A "tableplot" (Kwan, 2009) is a semi-graphic display that presents numerical information in a table
+A "tableplot" (Kwan et-al., 2009) is a semi-graphic display that presents numerical information in a table
 using shapes proportional to the value in a cell and other visual attributes (shape type, color fill, and so forth)
 to encode other information. 
 
@@ -296,8 +296,8 @@ to indicate the extent to which each variable contributes to collinearity
 for these two near-singular dimensions.
 
 Thus, we see again that Dimension 6
-is largely determined by `engine` size, with a substantial relation
-to `cylinder`.  Dimension 5 has its' strongest relations to `Weight`
+is largely determined by `engine` size, with a substantial (negative) relation
+to `cylinder`.  Dimension 5 has its' strongest relations to `weight`
 and `horse`. 
 
 Moreover, there is one observation, #20, that stands out as
@@ -358,3 +358,6 @@ Supp. materials: [https://www.datavis.ca/papers/viscollin/](https://www.datavis.
 Gabriel, K. R. (1971). The Biplot Graphic Display of Matrices with Application to Principal Components Analysis. _Biometrics_, **58**, 453–467.
 
 Gower, J. C., & Hand, D. J. (1996). _Biplots_. London: Chapman & Hall.
+
+Kwan, E., Lu, I. R. R., & Friendly, M. (2009). Tableplot: A new tool for assessing precise predictions. _Zeitschrift Für Psychologie / Journal of Psychology_, **217**, 38–48.
+
