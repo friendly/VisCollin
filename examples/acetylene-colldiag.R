@@ -28,3 +28,11 @@ mod1 <- lm(yield ~ temp + ratio + time + I(time^2) + temp:time,
 vif(mod1)
 
 print(colldiag(mod1, center=TRUE), fuzz = .3)
+
+mod2 <- lm(yield ~ temp + ratio + poly(time, 2) + temp:time,
+           data=Acetylene.centered)
+
+vif(mod2, type = "predictor")
+
+print(colldiag(mod2, center=TRUE), fuzz = .3)
+

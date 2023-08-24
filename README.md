@@ -15,7 +15,7 @@ Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://g
 
 **Visualizing Collinearity Diagnostics**
 
-Version 0.1.1
+Version 0.1.2
 
 The `VisCollin` package provides methods to calculate diagnostics for
 multicollinearity among predictors in a linear or generalized linear
@@ -437,12 +437,12 @@ techniques to address this problem.
 
   - Transform the predictors to uncorrelated principal components
 
-  - use regularization methods such as ridge regression and lasso, which
-    correct for collinearity by introducing a small amount of bias,
-    shrinking coefficients towards 0. See the
-    [genridge](https://CRAN.R-project.org/package=genridge) and its
-    [`pkgdown` documentation](https://friendly.github.io/genridge/) for
-    visualization methods.
+  - use **regularization methods** such as ridge regression and lasso,
+    which correct for collinearity by introducing shrinking coefficients
+    towards 0, introducing a small amount of bias, . See the
+    [genridge](https://CRAN.R-project.org/package=genridge) package and
+    its [`pkgdown` documentation](https://friendly.github.io/genridge/)
+    for visualization methods.
 
   - use Bayesian regression; if multicollinearity prevents a regression
     coefficient from being estimated precisely, then a prior on that
