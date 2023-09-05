@@ -46,7 +46,7 @@
     
     <a class="navbar-brand me-2" href="index.html">VisCollin</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +87,7 @@
 </h1>
 </div>
 <p><strong>Visualizing Collinearity Diagnostics</strong></p>
-<p>Version 0.1.1</p>
+<p>Version 0.1.2</p>
 <p>The <code>VisCollin</code> package provides methods to calculate diagnostics for multicollinearity among predictors in a linear or generalized linear model. It also provides methods to visualize those diagnostics following Friendly &amp; Kwan (2009), “Where’s Waldo: Visualizing Collinearity Diagnostics”, <em>The American Statistician</em>, <strong>63</strong>, 56–65.</p>
 <p>These include:</p>
 <ul>
@@ -269,7 +269,7 @@ $$</span></p></li>
 <div class="section level3">
 <h3 id="tableplot">Tableplot<a class="anchor" aria-label="anchor" href="#tableplot"></a>
 </h3>
-<p>The simplified tabular display above can be improved to make the patterns of collinearity more visually apparent and to signify warnings directly to the eyes. A “tableplot” (Kwan, 2009) is a semi-graphic display that presents numerical information in a table using shapes proportional to the value in a cell and other visual attributes (shape type, color fill, and so forth) to encode other information.</p>
+<p>The simplified tabular display above can be improved to make the patterns of collinearity more visually apparent and to signify warnings directly to the eyes. A “tableplot” (Kwan et-al., 2009) is a semi-graphic display that presents numerical information in a table using shapes proportional to the value in a cell and other visual attributes (shape type, color fill, and so forth) to encode other information.</p>
 <p>For collinearity diagnostics, these show:</p>
 <ul>
 <li>the condition indices, using using <em>squares</em> whose background color is red for condition indices &gt; 10, green for values &gt; 5 and green otherwise, reflecting danger, warning and OK respectively. The value of the condition index is encoded within this using a white square whose side is proportional to the value (up to some maximum value, <code>cond.max</code>).</li>
@@ -331,7 +331,7 @@ $$</span></p></li>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-cars-biplot-1.png" width="100%"></p>
 <p>The projections of the variable vectors on the Dimension 5 and Dimension 6 axes are proportional to their variance proportions shown above. The relative lengths of these variable vectors can be considered to indicate the extent to which each variable contributes to collinearity for these two near-singular dimensions.</p>
-<p>Thus, we see again that Dimension 6 is largely determined by <code>engine</code> size, with a substantial relation to <code>cylinder</code>. Dimension 5 has its’ strongest relations to <code>Weight</code> and <code>horse</code>.</p>
+<p>Thus, we see again that Dimension 6 is largely determined by <code>engine</code> size, with a substantial (negative) relation to <code>cylinder</code>. Dimension 5 has its’ strongest relations to <code>weight</code> and <code>horse</code>.</p>
 <p>Moreover, there is one observation, #20, that stands out as an outlier in predictor space, far from the centroid. It turns out that this vehicle, a Buick Estate wagon, is an early-year (1970) American behemoth, with an 8-cylinder, 455 cu. in, 225 horse-power engine, and able to go from 0 to 60 mph in 10 sec. (Its MPG is only slightly under-predicted from the regression model, however.)</p>
 </div>
 <div class="section level3">
@@ -358,7 +358,7 @@ $$</span></p></li>
 <p><strong>Statistical remedies</strong>:</p>
 <ul>
 <li><p>Transform the predictors to uncorrelated principal components</p></li>
-<li><p>use regularization methods such as ridge regression and lasso, which correct for collinearity by introducing a small amount of bias, shrinking coefficients towards 0. See the <a href="https://CRAN.R-project.org/package=genridge" class="external-link">genridge</a> and its <a href="https://friendly.github.io/genridge/" class="external-link"><code>pkgdown</code> documentation</a> for visualization methods.</p></li>
+<li><p>use <strong>regularization methods</strong> such as ridge regression and lasso, which correct for collinearity by introducing shrinking coefficients towards 0, introducing a small amount of bias, . See the <a href="https://CRAN.R-project.org/package=genridge" class="external-link">genridge</a> package and its <a href="https://friendly.github.io/genridge/" class="external-link"><code>pkgdown</code> documentation</a> for visualization methods.</p></li>
 <li><p>use Bayesian regression; if multicollinearity prevents a regression coefficient from being estimated precisely, then a prior on that coefficient will help to reduce its posterior variance.</p></li>
 </ul>
 </li>
@@ -373,6 +373,7 @@ $$</span></p></li>
 <p>Friendly, M., &amp; Kwan, E. (2009). “Where’s Waldo: Visualizing Collinearity Diagnostics.” <em>The American Statistician</em>, <strong>63</strong>, 56–65. Online: <a href="https://www.datavis.ca/papers/viscollin-tast.pdf" class="external-link uri">https://www.datavis.ca/papers/viscollin-tast.pdf</a>. Supp. materials: <a href="https://www.datavis.ca/papers/viscollin/" class="external-link uri">https://www.datavis.ca/papers/viscollin/</a></p>
 <p>Gabriel, K. R. (1971). The Biplot Graphic Display of Matrices with Application to Principal Components Analysis. <em>Biometrics</em>, <strong>58</strong>, 453–467.</p>
 <p>Gower, J. C., &amp; Hand, D. J. (1996). <em>Biplots</em>. London: Chapman &amp; Hall.</p>
+<p>Kwan, E., Lu, I. R. R., &amp; Friendly, M. (2009). Tableplot: A new tool for assessing precise predictions. <em>Zeitschrift Für Psychologie / Journal of Psychology</em>, <strong>217</strong>, 38–48.</p>
 </div>
 </div>
 
