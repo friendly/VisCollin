@@ -222,7 +222,6 @@ large variance proportions implicating two or more predictors.
 <!-- ``` -->
 
 ```{r cars-tableplot}
-#| fig.keep="last"
 tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 ```
 
