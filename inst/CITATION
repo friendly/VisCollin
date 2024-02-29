@@ -16,7 +16,7 @@ bibentry(
                    comment = c(ORCID = "0000-0002-3237-0941"))),
   year = year,
   note = note,
-  url = "https://CRAN.R-project.org/package=heplots",
+  url = "https://CRAN.R-project.org/package=VisCollin",
 
   textVersion =
   paste("Michael Friendly",
