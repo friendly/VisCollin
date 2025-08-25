@@ -1,3 +1,9 @@
+# VisCollin 0.1.3
+
+* print.colldiag gains a descending argument
+* fixed documentation glitch in tableplot.colldiag
+* added example of tableplot.colldiag
+
 # VisCollin 0.1.2
 
 * Fix the viewports in `cellgram()` so tableplot does not produce many images, requiring knitr option `fig.keep="last"` [Thx: Paul Murrell]

@@ -39,29 +39,16 @@
 #'
 #' @importFrom stats xtabs
 #' @return NULL
-#' @exportS3Method tableplot colldiag
 #'
 #' @examples
-#' # None yet
+#' data(cars)
+#' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+#'                 data=cars)
 #'
-
+#' tableplot(cars.mod)
+#'
 #' @rdname tableplot.colldiag
-#' @exportS3Method tableplot lm
-tableplot.lm <- function(values, ...) {
-  x <- colldiag(values, add.intercept = FALSE, center = TRUE)
-  tableplot.colldiag(x, ...)
-}
-
-#' @rdname tableplot.colldiag
-#' @exportS3Method tableplot glm
-tableplot.glm <- function(values, ...) {
-  x <- colldiag(values, add.intercept = FALSE, center = TRUE)
-  tableplot.colldiag(x, ...)
-}
-
-
-#' @rdname tableplot.colldiag
-#' @exportS3Method tableplot colldiag
+#' @export
 tableplot.colldiag <- function(
        values,
        prop.col = c("white", "pink", "red"),        # colors for variance proportions
@@ -117,3 +104,19 @@ tableplot.colldiag <- function(
     gap = 2
   )
 }
+
+#' @rdname tableplot.colldiag
+#' @export
+tableplot.lm <- function(values, ...) {
+  x <- colldiag(values, add.intercept = FALSE, center = TRUE)
+  tableplot.colldiag(x, ...)
+}
+
+#' @rdname tableplot.colldiag
+#' @export
+tableplot.glm <- function(values, ...) {
+  x <- colldiag(values, add.intercept = FALSE, center = TRUE)
+  tableplot.colldiag(x, ...)
+}
+
+

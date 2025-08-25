@@ -2,15 +2,11 @@
 % Please edit documentation in R/tableplot.colldiag.R
 \name{tableplot.colldig}
 \alias{tableplot.colldig}
+\alias{tableplot.colldiag}
 \alias{tableplot.lm}
 \alias{tableplot.glm}
-\alias{tableplot.colldiag}
 \title{Tableplot for Collinearity Diagnostics}
 \usage{
-\method{tableplot}{lm}(values, ...)
-
-\method{tableplot}{glm}(values, ...)
-
 \method{tableplot}{colldiag}(
   values,
   prop.col = c("white", "pink", "red"),
@@ -23,11 +19,13 @@
   patterns,
   ...
 )
+
+\method{tableplot}{lm}(values, ...)
+
+\method{tableplot}{glm}(values, ...)
 }
 \arguments{
 \item{values}{A \code{"colldiag"}, \code{"lm"} or \code{"glm"} object}
-
-\item{...}{other arguments, for consistency with generic}
 
 \item{prop.col}{A vector of colors used for the variance proportions. The default is \code{c("white", "pink", "red")}.}
 
@@ -45,6 +43,8 @@ puts the smallest dimensions at the top of the display.}
 \item{title}{title used for the resulting graphic}
 
 \item{patterns}{pattern matrix used for table plot.}
+
+\item{...}{other arguments, for consistency with generic}
 }
 \value{
 None. Used for its graphic side-effect
@@ -62,7 +62,11 @@ and are filled (by default) with shades ranging from white through pink to red. 
 are printed in the cells.
 }
 \examples{
-# None yet
+data(cars)
+cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+                data=cars)
+
+tableplot(cars.mod)
 
 }
 \references{

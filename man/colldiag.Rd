@@ -11,7 +11,7 @@ He credits the Stata program \code{coldiag} by Joseph Harkness \email{joe.harkne
 \usage{
 colldiag(mod, scale = TRUE, center = FALSE, add.intercept = FALSE)
 
-\method{print}{colldiag}(x, dec.places = 3, fuzz = NULL, fuzzchar = ".", ...)
+\method{print}{colldiag}(x, dec.places = 3, fuzz = NULL, fuzzchar = ".", descending = FALSE, ...)
 }
 \arguments{
 \item{mod}{A model object, such as computed by \code{lm} or \code{glm}, or a data-frame to be used as predictors in
@@ -32,6 +32,8 @@ Default is \code{TRUE}.}
 \item{fuzz}{Variance decomposition proportions less than \emph{fuzz} are printed as \emph{fuzzchar}}
 
 \item{fuzzchar}{Character for small variance decomposition proportion values}
+
+\item{descending}{Logical; \code{TRUE} prints the values in descending order of condition indices}
 
 \item{...}{arguments to be passed on to or from other methods (unused)}
 }
@@ -104,7 +106,6 @@ cd <- colldiag(biomass.mod, center=TRUE)
 # simplified display
 print(colldiag(biomass.mod, center=TRUE), fuzz=.3)
 
-# None yet
 }
 \references{
 Belsley, D.A.,  Kuh, E. and Welsch, R. (1980).

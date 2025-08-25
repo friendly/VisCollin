@@ -1,7 +1,7 @@
 Package: VisCollin
 Title: Visualizing Collinearity Diagnostics
-Version: 0.1.2
-Date: 2023-09-05
+Version: 0.1.3
+Date: 2025-08-25
 Authors@R: c(person("Michael", "Friendly", , "friendly@yorku.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3237-0941"))
            )
@@ -24,6 +24,6 @@ License: GPL (>=3)
 Language: en-US
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 URL: https://github.com/friendly/VisCollin, https://friendly.github.io/VisCollin/
 BugReports: https://github.com/friendly/VisCollin/issues
