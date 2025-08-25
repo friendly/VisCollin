@@ -11,7 +11,7 @@ cd <- colldiag(biomass.mod, center=TRUE)
 # simplified display
 print(colldiag(biomass.mod, center=TRUE), fuzz=.3)
 
-tableplot.colldiag(cd, show.rows=14:5)
+tableplot(cd, show.rows=14:5)
 
 # collinearity biplot of last 2 dimensions
 # [the scaling of variable vectors differs from the SAS version]
