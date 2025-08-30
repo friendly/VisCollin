@@ -9,7 +9,16 @@
 #' @param ...      arguments to be passed on to or from other methods (unused)
 #'
 #' ##@rdname colldiag
+#' @import tinytable
 #' @exportS3Method tt colldiag
+#' @examples
+#' data(cars)
+#' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+#'                 data=cars)
+#' (cd <- colldiag(cars.mod, center=TRUE))
+#'
+#' tt(cd)
+#'
 #'
 tt.colldiag <- function(x,
                            dec.places = 3,
@@ -36,4 +45,25 @@ tt.colldiag <- function(x,
   out <- noquote(cbind(condindx, pi)[ord,])
 
   res <- tinytable::tt(out, ...)
+}
+
+## example of coloring bg
+##
+if(FALSE) {
+  library(tinytable)
+dat <- data.frame(matrix(1:20, ncol=5))
+colnames(dat) <- NULL
+bg <- hcl.colors(20, "Inferno")
+col <- ifelse(as.matrix(dat) < 11,
+              tail(bg, 1),
+              head(bg, 1))
+
+tt(dat, width = .5, theme = "void", placement = "H") |>
+  style_tt(
+    i = 1:4,
+    j = 1:5,
+    color = col,
+    background = bg)
+
+
 }
