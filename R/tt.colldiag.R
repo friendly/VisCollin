@@ -1,5 +1,6 @@
-#' @title tinytable output method for colldiag objects
+#' tinytable output method for colldiag objects
 #'
+#' This function uses tinytable to give a display of collinearity diagnostics with shaded backgrounds
 #'
 #' @param x        A \code{colldiag} object
 #' @param dec.places Number of decimal places to use when printing

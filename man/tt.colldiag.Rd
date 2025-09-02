@@ -22,7 +22,7 @@
 ##@rdname colldiag}
 }
 \description{
-tinytable output method for colldiag objects
+This function uses tinytable to give a display of collinearity diagnostics with shaded backgrounds
 }
 \examples{
 data(cars)

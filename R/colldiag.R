@@ -146,7 +146,8 @@ colldiag <- function(mod,
 #' @param dec.places Number of decimal places to use when printing
 #' @param fuzz     Variance decomposition proportions less than \emph{fuzz} are printed as \emph{fuzzchar}
 #' @param fuzzchar Character for small variance decomposition proportion values
-#' @param descending Logical; \code{TRUE} prints the values in descending order of condition indices
+#' @param descending Logical; \code{TRUE} prints the rows in descending order of condition indices
+#' @param percent Logical; if \code{TRUE}, the variance proportions are printed as percents, 0-100
 #' @param ...      arguments to be passed on to or from other methods (unused)
 #'
 #' @rdname colldiag
@@ -157,21 +158,29 @@ print.colldiag <- function(x,
                            fuzz = NULL,
                            fuzzchar = ".",
                            descending = FALSE,
+                           percent = FALSE,
                            ...) {
   stopifnot(fuzz > 0 & fuzz < 1)
   stopifnot(is.character(fuzzchar))
   stopifnot(nchar(fuzzchar) == 1)
 
   fuzzchar <- paste(" ", fuzzchar, sep = "")
-  width <- dec.places + 2
-  pi <- formatC(x$pi, format = "f", width = width, digits = dec.places)
+  if (percent) {
+    pi <- formatC(round(100 * x$pi), format="d")
+    type <- "Percents"
+  }
+  else {
+    width <- dec.places + 2
+    pi <- formatC(x$pi, format = "f", width = width, digits = dec.places)
+    type <- "Proportions"
+  }
   if (!is.null(fuzz)) {
     pi[pi < fuzz] <- fuzzchar
   }
   width <- max(nchar(trunc(max(x$condindx)))) + dec.places + 2
   condindx <- formatC(x$condindx, format = "f", width = width, digits = dec.places)
   colnames(condindx) <- NULL
-  cat("Condition\nIndex\t  -- Variance Decomposition Proportions --\n")
+  cat("Condition\nIndex\t  -- Variance Decomposition", type, "--\n")
   rows <- 1:nrow(pi)
   ord <- if (descending) rev(rows) else rows
   print(noquote(cbind(condindx, pi)[ord,]))
