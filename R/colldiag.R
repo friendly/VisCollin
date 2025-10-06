@@ -74,7 +74,7 @@
 #' @export
 #' @importFrom stats na.omit
 #' @examples
-#' data(cars)
+#' data(cars, package = "VisCollin")
 #' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
 #'                 data=cars)
 #' car::vif(cars.mod)

@@ -66,7 +66,7 @@ NULL
 #' Donoho, David and Ramos, Ernesto (1982), ``PRIMDATA: Data Sets for Use With PRIM-H'' (Draft).
 #' @keywords dataset
 #' @examples
-#' data(cars)
+#' data(cars, package = "VisCollin")
 #' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
 #'                 data=cars)
 #' car::vif(cars.mod)

@@ -13,7 +13,7 @@
 #' @import tinytable
 #' @exportS3Method tt colldiag
 #' @examples
-#' data(cars)
+#' data(cars, package = "VisCollin")
 #' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
 #'                 data=cars)
 #' (cd <- colldiag(cars.mod, center=TRUE))
@@ -21,12 +21,19 @@
 #' tt(cd)
 #'
 #'
-tt.colldiag <- function(x,
-                           dec.places = 3,
-                           fuzz = NULL,
-                           fuzzchar = ".",
-                           descending = FALSE,
-                           ...) {
+tt.colldiag <- function(
+    x,
+    dec.places = 3,
+    fuzz = NULL,
+    fuzzchar = ".",
+    descending = FALSE,
+    prop.col = c("white", "pink", "red"),        # colors for variance proportions
+    cond.col = c("#A8F48D", "#DDAB3E", "red"),   # colors for condition indices
+    cond.max = 100,                              # scale.max for condition indices
+    prop.breaks = c(0, 20, 50, 100),
+    cond.breaks = c(0, 5, 10, 1000),
+    ...) {
+
   stopifnot(fuzz > 0 & fuzz < 1)
   stopifnot(is.character(fuzzchar))
   stopifnot(nchar(fuzzchar) == 1)
@@ -45,13 +52,28 @@ tt.colldiag <- function(x,
   ord <- if (descending) rev(rows) else rows
   out <- noquote(cbind(condindx, pi)[ord,])
 
+  cond.cat <- cut(condindx, breaks = cond.breaks - 0.1, labels = FALSE)
+  prop.cat <- cut(pi, breaks = prop.breaks - 0.1, labels = FALSE)
   res <- tinytable::tt(out, ...)
+  res <- res |>
+    style_tt(j = 1,
+        bg = cond.col[cond.cat]) |>
+    style_tt()
 }
 
-## example of coloring bg
 ##
 if(FALSE) {
   library(tinytable)
+  data(cars, package = "VisCollin")
+  cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
+                  data=cars)
+  (cd <- colldiag(cars.mod, center=TRUE))
+  condindex <- cd$condindx
+  pi <- cd$pi
+
+
+## example of coloring bg
+
 dat <- data.frame(matrix(1:20, ncol=5))
 colnames(dat) <- NULL
 bg <- hcl.colors(20, "Inferno")

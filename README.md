@@ -54,7 +54,7 @@ size and performance on 406 models of automobiles from 1982. Interest is
 focused on predicting gas mileage, `mpg`.
 
 ``` r
-data(cars)
+data(cars, package = "VisCollin")
 str(cars)
 #> 'data.frame':    406 obs. of  10 variables:
 #>  $ make    : Factor w/ 30 levels "amc","audi","bmw",..: 6 4 22 1 12 12 6 22 23 1 ...
