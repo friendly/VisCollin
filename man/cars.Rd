@@ -31,7 +31,7 @@ Meetings in Toronto, August 15-18, 1983,
 The data set was collected by Ernesto Ramos and David Donoho on characteristics of automobiles.
 }
 \examples{
-data(cars)
+data(cars, package = "VisCollin")
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data=cars)
 car::vif(cars.mod)

@@ -88,7 +88,7 @@ term, and correspond to the SAS option COLLINNOINT.
 Missing data is silently omitted in these calculations
 }
 \examples{
-data(cars)
+data(cars, package = "VisCollin")
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data=cars)
 car::vif(cars.mod)

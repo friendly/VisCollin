@@ -84,7 +84,7 @@ is a modest re-design focused on its use for collinearity diagnostics, but usabl
 more general contexts.
 }
 \examples{
-data(cars)
+data(cars, package = "VisCollin")
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data=cars)
 car::vif(cars.mod)
