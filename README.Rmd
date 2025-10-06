@@ -65,7 +65,7 @@ library(corrplot)
 
 This example uses the `cars` data set containing various measures of size and performance on 406 models of automobiles from 1982. Interest is focused on predicting gas mileage, `mpg`.
 ```{r cars}
-data(cars)
+data(cars, package = "VisCollin")
 str(cars)
 ```
 

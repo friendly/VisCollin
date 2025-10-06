@@ -1,6 +1,7 @@
 # VisCollin 0.1.3
 
-* print.colldiag gains a descending argument
+* print.colldiag() gains a `descending` argument to print in descending order of the condition index
+* print.colldiag() gains a `percent` argument to print variance proportions as percents
 * fixed documentation glitch in tableplot.colldiag
 * added example of tableplot.colldiag
 
