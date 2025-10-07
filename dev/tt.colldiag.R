@@ -6,7 +6,7 @@ tt.colldiag <- function(
     percent = FALSE,
     prop.col = c("white", "pink", "red"),        # colors for variance proportions
     cond.col = c("#A8F48D", "#DDAB3E", "red"),   # colors for condition indices
-    prop.breaks = c(0, 20, 50, 100),
+    prop.breaks = c(0, 0.20, 0.50, 1.00),
     cond.breaks = c(0, 5, 10, 1000),
     ...) {
 
@@ -29,16 +29,26 @@ tt.colldiag <- function(
   res <- res[ord,]
 
   # determine cuts for colors applied to condition indices and variance proportions
-  cond.cat <- cut(cond, breaks = cond.breaks - 0.1, labels = FALSE)
-  prop.cat <- cut(pi,   breaks = prop.breaks - 0.1, labels = FALSE)
+  # -- TODO: need to handle percent for variance props
+  cond.cat <- cut(res[, 1],  breaks = cond.breaks - 0.1, labels = FALSE)
+  prop.cat <- cut(res[, -1], breaks = prop.breaks - 0.1, labels = FALSE)
 
+  cond.style <- cond.col[cond.cat]
 
   res <- as.data.frame(res)
-  tt(res)
+  tt(res) |>
+    tt_format(digits = digits) |>
+    tt_format(replace=TRUE) |>
+    style_tt(j = 1, align = "r") |>
+    style_tt(i = 1:nrow(res),
+             j = 1,
+             background = cond.style)
 
 }
 
 if (FALSE) {
+  library(VisCollin)
+  library(tinytable)
   data(cars, package = "VisCollin")
   cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                   data = cars)
@@ -60,9 +70,9 @@ if (FALSE) {
   # add tt styling
   res |>
     tt_format(digits = 2) |>
-    # style_tt(j = 1,
-    #     background = cond.col[cond.cat]) |>
     tt_format(replace=TRUE)
+    # style_tt(j = 1,
+    #     background = cond.col[cond.cat])
 
 
 }

@@ -2,7 +2,7 @@
 #
 
 This is a request for a bit of help if you can, rather than an issue with tinytable.
-My [`VisCollin`]() package has a print method for collinearity diagnostics that would make a great use case
+My [`VisCollin`](https://github.com/friendly/VisCollin) package has a print method for collinearity diagnostics that would make a great use case
 for `tinytable`, if I could figure out how to shade the backgrounds of cells according to the 
 condition indices and the variance proportions.
 
@@ -34,5 +34,6 @@ Index	  -- Variance Decomposition Proportions --
 I'd like to write a `tt.colldiag()` method that uses shaded backgrounds, similar to what I get in a graphic from `tableplot.colldiag()`
 
 
-
+```
+tableplot(cars.mod)
 
