@@ -1,6 +1,6 @@
 tt.colldiag <- function(
     x,
-    dec.places = 2,
+    digits = 2,
     fuzz = NULL,
     descending = FALSE,
     percent = FALSE,
@@ -34,6 +34,7 @@ tt.colldiag <- function(
 
 
   res <- as.data.frame(res)
+  tt(res)
 
 }
 
@@ -46,7 +47,7 @@ if (FALSE) {
   pi <- cd$pi
 
   # try out formatting manually
-  res <- tt.colldiag(cd, fuzz = 0.5, descending = TRUE)
+  res <- tt.colldiag(cd, fuzz = 0.3, descending = TRUE)
 
   prop.col = c("white", "pink", "red")        # colors for variance proportions
   cond.col = c("#A8F48D", "#DDAB3E", "red")   # colors for condition indices
@@ -56,12 +57,11 @@ if (FALSE) {
   cond.cat <- cut(cond, breaks = cond.breaks - 0.1, labels = FALSE)
   prop.cat <- cut(pi,   breaks = prop.breaks - 0.1, labels = FALSE)
 
-
-  tt(res) |>
+  # add tt styling
+  res |>
     tt_format(digits = 2) |>
-#    tt_format(j = seq(2:ncol(res)), digits=2) |>
-    style_tt(j = 1,
-        background = cond.col[cond.cat]) |>
+    # style_tt(j = 1,
+    #     background = cond.col[cond.cat]) |>
     tt_format(replace=TRUE)
 
 
