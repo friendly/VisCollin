@@ -21,8 +21,9 @@
 #' @param prop.col   A vector of colors used for the variance proportions. The default is \code{c("white", "pink", "red")}.
 #' @param cond.col   A vector of colors used for the condition indices
 #' @param cond.max   Maximum value to scale the white squares for the condition indices
-#' @param prop.breaks Scale breaks for the variance proportions
-#' @param cond.breaks Scale breaks for the condition indices
+#' @param prop.breaks Scale breaks for the variance proportions, a vector of length one more than the number of \code{prop.col}, whose values are
+#'                  between 0 and 100.
+#' @param cond.breaks Scale breaks for the condition indices a vector of length one more than the number of \code{cond.col}
 #' @param show.rows  Rows of the eigenvalue decompositon of the model matrix to show in the display. The default \code{nvar:1}
 #'        puts the smallest dimensions at the top of the display.
 #' @param title      title used for the resulting graphic
