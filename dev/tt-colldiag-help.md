@@ -36,4 +36,12 @@ I'd like to write a `tt.colldiag()` method that uses shaded backgrounds, similar
 
 ```
 tableplot(cars.mod)
+```
+
+That is:
+
+* Condition indices (`x$condindx`): use backgrounds `c("#A8F48D", "#DDAB3E", "red")` for values with these 
+  break points: cond.breaks = c(0, 5, 10, 1000)
+
+* Variance proportions (`x$px`): use backgrounds `c("white", "pink", "red")` for values with break points: c(0, 0.20, 0.50, 1.00)
 
