@@ -1,7 +1,9 @@
-# FIXME: Why is "Cond\nindex" not rendered on two lines?
-# FIXME: How to render tt() in pkgdown?
-# TODO: Handle changing font for headers, numbers in the body
-# TODO: Allow font size to vary with variance proportions
+# FIXME: Why is "Cond\nindex" not rendered on two lines in the header row?
+# FIXME: How to render tt() in pkgdown examples? It appears as a text table in the `pkgdown` documentation. I tried using `|> print(output = "html")`
+#        in the documentation examples but this gave an error: "Error: `x` must be a data.frame".
+# TODO: 🚩 Handle changing font family for headers, numbers in the body. The examples I've run use a serif font, but I'd prefer a sans-serif font which is better for tables.
+# TODO: 🚩 Allow font size to vary with variance proportions. `style_tt()` allows a `fontsize` argument. It uses units in `em` units. What I'd like to do
+#       is have the numbers vary in size, in a range of say 100% to 150% with the value of the variance proportion.
 
 #' `tinytable` Output Method for "colldiag" Objects
 #'
@@ -131,6 +133,7 @@ tt.colldiag <- function(
              background = cond.style) |>
     style_tt(i = 1:nrow(res),
              j = 2:ncol(res),
+             align = "r",
              background = prop.style_vec)
 
 }

@@ -61,13 +61,13 @@ cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data = cars)
 cd <- colldiag(cars.mod, center=TRUE)
 # show all values, in same order as `cd`
-tt(cd)
+tt(cd) |> print(output = "html")
 
 # show results in percent
-tt(cd, percent = TRUE)
+tt(cd, percent = TRUE) |> print(output = "html")
 
 # try descending & fuzz
-tt(cd, descending = TRUE, fuzz = 0.3)
+tt(cd, descending = TRUE, fuzz = 0.3) |> print(output = "html")
 }
 \seealso{
 \code{\link{colldiag}}, \code{\link{tableplot}},
