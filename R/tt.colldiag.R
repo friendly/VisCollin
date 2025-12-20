@@ -1,5 +1,5 @@
 # FIXME: Why is "Cond\nindex" not rendered on two lines in the header row?
-# FIXME: How to render tt() in pkgdown examples? It appears as a text table in the `pkgdown` documentation. I tried using `|> print(output = "html")`
+# FIXME: How to render tt() in pkgdown examples so it appears as a graphic with shaded backgrounds? ? It appears as a text table in the `pkgdown` documentation. I tried using `|> print(output = "html")`
 #        in the documentation examples but this gave an error: "Error: `x` must be a data.frame".
 # TODO: 🚩 Handle changing font family for headers, numbers in the body. The examples I've run use a serif font, but I'd prefer a sans-serif font which is better for tables.
 # TODO: 🚩 Allow font size to vary with variance proportions. `style_tt()` allows a `fontsize` argument. It uses units in `em` units. What I'd like to do
