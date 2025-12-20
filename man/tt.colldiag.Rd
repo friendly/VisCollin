@@ -39,11 +39,19 @@ between 0 and 1.}
 
 \item{...}{arguments to be passed on to or from other methods (unused)}
 }
+\value{
+a \code{"tinytable"} object
+}
 \description{
 This function uses the \pkg{tinytable} package to give a display of collinearity diagnostics with
 shaded backgrounds indicating the severity of collinearity in the dimensions of the data
 and the proportions of variance related to each variable in these dimensions. It gives
-a table version of the graphic shown by \code{\link{tableplot}}.
+a table version of the graphic shown by \code{\link{tableplot}}, but something that
+can be rendered in HTML, PDF and other formats.
+}
+\details{
+The \code{"tinytable"} object returned can be customized using other functions from
+the \pkg{tinytable} package.
 }
 \examples{
 library(VisCollin)
@@ -53,16 +61,17 @@ cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data = cars)
 cd <- colldiag(cars.mod, center=TRUE)
 # show all values, in same order as `cd`
-tt.colldiag(cd)
+tt(cd)
 
 # show results in percent
-tt.colldiag(cd, percent = TRUE)
+tt(cd, percent = TRUE)
 
 # try descending & fuzz
-tt.colldiag(cd, descending = TRUE, fuzz = 0.3)
+tt(cd, descending = TRUE, fuzz = 0.3)
 }
 \seealso{
-\code{\link{colldiag}}, \code{\link{tableplot}}
+\code{\link{colldiag}}, \code{\link{tableplot}},
+\code{\link[tinytable]{tinytable}}
 }
 \author{
 Michael Friendly

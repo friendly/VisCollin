@@ -12,6 +12,7 @@ reference:
     Function for computing collinearity diagnostics
   contents:
     - colldiag
+    - tt.colldiag
 
 - title: "Tableplots"
   contents:

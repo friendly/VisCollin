@@ -1,6 +1,7 @@
 # VisCollin 0.1.4
 
 * Added `tt.colldiag() using tinytable to print `"colldiag"` results as a tinytable using background shading
+* Now Depends (R >= 4.1.0) to use pipes
 
 # VisCollin 0.1.3
 

@@ -1,5 +1,6 @@
-# TODO: Handle changing font for headers, numbers in the body
 # FIXME: Why is "Cond\nindex" not rendered on two lines?
+# FIXME: How to render tt() in pkgdown?
+# TODO: Handle changing font for headers, numbers in the body
 # TODO: Allow font size to vary with variance proportions
 
 #' `tinytable` Output Method for "colldiag" Objects
@@ -33,7 +34,7 @@
 #'
 #' @author Michael Friendly
 #' @seealso \code{\link{colldiag}}, \code{\link{tableplot}},
-#'          \code{\link[tinytable{tinytable}}
+#'          \code{\link[tinytable]{tinytable}}
 #' @exportS3Method
 #' @examples
 #' library(VisCollin)
