@@ -1,3 +1,7 @@
+# VisCollin 0.1.4
+
+* Added `tt.colldiag() using tinytable to print `"colldiag"` results as a tinytable using background shading
+
 # VisCollin 0.1.3
 
 * print.colldiag() gains a `descending` argument to print in descending order of the condition index

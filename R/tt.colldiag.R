@@ -1,12 +1,22 @@
+# TODO: Handle changing font for headers, numbers in the body
+# FIXME: Why is "Cond\nindex" not rendered on two lines?
+# TODO: Allow font size to vary with variance proportions
+
 #' `tinytable` Output Method for "colldiag" Objects
 #'
 #' This function uses the \pkg{tinytable} package to give a display of collinearity diagnostics with
 #' shaded backgrounds indicating the severity of collinearity in the dimensions of the data
 #' and the proportions of variance related to each variable in these dimensions. It gives
-#' a table version of the graphic shown by \code{\link{tableplot}}.
+#' a table version of the graphic shown by \code{\link{tableplot}}, but something that
+#' can be rendered in HTML, PDF and other formats.
 #'
-#' @param x        A \code{colldiag} object
-#' @param digits   Number of digits to use when printing
+#' @details
+#' The \code{"tinytable"} object returned can be customized using other functions from
+#' the \pkg{tinytable} package.
+#'
+#'
+#' @param x        A \code{"colldiag"} object
+#' @param digits   Number of digits to use when printing; set to 0 when \code{percent = TRUE}
 #' @param fuzz     Variance decomposition proportions less than \emph{fuzz} are printed as \emph{fuzzchar}
 #' @param descending Logical; \code{TRUE} prints the values in descending order of condition indices
 #' @param percent  Logical; if \code{TRUE}, the variance proportions are printed as percents, 0-100
@@ -17,9 +27,14 @@
 #' @param cond.breaks Scale breaks for the condition indices a vector of length one more than the number of \code{cond.col}
 #' @param ...      arguments to be passed on to or from other methods (unused)
 #'
+#' @return a \code{"tinytable"} object
+#'
+#' @importFrom tinytable tt style_tt tt_format
+#'
 #' @author Michael Friendly
-#' @seealso \code{\link{colldiag}}, \code{\link{tableplot}}
-#' @export
+#' @seealso \code{\link{colldiag}}, \code{\link{tableplot}},
+#'          \code{\link[tinytable{tinytable}}
+#' @exportS3Method
 #' @examples
 #' library(VisCollin)
 #' library(tinytable)
@@ -27,14 +42,14 @@
 #' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
 #'                 data = cars)
 #' cd <- colldiag(cars.mod, center=TRUE)
-# show all values, in same order as `cd`
-#' tt.colldiag(cd)
+#' # show all values, in same order as `cd`
+#' tt(cd)
 #'
 #' # show results in percent
-#' tt.colldiag(cd, percent = TRUE)
+#' tt(cd, percent = TRUE)
 #'
 #' # try descending & fuzz
-#' tt.colldiag(cd, descending = TRUE, fuzz = 0.3)
+#' tt(cd, descending = TRUE, fuzz = 0.3)
 
 
 tt.colldiag <- function(
@@ -119,46 +134,3 @@ tt.colldiag <- function(
 
 }
 
-if (FALSE) {
-  library(VisCollin)
-  library(tinytable)
-  data(cars, package = "VisCollin")
-  cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
-                  data = cars)
-  cd <- colldiag(cars.mod, center=TRUE)
-
-  #test:  show all values, in same order as `cd`
-
-  verbose <- TRUE
-  tt.colldiag(cd)
-
-  verbose <- FALSE
-  # show results in percent
-  tt.colldiag(cd, percent = TRUE)
-
-  # try descending & fuxx
-  tt.colldiag(cd, descending = TRUE, fuzz = 0.3)
-
-
-  # # try out formatting manually
-  # cond <- cd$condindx
-  # pi <- cd$pi
-  # prop.col = c("white", "pink", "red")        # colors for variance proportions
-  # cond.col = c("#A8F48D", "#DDAB3E", "red")   # colors for condition indices
-  # prop.breaks = c(0, 0.20, 0.50, 1.00)
-  # cond.breaks = c(0, 5, 10, 1000)
-  #
-  # cond.cat <- cut(cond, breaks = cond.breaks - 0.1, labels = FALSE)
-  # prop.cat <- cut(pi,   breaks = prop.breaks - 0.1, labels = FALSE) |>
-  #   as.matrix(rows = nrow(pi))
-  #
-  # # add tt styling
-  # res |>
-  #   tt_format(digits = 2) |>
-  #   tt_format(replace=TRUE) |>
-  #   style_tt()
-  #   # style_tt(j = 1,
-  #   #     background = cond.col[cond.cat])
-  #
-
-}
