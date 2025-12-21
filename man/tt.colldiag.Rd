@@ -14,6 +14,7 @@
   cond.col = c("#A8F48D", "#DDAB3E", "red"),
   prop.breaks = c(0, 0.2, 0.5, 1),
   cond.breaks = c(0, 5, 10, 1000),
+  font.scale = 1,
   ...
 )
 }
@@ -36,6 +37,10 @@
 between 0 and 1.}
 
 \item{cond.breaks}{Scale breaks for the condition indices a vector of length one more than the number of \code{cond.col}}
+
+\item{font.scale}{Controls font size scaling for variance proportions. Either a single numeric value (no scaling) or a vector of length 2
+specifying the minimum and maximum font sizes in \code{em} units. Default is \code{1} (no scaling). Use \code{c(1, 1.5)}
+to scale font sizes from 1em to 1.5em based on variance proportion values, making larger proportions more visually prominent.}
 
 \item{...}{arguments to be passed on to or from other methods (unused)}
 }
@@ -61,13 +66,16 @@ cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data = cars)
 cd <- colldiag(cars.mod, center=TRUE)
 # show all values, in same order as `cd`
-tt(cd) |> print(output = "html")
+tt(cd)
 
 # show results in percent
-tt(cd, percent = TRUE) |> print(output = "html")
+tt(cd, percent = TRUE)
 
 # try descending & fuzz
-tt(cd, descending = TRUE, fuzz = 0.3) |> print(output = "html")
+tt(cd, descending = TRUE, fuzz = 0.3)
+
+# vary font size from 1em to 1.5em based on variance proportions
+tt(cd, font.scale = c(1, 1.5))
 }
 \seealso{
 \code{\link{colldiag}}, \code{\link{tableplot}},

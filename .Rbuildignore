@@ -9,3 +9,4 @@ examples/
 ^docs$
 ^pkgdown$
 ^dev$
+^.claude$

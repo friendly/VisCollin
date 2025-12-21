@@ -7,7 +7,7 @@ note <- sprintf("R package version %s", meta$Version)
 citHeader("To cite package 'VisCollin' in publications use:")
 bibentry(
   bibtype = "Manual",
-  title = "{VisCollin}: Visualizing Collinearity Diagnostics",
+  title = "VisCollin: Visualizing Collinearity Diagnostics",
   author = c(
             person(given = "Michael",
                    family = "Friendly",
