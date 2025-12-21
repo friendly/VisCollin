@@ -4,7 +4,8 @@
       "WebSearch",
       "WebFetch(domain:vincentarelbundock.github.io)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:rdrr.io)"
+      "WebFetch(domain:rdrr.io)",
+      "WebFetch(domain:pkgdown.r-lib.org)"
     ]
   }
 }

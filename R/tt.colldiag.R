@@ -1,5 +1,5 @@
 # FIXME: Why is "Cond\nindex" not rendered on two lines in the header row?
-# DONE: ✓ pkgdown now renders tt() with shaded backgrounds by setting options(tinytable_print_output = "html") in examples when knitr::is_html_output() is TRUE.
+# FIXME: pkgdown examples still render as plain text tables, not styled HTML. This requires tinytable to implement pkgdown_print.tinytable() method. Issue drafted in dev/tinytable-pkgdown-issue.md
 # TODO: 🚩 Handle changing font family for headers, numbers in the body. The examples I've run use a serif font, but I'd prefer a sans-serif font which is better for tables. I can't find any info on font family for tinytable. Filed this as: https://github.com/vincentarelbundock/tinytable/issues/623
 # DONE: ✓ Font size now varies with variance proportions (1em to 1.5em). Larger proportions appear in larger font sizes.
 
@@ -46,10 +46,6 @@
 #' @examples
 #' library(VisCollin)
 #' library(tinytable)
-#'
-#' # Set output format for pkgdown HTML documentation
-#' if (knitr::is_html_output()) options(tinytable_print_output = "html")
-#'
 #' data(cars, package = "VisCollin")
 #' cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
 #'                 data = cars)
