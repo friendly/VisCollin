@@ -33,10 +33,10 @@
 
 \item{cond.col}{A vector of colors used for the condition indices, according to \code{cond.breaks}}
 
-\item{prop.breaks}{Scale breaks for the variance proportions, a vector of length one more than the number of \code{prop.col}, whose values are
+\item{prop.breaks}{Scale breaks for the variance proportions, a vector of length \emph{one more} than the number of \code{prop.col}, whose values are
 between 0 and 1.}
 
-\item{cond.breaks}{Scale breaks for the condition indices a vector of length one more than the number of \code{cond.col}}
+\item{cond.breaks}{Scale breaks for the condition indices a vector of length \emph{one more} than the number of \code{cond.col}}
 
 \item{font.scale}{Controls font size scaling for variance proportions. Either a single numeric value (no scaling) or a vector of length 2
 specifying the minimum and maximum font sizes in \code{em} units. Default is \code{1} (no scaling). Use \code{c(1, 1.5)}
