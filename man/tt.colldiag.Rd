@@ -56,7 +56,11 @@ can be rendered in HTML, PDF and other formats.
 }
 \details{
 The \code{"tinytable"} object returned can be customized using other functions from
-the \pkg{tinytable} package.
+the \pkg{tinytable} package. For example, for HTML output, you can change the font family used in the output via \code{theme_html()}, as in:
+\preformatted{
+tt(cd) |>
+  theme_html(css = "font-family: Arial, sans-serif;")
+}
 }
 \examples{
 library(VisCollin)

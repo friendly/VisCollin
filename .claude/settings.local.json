@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "WebFetch(domain:vincentarelbundock.github.io)"
+      "WebFetch(domain:vincentarelbundock.github.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:rdrr.io)"
     ]
   }
 }

@@ -39,3 +39,8 @@ cat("NA values (from fuzz) should use minimum font size (1em)\n\n")
 tt(cd, descending = TRUE, fuzz = 0.3, font.scale = c(1, 1.5))
 
 cat("\n=== All tests complete ===\n")
+
+# Change the font!
+
+tt(cd, percent = TRUE, font.scale = c(1, 1.5)) |>
+  theme_html(css = "font-family: Arial, sans-serif;")
