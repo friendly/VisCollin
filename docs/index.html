@@ -62,7 +62,7 @@
 </h1>
 </div>
 <p><strong>Visualizing Collinearity Diagnostics</strong></p>
-<p>Version 0.1.2</p>
+<p>Version 0.1.4; documentation built for <code>pkgdown</code> 2025-12-21</p>
 <p>The <code>VisCollin</code> package provides methods to calculate diagnostics for multicollinearity among predictors in a linear or generalized linear model. It also provides methods to visualize those diagnostics following Friendly &amp; Kwan (2009), “Where’s Waldo: Visualizing Collinearity Diagnostics”, <em>The American Statistician</em>, <strong>63</strong>, 56–65.</p>
 <p>These include:</p>
 <ul>
@@ -98,7 +98,8 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/" class="external-link">car</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/taiyun/corrplot" class="external-link">corrplot</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/taiyun/corrplot" class="external-link">corrplot</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/tinytable/" class="external-link">tinytable</a></span><span class="op">)</span></span></code></pre></div>
 <p>This example uses the <code>cars</code> data set containing various measures of size and performance on 406 models of automobiles from 1982. Interest is focused on predicting gas mileage, <code>mpg</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">cars</span>, package <span class="op">=</span> <span class="st">"VisCollin"</span><span class="op">)</span></span>
@@ -174,7 +175,11 @@
 <p>Or, better yet, use <code><a href="https://rdrr.io/pkg/corrplot/man/corrplot.mixed.html" class="external-link">corrplot::corrplot.mixed()</a></code> to visualize them, using color and shading of glyphs,</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.mixed.html" class="external-link">corrplot.mixed</a></span><span class="op">(</span><span class="va">R</span>, lower <span class="op">=</span> <span class="st">"square"</span>, upper <span class="op">=</span> <span class="st">"ellipse"</span>, tl.col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-cars-corrgram-1.png" width="60%"></p>
+<div class="figure">
+<img src="reference/figures/README-cars-corrgram-1.png" alt="Corrgram display of correlations among the `cars` variables." width="60%"><p class="caption">
+Corrgram display of correlations among the <code>cars</code> variables.
+</p>
+</div>
 <p>The message here seems to be that there are two clusters of predictors with high correlations: {<code>cylinder</code>, <code>engine</code>, <code>horse</code> and <code>weight</code>}, and {<code>accel</code>, <code>year</code>}.</p>
 </div>
 <div class="section level3">
@@ -214,7 +219,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">cd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/colldiag.html">colldiag</a></span><span class="op">(</span><span class="va">cars.mod</span>, center<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Condition</span></span>
-<span><span class="co">#&gt; Index    Variance Decomposition Proportions</span></span>
+<span><span class="co">#&gt; Index      -- Variance Decomposition Proportions --</span></span>
 <span><span class="co">#&gt;           cylinder engine horse weight accel year </span></span>
 <span><span class="co">#&gt; 1   1.000 0.005    0.003  0.005 0.004  0.009 0.010</span></span>
 <span><span class="co">#&gt; 2   2.252 0.004    0.002  0.000 0.007  0.022 0.787</span></span>
@@ -226,7 +231,7 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">cd</span>, fuzz <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Condition</span></span>
-<span><span class="co">#&gt; Index    Variance Decomposition Proportions</span></span>
+<span><span class="co">#&gt; Index      -- Variance Decomposition Proportions --</span></span>
 <span><span class="co">#&gt;           cylinder engine horse weight accel year </span></span>
 <span><span class="co">#&gt; 1   1.000  .        .      .     .      .     .   </span></span>
 <span><span class="co">#&gt; 2   2.252  .        .      .     .      .    0.787</span></span>
@@ -259,11 +264,26 @@
 <p><img src="reference/figures/README-cars-tableplot-1.png" width="100%"></p>
 </div>
 <div class="section level3">
+<h3 id="tinytable-display">
+<code>tinytable</code> display<a class="anchor" aria-label="anchor" href="#tinytable-display"></a>
+</h3>
+<p>A new display of these collinearity diagnostics is now included in a <code><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt()</a></code> method for <code>"colldiag"</code> results. This is similar to the <code>tableplot</code> display, but rendered as a <code>tinytable</code>. It uses similar background shading for the condition indices and variance proportions, but also allows the font size of the variance proportions to be made proportional to the values, scaled to a given range, 1.0 - 1.5 in this example.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span>,</span>
+<span>   descending <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>   fuzz <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>   font.scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/save_tt.html" class="external-link">save_tt</a></span><span class="op">(</span><span class="st">"man/figures/README-tt-colldiag.png"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"man/figures/README-tt-colldiag.png"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-tt-colldiag.png" width="60%"></p>
+</div>
+<div class="section level3">
 <h3 id="collinearity-biplot">Collinearity biplot<a class="anchor" aria-label="anchor" href="#collinearity-biplot"></a>
 </h3>
 <p>The standard biplot (Gabriel, 1971; Gower&amp; Hand 1996) can be regarded as a multivariate analog of a scatterplot, obtained by projecting a multivariate sample into a low-dimensional space (typically of 2 or 3 dimensions) accounting for the greatest variance in the data. With the symmetric (PCA) scaling used here, this is equivalent to a plot of principal component scores of the mean-centered matrix <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>𝐗</mi><mo accent="true">̃</mo></mover><mo>=</mo><mi>𝐗</mi><mo>−</mo><mover><mi>𝐗</mi><mo accent="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\widetilde{\mathbf{X}} = \mathbf{X} - \bar{\mathbf{X}}</annotation></semantics></math> of predictors for the observations (shown as points or case labels), together with principal component coefficients for the variables (shown as vectors) in the same 2D (or 3D) space.</p>
 <p>However the standard biplot is less useful for visualizing the relations among the predictors that lead to nearly collinear relations. Instead, biplots of the <strong>smallest dimensions</strong> show these relations directly, and can show other features of the data as well, such as outliers and leverage points. We use <code>prcomp(X, scale.=TRUE)</code> to obtain the PCA of the correlation matrix of the predictors:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cars.X</span> <span class="op">&lt;-</span> <span class="va">cars</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html" class="external-link">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">mpg</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -274,15 +294,15 @@
 <span><span class="co">#&gt; [1] 2.070 0.911 0.809 0.367 0.245 0.189</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Rotation (n x k) = (6 x 6):</span></span>
-<span><span class="co">#&gt;             PC1    PC2    PC3    PC4     PC5     PC6</span></span>
-<span><span class="co">#&gt; cylinder -0.454 0.1869 -0.168  0.659 -0.2711  0.4725</span></span>
-<span><span class="co">#&gt; engine   -0.467 0.1628 -0.134  0.193 -0.0109 -0.8364</span></span>
-<span><span class="co">#&gt; horse    -0.462 0.0177  0.123 -0.620 -0.6123  0.1067</span></span>
-<span><span class="co">#&gt; weight   -0.444 0.2598 -0.278 -0.350  0.6860  0.2539</span></span>
-<span><span class="co">#&gt; accel     0.330 0.2098 -0.865 -0.143 -0.2774 -0.0337</span></span>
-<span><span class="co">#&gt; year      0.237 0.9092  0.335 -0.025 -0.0624 -0.0142</span></span></code></pre></div>
+<span><span class="co">#&gt;             PC1     PC2    PC3    PC4     PC5     PC6</span></span>
+<span><span class="co">#&gt; cylinder -0.454 -0.1869  0.168 -0.659 -0.2711 -0.4725</span></span>
+<span><span class="co">#&gt; engine   -0.467 -0.1628  0.134 -0.193 -0.0109  0.8364</span></span>
+<span><span class="co">#&gt; horse    -0.462 -0.0177 -0.123  0.620 -0.6123 -0.1067</span></span>
+<span><span class="co">#&gt; weight   -0.444 -0.2598  0.278  0.350  0.6860 -0.2539</span></span>
+<span><span class="co">#&gt; accel     0.330 -0.2098  0.865  0.143 -0.2774  0.0337</span></span>
+<span><span class="co">#&gt; year      0.237 -0.9092 -0.335  0.025 -0.0624  0.0142</span></span></code></pre></div>
 <p>The standard deviations above are the square roots <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><msub><mi>λ</mi><mi>j</mi></msub></msqrt><annotation encoding="application/x-tex">\sqrt{\lambda_j}</annotation></semantics></math> of the eigenvalues of the correlation matrix, and are returned in the <code>sdev</code> component of the <code>"prcomp"</code> object. The eigenvectors are returned in the <code>rotation</code> component, whose directions are arbitrary.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make labels for dimensions include % of variance</span></span>
 <span><span class="va">pct</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="op">*</span><span class="op">(</span><span class="va">cars.pca</span><span class="op">$</span><span class="va">sdev</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">cars.pca</span><span class="op">$</span><span class="va">sdev</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">lab</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Dimension {1:6} ({round(pct, 2)}%)"</span><span class="op">)</span></span>
@@ -290,7 +310,7 @@
 <span><span class="co"># Direction of eigenvectors is arbitrary. Reflect them</span></span>
 <span><span class="va">cars.pca</span><span class="op">$</span><span class="va">rotation</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="va">cars.pca</span><span class="op">$</span><span class="va">rotation</span></span></code></pre></div>
 <p>The collinearity biplot is then constructed as follows:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">2</span>, xpd <span class="op">=</span> <span class="cn">NA</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/biplot.html" class="external-link">biplot</a></span><span class="op">(</span><span class="va">cars.pca</span>,</span>
 <span>       choices<span class="op">=</span><span class="fl">6</span><span class="op">:</span><span class="fl">5</span>,           <span class="co"># only the last two dimensions</span></span>
@@ -386,10 +406,11 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=VisCollin" class="external-link"><img src="https://www.r-pkg.org/badges/version/VisCollin" alt="CRAN"></a></li>
+<li><a href="https://friendly.r-universe.dev/vcdVisCollin" class="external-link"><img src="https://friendly.r-universe.dev/badges/visCollin" alt="R_Universe"></a></li>
+<li><a href="https://github.com/friendly/VisCollin" class="external-link"><img src="https://img.shields.io/github/last-commit/friendly/VisCollin" alt="Last Commit"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-2.0.html" class="external-link"><img src="https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat" alt="License"></a></li>
-<li><a href="https://cran.r-project.org/package=VisCollin" class="external-link"><img src="https://www.r-pkg.org/badges/version/VisCollin" alt="CRAN"></a></li>
-<li><a href="https://github.com/friendly/VisCollin" class="external-link"><img src="https://img.shields.io/github/last-commit/friendly/VisCollin" alt="Last Commit"></a></li>
 <li><a href="https://www.r-pkg.org:443/pkg/VisCollin" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/statquotes?color=brightgreen" alt="Downloads"></a></li>
 </ul>
 </div>

@@ -51,7 +51,7 @@ can be rendered in HTML, PDF and other formats.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'colldiag'</span></span>
-<span><span class="fu">tt</span><span class="op">(</span></span>
+<span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  digits <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  fuzz <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -61,6 +61,7 @@ can be rendered in HTML, PDF and other formats.</p>
 <span>  cond.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#A8F48D"</span>, <span class="st">"#DDAB3E"</span>, <span class="st">"red"</span><span class="op">)</span>,</span>
 <span>  prop.breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  cond.breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">1000</span><span class="op">)</span>,</span>
+<span>  font.scale <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -98,12 +99,18 @@ can be rendered in HTML, PDF and other formats.</p>
 
 
 <dt id="arg-prop-breaks">prop.breaks<a class="anchor" aria-label="anchor" href="#arg-prop-breaks"></a></dt>
-<dd><p>Scale breaks for the variance proportions, a vector of length one more than the number of <code>prop.col</code>, whose values are
+<dd><p>Scale breaks for the variance proportions, a vector of length <em>one more</em> than the number of <code>prop.col</code>, whose values are
 between 0 and 1.</p></dd>
 
 
 <dt id="arg-cond-breaks">cond.breaks<a class="anchor" aria-label="anchor" href="#arg-cond-breaks"></a></dt>
-<dd><p>Scale breaks for the condition indices a vector of length one more than the number of <code>cond.col</code></p></dd>
+<dd><p>Scale breaks for the condition indices a vector of length <em>one more</em> than the number of <code>cond.col</code></p></dd>
+
+
+<dt id="arg-font-scale">font.scale<a class="anchor" aria-label="anchor" href="#arg-font-scale"></a></dt>
+<dd><p>Controls font size scaling for variance proportions. Either a single numeric value (no scaling) or a vector of length 2
+specifying the minimum and maximum font sizes in <code>em</code> units. Default is <code>1</code> (no scaling). Use <code>c(1, 1.5)</code>
+to scale font sizes from 1em to 1.5em based on variance proportion values, making larger proportions more visually prominent.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -138,16 +145,88 @@ the <span class="pkg">tinytable</span> package.</p>
 <span class="r-in"><span>                data <span class="op">=</span> <span class="va">cars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cd</span> <span class="op">&lt;-</span> <span class="fu"><a href="colldiag.html">colldiag</a></span><span class="op">(</span><span class="va">cars.mod</span>, center<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># show all values, in same order as `cd`</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> `x` must be a data.frame.</span>
+<span class="r-in"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | Cond</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> index | cylinder | engine | horse | weight | accel | year |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +============+==========+========+=======+========+=======+======+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 1.00       | 0.00     | 0.00   | 0.01  | 0.00   | 0.01  | 0.01 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.25       | 0.00     | 0.00   | 0.00  | 0.01   | 0.02  | 0.79 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.52       | 0.00     | 0.00   | 0.00  | 0.01   | 0.42  | 0.14 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 5.66       | 0.31     | 0.01   | 0.31  | 0.09   | 0.06  | 0.01 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 8.34       | 0.12     | 0.00   | 0.65  | 0.72   | 0.47  | 0.05 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 10.82      | 0.56     | 0.98   | 0.03  | 0.18   | 0.01  | 0.00 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+ </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show results in percent</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span>, percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> `x` must be a data.frame.</span>
+<span class="r-in"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span>, percent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | Cond</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> index | cylinder | engine | horse | weight | accel | year |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +============+==========+========+=======+========+=======+======+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 1.00       | 0        | 0      | 1     | 0      | 1     | 1    |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.25       | 0        | 0      | 0     | 1      | 2     | 79   |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.52       | 0        | 0      | 0     | 1      | 42    | 14   |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 5.66       | 31       | 1      | 31    | 9      | 6     | 1    |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 8.34       | 12       | 0      | 65    | 72     | 47    | 5    |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 10.82      | 56       | 98     | 3     | 18     | 1     | 0    |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+ </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># try descending &amp; fuzz</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span>, descending <span class="op">=</span> <span class="cn">TRUE</span>, fuzz <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> `x` must be a data.frame.</span>
+<span class="r-in"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span>, descending <span class="op">=</span> <span class="cn">TRUE</span>, fuzz <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | Cond</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> index | cylinder | engine | horse | weight | accel | year |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +============+==========+========+=======+========+=======+======+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 10.82      | 0.56     | 0.98   |       |        |       |      |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 8.34       |          |        | 0.65  | 0.72   | 0.47  |      |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 5.66       | 0.31     |        | 0.31  |        |       |      |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.52       |          |        |       |        | 0.42  |      |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.25       |          |        |       |        |       | 0.79 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 1.00       |          |        |       |        |       |      |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+ </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># vary font size from 1em to 1.5em based on variance proportions</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span>, font.scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | Cond</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> index | cylinder | engine | horse | weight | accel | year |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +============+==========+========+=======+========+=======+======+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 1.00       | 0.00     | 0.00   | 0.01  | 0.00   | 0.01  | 0.01 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.25       | 0.00     | 0.00   | 0.00  | 0.01   | 0.02  | 0.79 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 2.52       | 0.00     | 0.00   | 0.00  | 0.01   | 0.42  | 0.14 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 5.66       | 0.31     | 0.01   | 0.31  | 0.09   | 0.06  | 0.01 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 8.34       | 0.12     | 0.00   | 0.65  | 0.72   | 0.47  | 0.05 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> | 10.82      | 0.56     | 0.98   | 0.03  | 0.18   | 0.01  | 0.00 |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +------------+----------+--------+-------+--------+-------+------+ </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

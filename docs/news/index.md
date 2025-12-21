@@ -4,6 +4,8 @@
 
 - Added `tt.colldiag() using tinytable to print`“colldiag”\` results as
   a tinytable using background shading
+- [`tt.colldiag()`](https://friendly.github.io/VisCollin/reference/tt.colldiag.md)
+  enhancements: allow to scale `font.size` for variance proportions
 - Now Depends (R \>= 4.1.0) to use pipes
 
 ## VisCollin 0.1.3

@@ -1,13 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
+[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin)
+[![R_Universe](https://friendly.r-universe.dev/badges/visCollin)](https://friendly.r-universe.dev/vcdVisCollin)
+[![Last
+Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin)
-[![Last
-Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
 [![Downloads](https://cranlogs.r-pkg.org/badges/statquotes?color=brightgreen)](https://www.r-pkg.org:443/pkg/VisCollin)
 <!-- badges: end -->
 
@@ -15,7 +17,7 @@ Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://g
 
 **Visualizing Collinearity Diagnostics**
 
-Version 0.1.2
+Version 0.1.4; documentation built for `pkgdown` 2025-12-21
 
 The `VisCollin` package provides methods to calculate diagnostics for
 multicollinearity among predictors in a linear or generalized linear
@@ -47,6 +49,7 @@ library(dplyr)
 library(tidyr)
 library(car)
 library(corrplot)
+library(tinytable)
 ```
 
 This example uses the `cars` data set containing various measures of
@@ -153,7 +156,15 @@ using color and shading of glyphs,
 corrplot.mixed(R, lower = "square", upper = "ellipse", tl.col = "black")
 ```
 
-<img src="man/figures/README-cars-corrgram-1.png" width="60%" />
+<div class="figure">
+
+<img src="man/figures/README-cars-corrgram-1.png" alt="Corrgram display of correlations among the `cars` variables." width="60%" />
+<p class="caption">
+
+Corrgram display of correlations among the `cars` variables.
+</p>
+
+</div>
 
 The message here seems to be that there are two clusters of predictors
 with high correlations: {`cylinder`, `engine`, `horse` and `weight`},
@@ -228,7 +239,7 @@ is often difficult to know what numbers to pay attention to.
 ``` r
 (cd <- colldiag(cars.mod, center=TRUE))
 #> Condition
-#> Index    Variance Decomposition Proportions
+#> Index      -- Variance Decomposition Proportions --
 #>           cylinder engine horse weight accel year 
 #> 1   1.000 0.005    0.003  0.005 0.004  0.009 0.010
 #> 2   2.252 0.004    0.002  0.000 0.007  0.022 0.787
@@ -247,7 +258,7 @@ has a `fuzz` argument controlling this.
 ``` r
 print(cd, fuzz = 0.5)
 #> Condition
-#> Index    Variance Decomposition Proportions
+#> Index      -- Variance Decomposition Proportions --
 #>           cylinder engine horse weight accel year 
 #> 1   1.000  .        .      .     .      .     .   
 #> 2   2.252  .        .      .     .      .    0.787
@@ -299,7 +310,9 @@ that one should attend to collinearities with large condition indices
 **and** large variance proportions implicating two or more predictors.
 
 <!-- ```{r cars-tableplot0} -->
+
 <!-- knitr::include_graphics("man/figures/cars-tableplot.png") -->
+
 <!-- ``` -->
 
 ``` r
@@ -307,6 +320,28 @@ tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 ```
 
 <img src="man/figures/README-cars-tableplot-1.png" width="100%" />
+
+### `tinytable` display
+
+A new display of these collinearity diagnostics is now included in a
+`tt()` method for `"colldiag"` results. This is similar to the
+`tableplot` display, but rendered as a `tinytable`. It uses similar
+background shading for the condition indices and variance proportions,
+but also allows the font size of the variance proportions to be made
+proportional to the values, scaled to a given range, 1.0 - 1.5 in this
+example.
+
+``` r
+tt(cd,
+   descending = TRUE,
+   fuzz = 0.3,
+   font.scale = c(1, 1.5)) |>
+  save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
+
+knitr::include_graphics("man/figures/README-tt-colldiag.png")
+```
+
+<img src="man/figures/README-tt-colldiag.png" width="60%" />
 
 ### Collinearity biplot
 
@@ -339,13 +374,13 @@ cars.pca
 #> [1] 2.070 0.911 0.809 0.367 0.245 0.189
 #> 
 #> Rotation (n x k) = (6 x 6):
-#>             PC1    PC2    PC3    PC4     PC5     PC6
-#> cylinder -0.454 0.1869 -0.168  0.659 -0.2711  0.4725
-#> engine   -0.467 0.1628 -0.134  0.193 -0.0109 -0.8364
-#> horse    -0.462 0.0177  0.123 -0.620 -0.6123  0.1067
-#> weight   -0.444 0.2598 -0.278 -0.350  0.6860  0.2539
-#> accel     0.330 0.2098 -0.865 -0.143 -0.2774 -0.0337
-#> year      0.237 0.9092  0.335 -0.025 -0.0624 -0.0142
+#>             PC1     PC2    PC3    PC4     PC5     PC6
+#> cylinder -0.454 -0.1869  0.168 -0.659 -0.2711 -0.4725
+#> engine   -0.467 -0.1628  0.134 -0.193 -0.0109  0.8364
+#> horse    -0.462 -0.0177 -0.123  0.620 -0.6123 -0.1067
+#> weight   -0.444 -0.2598  0.278  0.350  0.6860 -0.2539
+#> accel     0.330 -0.2098  0.865  0.143 -0.2774  0.0337
+#> year      0.237 -0.9092 -0.335  0.025 -0.0624  0.0142
 ```
 
 The standard deviations above are the square roots $\sqrt{\lambda_j}$ of

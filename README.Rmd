@@ -19,18 +19,21 @@ options(digits=3)
 ```
 
 <!-- badges: start -->
+[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin) 
+[![R_Universe](https://friendly.r-universe.dev/badges/visCollin)](https://friendly.r-universe.dev/vcdVisCollin)
+[![Last Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html) 
-[![CRAN](https://www.r-pkg.org/badges/version/VisCollin)](https://cran.r-project.org/package=VisCollin) 
-[![Last Commit](https://img.shields.io/github/last-commit/friendly/VisCollin)](https://github.com/friendly/VisCollin)
 [![Downloads](https://cranlogs.r-pkg.org/badges/statquotes?color=brightgreen)](https://www.r-pkg.org:443/pkg/VisCollin)
 <!-- badges: end -->
+
+
 
 # VisCollin <img src="man/figures/logo.png" style="float:right; height:200px;" />
 
 **Visualizing Collinearity Diagnostics**
 
-Version `r packageDescription("VisCollin")$Version`
+Version `r packageDescription("VisCollin")$Version`; documentation built for `pkgdown` `r Sys.Date()`
 
 The `VisCollin` package provides
 methods to calculate diagnostics for multicollinearity among predictors in a linear or
@@ -61,6 +64,7 @@ library(dplyr)
 library(tidyr)
 library(car)
 library(corrplot)
+library(tinytable)
 ```
 
 This example uses the `cars` data set containing various measures of size and performance on 406 models of automobiles from 1982. Interest is focused on predicting gas mileage, `mpg`.
@@ -109,7 +113,8 @@ Or, better yet, use `corrplot::corrplot.mixed()` to visualize them, using color 
 ```{r cars-corrgram}
 #| fig.width = 6,
 #| fig.height = 6,
-#| out.width = "60%"
+#| out.width = "60%",
+#| fig.cap = "Corrgram display of correlations among the `cars` variables."
 corrplot.mixed(R, lower = "square", upper = "ellipse", tl.col = "black")
 ```
 
@@ -224,6 +229,25 @@ large variance proportions implicating two or more predictors.
 ```{r cars-tableplot}
 tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 ```
+
+### `tinytable` display
+
+A new display of these collinearity diagnostics is now included in a `tt()` method for `"colldiag"` results.
+This is similar to the `tableplot` display, but rendered as a `tinytable`. It uses similar background shading
+for the condition indices and variance proportions, but also allows the font size of the variance proportions
+to be made proportional to the values, scaled to a given range, 1.0 - 1.5 in this example.
+
+```{r tt-colldiag}
+#| out-width: "60%"
+tt(cd,
+   descending = TRUE,
+   fuzz = 0.3,
+   font.scale = c(1, 1.5)) |>
+  save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
+
+knitr::include_graphics("man/figures/README-tt-colldiag.png")
+```
+
 
 ### Collinearity biplot
 

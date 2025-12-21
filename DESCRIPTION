@@ -13,14 +13,15 @@ Description: Provides methods to calculate diagnostics for multicollinearity amo
   and a "collinearity biplot" of the smallest dimensions of predictor space, where collinearity is most apparent. 
 Depends: R (>= 4.1.0)
 Imports: tinytable
-Suggests: 
+Suggests:
   car,
   corrgram,
   corrplot,
   dplyr,
   lmtest,
   knitr,
-  tidyr
+  tidyr,
+  webshot2
 License: GPL (>=3)
 Language: en-US
 Encoding: UTF-8

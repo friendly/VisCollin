@@ -15,7 +15,7 @@ Diagnostics. R package version 0.1.4. URL
 https://CRAN.R-project.org/package=VisCollin
 
     @Manual{,
-      title = {{VisCollin}: Visualizing Collinearity Diagnostics},
+      title = {VisCollin: Visualizing Collinearity Diagnostics},
       author = {Michael Friendly},
       year = {2025},
       note = {R package version 0.1.4},
