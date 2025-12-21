@@ -92,7 +92,13 @@ a `"tinytable"` object
 ## Details
 
 The `"tinytable"` object returned can be customized using other
-functions from the tinytable package.
+functions from the tinytable package. For example, for HTML output, you
+can change the font family used in the output via
+[`theme_html()`](https://vincentarelbundock.github.io/tinytable/man/theme_html.html),
+as in:
+
+    tt(cd) |>
+      theme_html(css = "font-family: Arial, sans-serif;")
 
 ## See also
 
@@ -109,6 +115,10 @@ Michael Friendly
 ``` r
 library(VisCollin)
 library(tinytable)
+
+# Set output format for pkgdown HTML documentation
+if (knitr::is_html_output()) options(tinytable_print_output = "html")
+
 data(cars, package = "VisCollin")
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data = cars)

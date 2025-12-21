@@ -2,7 +2,7 @@
 
 **Visualizing Collinearity Diagnostics**
 
-Version 0.1.4
+Version 0.1.4; documentation built for `pkgdown` 2025-12-21
 
 The `VisCollin` package provides methods to calculate diagnostics for
 multicollinearity among predictors in a linear or generalized linear

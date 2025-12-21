@@ -65,6 +65,10 @@ tt(cd) |>
 \examples{
 library(VisCollin)
 library(tinytable)
+
+# Set output format for pkgdown HTML documentation
+if (knitr::is_html_output()) options(tinytable_print_output = "html")
+
 data(cars, package = "VisCollin")
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data = cars)
