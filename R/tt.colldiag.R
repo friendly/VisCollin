@@ -19,8 +19,18 @@
 #'   theme_html(css = "font-family: Arial, sans-serif;")
 #' }
 #'
+#' The present version, when run in an RStudio editor window, renders the graphic result in the Viewer panel. There is still some difficulty
+#' in producing this output in `.Rmd` and `.qmd` documents directy via the \pkg{tinytable} `print()` method. A work-around is to save the
+#' result to a graphic file and use `knitr::include_graphics()`. For example, in a code chunk you can use:
 #'
-#' @param x        A \code{"colldiag"} object
+#' \preformatted{
+#' tt(cd) |>
+#'   save_tt("myfig.png")
+#' knitr::include_graphics("myfig.png")
+#' }
+#'
+#'
+#' @param x        A \code{"colldiag"} object created from a linear model
 #' @param digits   Number of digits to use when printing; set to 0 when \code{percent = TRUE}
 #' @param fuzz     Variance decomposition proportions less than \emph{fuzz} are printed as \emph{fuzzchar}
 #' @param descending Logical; \code{TRUE} prints the values in descending order of condition indices
@@ -65,7 +75,7 @@
 
 tt.colldiag <- function(
     x,
-    digits = 2,
+    digits = if(percent) 0 else 2,
     fuzz = NULL,
     descending = FALSE,
     percent = FALSE,

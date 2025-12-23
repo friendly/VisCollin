@@ -6,7 +6,7 @@
 \usage{
 \method{tt}{colldiag}(
   x,
-  digits = 2,
+  digits = if (percent) 0 else 2,
   fuzz = NULL,
   descending = FALSE,
   percent = FALSE,
@@ -19,7 +19,7 @@
 )
 }
 \arguments{
-\item{x}{A \code{"colldiag"} object}
+\item{x}{A \code{"colldiag"} object created from a linear model}
 
 \item{digits}{Number of digits to use when printing; set to 0 when \code{percent = TRUE}}
 
@@ -61,14 +61,20 @@ the \pkg{tinytable} package. For example, for HTML output, you can change the fo
 tt(cd) |>
   theme_html(css = "font-family: Arial, sans-serif;")
 }
+
+The present version, when run in an RStudio editor window, renders the graphic result in the Viewer panel. There is still some difficulty
+in producing this output in \code{.Rmd} and \code{.qmd} documents directy via the \pkg{tinytable} \code{print()} method. A work-around is to save the
+result to a graphic file and use \code{knitr::include_graphics()}. For example, in a code chunk you can use:
+
+\preformatted{
+tt(cd) |>
+  save_tt("myfig.png")
+knitr::include_graphics("myfig.png")
+}
 }
 \examples{
 library(VisCollin)
 library(tinytable)
-
-# Set output format for pkgdown HTML documentation
-if (knitr::is_html_output()) options(tinytable_print_output = "html")
-
 data(cars, package = "VisCollin")
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data = cars)

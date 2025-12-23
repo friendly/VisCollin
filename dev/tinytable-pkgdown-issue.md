@@ -1,8 +1,9 @@
-## Feature Request: Render styled HTML tables in pkgdown examples
+## How to render tinytable styled HTML tables in pkgdown examples?
 
 ### Description
 
 When using `tinytable` in function examples that are rendered by `pkgdown::build_site()`, the tables appear as plain text/markdown tables rather than styled HTML tables with colors and backgrounds. This makes it difficult to showcase the visual styling capabilities of tinytable in package documentation.
+I'm not sure if this is an issue for `tinytable` or `pkgdown`. I'll file it here, with a reference in `pkgdown`
 
 ### Current Behavior
 
@@ -57,9 +58,6 @@ Based on research into pkgdown's rendering pipeline, potential solutions could i
 3. **Documentation guidance:**
    If there's a working approach I've missed, documentation showing how to properly render styled tinytables in pkgdown examples would be helpful.
 
-### Use Case
-
-This is particularly important for packages that use tinytable to create publication-quality tables - users need to see the styled output in the documentation to understand what the functions produce.
 
 ### Environment
 

@@ -249,6 +249,7 @@ knitr::include_graphics("man/figures/README-tt-colldiag.png")
 ```
 
 
+
 ### Collinearity biplot
 
 The standard biplot (Gabriel, 1971; Gower& Hand 1996) can be regarded as

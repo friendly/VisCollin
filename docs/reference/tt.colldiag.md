@@ -115,6 +115,7 @@ Michael Friendly
 ``` r
 library(VisCollin)
 library(tinytable)
+#> Warning: package 'tinytable' was built under R version 4.5.2
 
 # Set output format for pkgdown HTML documentation
 if (knitr::is_html_output()) options(tinytable_print_output = "html")
