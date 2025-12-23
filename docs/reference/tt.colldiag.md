@@ -14,7 +14,7 @@ but something that can be rendered in HTML, PDF and other formats.
 # S3 method for class 'colldiag'
 tt(
   x,
-  digits = 2,
+  digits = if (percent) 0 else 2,
   fuzz = NULL,
   descending = FALSE,
   percent = FALSE,
@@ -31,7 +31,7 @@ tt(
 
 - x:
 
-  A `"colldiag"` object
+  A `"colldiag"` object created from a linear model
 
 - digits:
 
@@ -100,6 +100,18 @@ as in:
     tt(cd) |>
       theme_html(css = "font-family: Arial, sans-serif;")
 
+The present version, when run in an RStudio editor window, renders the
+graphic result in the Viewer panel. There is still some difficulty in
+producing this output in `.Rmd` and `.qmd` documents directy via the
+tinytable [`print()`](https://rdrr.io/r/base/print.html) method. A
+work-around is to save the result to a graphic file and use
+[`knitr::include_graphics()`](https://rdrr.io/pkg/knitr/man/include_graphics.html).
+For example, in a code chunk you can use:
+
+    tt(cd) |>
+      save_tt("myfig.png")
+    knitr::include_graphics("myfig.png")
+
 ## See also
 
 [`colldiag`](https://friendly.github.io/VisCollin/reference/colldiag.md),
@@ -116,10 +128,6 @@ Michael Friendly
 library(VisCollin)
 library(tinytable)
 #> Warning: package 'tinytable' was built under R version 4.5.2
-
-# Set output format for pkgdown HTML documentation
-if (knitr::is_html_output()) options(tinytable_print_output = "html")
-
 data(cars, package = "VisCollin")
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year,
                 data = cars)
