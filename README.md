@@ -15,9 +15,13 @@ stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecy
 
 # VisCollin <img src="man/figures/logo.png" style="float:right; height:200px;" />
 
-**Visualizing Collinearity Diagnostics**
+## **Visualizing Collinearity Diagnostics**
 
-Version 0.1.4; documentation built for `pkgdown` 2025-12-23
+<!-- explicit version number now dynamic -->
+
+Version 0.1.4; documentation built for `pkgdown` 2026-09-10
+
+## 📝 Description
 
 The `VisCollin` package provides methods to calculate diagnostics for
 multicollinearity among predictors in a linear or generalized linear
@@ -34,14 +38,14 @@ These include:
 - a **collinearity biplot** of the *smallest dimensions* of predictor
   space, where collinearity is most apparent.
 
-## Installation
+## 📂 Installation
 
 |                     |                                                 |
 |---------------------|-------------------------------------------------|
 | CRAN version        | `install.packages("VisCollin")`                 |
 | Development version | `remotes::install_github("friendly/VisCollin")` |
 
-## Tutorial example
+## 📊 Tutorial example
 
 ``` r
 library(VisCollin)
@@ -220,9 +224,8 @@ corresponding eigenvectors in the columns of $\mathbf{V}_{p \times p}$.
   - $\kappa_j \rightarrow \infty$ as any $\lambda_k \rightarrow 0$.
 
   - In terms of the eigen-decomposition, variance inflation factors can
-    be expressed as $$
-    \text{VIF}_j = \sum_{k=1}^{p} \frac{V^2_{jk}}{\lambda_k} \; .
-    $$
+    be expressed as
+    $$\text{VIF}_j = \sum_{k=1}^{p} \frac{V^2_{jk}}{\lambda_k} \; .$$
 
 - **Variance decomposition proportions**: Large VIFs indicate variables
   that are involved in *some* nearly collinear relations, but they don’t
@@ -319,7 +322,7 @@ that one should attend to collinearities with large condition indices
 tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 ```
 
-<img src="man/figures/README-cars-tableplot-1.png" width="100%" />
+<img src="man/figures/README-cars-tableplot-1.png" alt="" width="100%" />
 
 ### `tinytable` display
 
@@ -331,17 +334,30 @@ but also allows the font size of the variance proportions to be made
 proportional to the values, scaled to a given range, 1.0 - 1.5 in this
 example.
 
+<!--
+&#10;``` r
+tt(cd,
+   descending = TRUE,
+   fuzz = 0.3,
+   font.scale = c(1, 1.5)) |>
+ save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
+&#10;knitr::include_graphics("man/figures/README-tt-colldiag.png")
+```
+&#10;<img src="man/figures/README-tt-colldiag.png" alt="" width="60%" />
+-->
+
+Or, using the new `print.tinytable(output = "raster")` method in
+`tinytable` v.0.16.0.7:
+
 ``` r
 tt(cd,
    descending = TRUE,
    fuzz = 0.3,
    font.scale = c(1, 1.5)) |>
-  save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
-
-knitr::include_graphics("man/figures/README-tt-colldiag.png")
+  print(output = "raster")
 ```
 
-<img src="man/figures/README-tt-colldiag.png" width="60%" />
+<img src="man/figures/README-tt-colldiag2-1.png" alt="" width="60%" />
 
 ### Collinearity biplot
 
@@ -415,7 +431,7 @@ biplot(cars.pca,
 par(op)
 ```
 
-<img src="man/figures/README-cars-biplot-1.png" width="100%" />
+<img src="man/figures/README-cars-biplot-1.png" alt="" width="100%" />
 
 The projections of the variable vectors on the Dimension 5 and Dimension
 6 axes are proportional to their variance proportions shown above. The
@@ -483,7 +499,7 @@ techniques to address this problem.
     coefficient from being estimated precisely, then a prior on that
     coefficient will help to reduce its posterior variance.
 
-## References
+## 📚 References
 
 Belsley, D.A., Kuh, E. and Welsch, R. (1980). *Regression Diagnostics*,
 New York: John Wiley & Sons.

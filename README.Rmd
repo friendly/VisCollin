@@ -31,9 +31,12 @@ options(digits=3)
 
 # VisCollin <img src="man/figures/logo.png" style="float:right; height:200px;" />
 
-**Visualizing Collinearity Diagnostics**
+## **Visualizing Collinearity Diagnostics**
 
+<!-- explicit version number now dynamic -->
 Version `r packageDescription("VisCollin")$Version`; documentation built for `pkgdown` `r Sys.Date()`
+
+## 📝 Description
 
 The `VisCollin` package provides
 methods to calculate diagnostics for multicollinearity among predictors in a linear or
@@ -46,7 +49,7 @@ These include:
 * a semi-graphic **tableplot** of the diagnostics to make warning and danger levels more salient and 
 * a **collinearity biplot** of the _smallest dimensions_ of predictor space, where collinearity is most apparent.
 
-## Installation
+## 📂 Installation
 
 
 +-------------------+---------------------------------------------------+
@@ -56,7 +59,7 @@ These include:
 | version           |                                                   |
 +-------------------+---------------------------------------------------+
 
-## Tutorial example
+## 📊 Tutorial example
 
 ```{r load}
 library(VisCollin)
@@ -237,15 +240,27 @@ This is similar to the `tableplot` display, but rendered as a `tinytable`. It us
 for the condition indices and variance proportions, but also allows the font size of the variance proportions
 to be made proportional to the values, scaled to a given range, 1.0 - 1.5 in this example.
 
+<!--
 ```{r tt-colldiag}
 #| out-width: "60%"
 tt(cd,
    descending = TRUE,
    fuzz = 0.3,
    font.scale = c(1, 1.5)) |>
-  save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
+ save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
 
 knitr::include_graphics("man/figures/README-tt-colldiag.png")
+```
+-->
+
+Or, using the new `print.tinytable(output = "raster")` method in `tinytable` v.0.16.0.7:
+```{r tt-colldiag2}
+#| out-width: "60%"
+tt(cd,
+   descending = TRUE,
+   fuzz = 0.3,
+   font.scale = c(1, 1.5)) |>
+  print(output = "raster")
 ```
 
 
@@ -366,7 +381,7 @@ a small amount of bias, . See the [genridge](https://CRAN.R-project.org/package=
 
   + use Bayesian regression; if multicollinearity prevents a regression coefficient from being estimated precisely, then a prior on that coefficient will help to reduce its posterior variance.
 
-## References
+## 📚 References
 
 Belsley, D.A.,  Kuh, E.  and Welsch, R. (1980).
 _Regression Diagnostics_, New York: John Wiley & Sons.
