@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="favicon.ico">
 <link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.10/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.10/font.css" rel="stylesheet">
 <link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -61,8 +61,16 @@
 <img src="logo.png" class="logo" alt=""><h1 id="viscollin-">VisCollin <a class="anchor" aria-label="anchor" href="#viscollin-"></a>
 </h1>
 </div>
-<p><strong>Visualizing Collinearity Diagnostics</strong></p>
-<p>Version 0.1.4; documentation built for <code>pkgdown</code> 2025-12-23</p>
+<div class="section level2">
+<h2 id="visualizing-collinearity-diagnostics">
+<strong>Visualizing Collinearity Diagnostics</strong><a class="anchor" aria-label="anchor" href="#visualizing-collinearity-diagnostics"></a>
+</h2>
+<!-- explicit version number now dynamic -->
+<p>Version 0.1.4; documentation built for <code>pkgdown</code> 2026-09-10</p>
+</div>
+<div class="section level2">
+<h2 id="pencil-description">📝 Description<a class="anchor" aria-label="anchor" href="#pencil-description"></a>
+</h2>
 <p>The <code>VisCollin</code> package provides methods to calculate diagnostics for multicollinearity among predictors in a linear or generalized linear model. It also provides methods to visualize those diagnostics following Friendly &amp; Kwan (2009), “Where’s Waldo: Visualizing Collinearity Diagnostics”, <em>The American Statistician</em>, <strong>63</strong>, 56–65.</p>
 <p>These include:</p>
 <ul>
@@ -70,8 +78,9 @@
 <li>a semi-graphic <strong>tableplot</strong> of the diagnostics to make warning and danger levels more salient and</li>
 <li>a <strong>collinearity biplot</strong> of the <em>smallest dimensions</em> of predictor space, where collinearity is most apparent.</li>
 </ul>
+</div>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="open_file_folder-installation">📂 Installation<a class="anchor" aria-label="anchor" href="#open_file_folder-installation"></a>
 </h2>
 <table class="table">
 <colgroup>
@@ -91,13 +100,13 @@
 </table>
 </div>
 <div class="section level2">
-<h2 id="tutorial-example">Tutorial example<a class="anchor" aria-label="anchor" href="#tutorial-example"></a>
+<h2 id="bar_chart-tutorial-example">📊 Tutorial example<a class="anchor" aria-label="anchor" href="#bar_chart-tutorial-example"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/friendly/VisCollin" class="external-link">VisCollin</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/" class="external-link">car</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bprice2652/car_repo" class="external-link">car</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/taiyun/corrplot" class="external-link">corrplot</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/tinytable/" class="external-link">tinytable</a></span><span class="op">)</span></span></code></pre></div>
 <p>This example uses the <code>cars</code> data set containing various measures of size and performance on 406 models of automobiles from 1982. Interest is focused on predicting gas mileage, <code>mpg</code>.</p>
@@ -136,7 +145,7 @@
 <span><span class="co">#&gt; Residuals   4543 385                   </span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
-<p><code><a href="https://rdrr.io/pkg/lmtest/man/coeftest.html" class="external-link">lmtest::coeftest()</a></code> shows the coefficients, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\beta_j}</annotation></semantics></math>, their standard errors <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">s(\hat{\beta_j})</annotation></semantics></math> and associated <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> statistics, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><mi>/</mi><mi>s</mi><mrow><mo stretchy="true" form="prefix">(</mo><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">t = \hat{\beta_j} / s(\hat{\beta_j})</annotation></semantics></math>. As we will see, the standard errors of the non-significant predictors have been inflated due to high multiple correlations among the predictors, making the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> statistics smaller.</p>
+<p><code><a href="https://rdrr.io/pkg/lmtest/man/coeftest.html" class="external-link">lmtest::coeftest()</a></code> shows the coefficients, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\beta_j}</annotation></semantics></math>, their standard errors <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s(\hat{\beta_j})</annotation></semantics></math> and associated <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> statistics, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><mi>/</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mover><msub><mi>β</mi><mi>j</mi></msub><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">t = \hat{\beta_j} / s(\hat{\beta_j})</annotation></semantics></math>. As we will see, the standard errors of the non-significant predictors have been inflated due to high multiple correlations among the predictors, making the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> statistics smaller.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">lmtest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/coeftest.html" class="external-link">coeftest</a></span><span class="op">(</span><span class="va">cars.mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -185,7 +194,7 @@ Corrgram display of correlations among the <code>cars</code> variables.
 <div class="section level3">
 <h3 id="variance-inflation-factors">Variance inflation factors<a class="anchor" aria-label="anchor" href="#variance-inflation-factors"></a>
 </h3>
-<p>Variance inflation factors measure the effect of multicollinearity on the standard errors of the estimated coefficients and are proportional to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msubsup><mi>R</mi><mrow><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">|</mo><mtext mathvariant="normal">others</mtext></mrow><mn>2</mn></msubsup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">1 / (1 - R^2_{x_j | \text{others}})</annotation></semantics></math>.</p>
+<p>Variance inflation factors measure the effect of multicollinearity on the standard errors of the estimated coefficients and are proportional to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msubsup><mi>R</mi><mrow><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">|</mo><mtext mathvariant="normal">others</mtext></mrow><mn>2</mn></msubsup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">1 / (1 - R^2_{x_j | \text{others}})</annotation></semantics></math>.</p>
 <p>We check the variance inflation factors, using <code><a href="https://rdrr.io/pkg/car/man/vif.html" class="external-link">car::vif()</a></code>. We see that most predictors have very high VIFs, indicating moderately severe multicollinearity.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/car/man/vif.html" class="external-link">vif</a></span><span class="op">(</span><span class="va">cars.mod</span><span class="op">)</span></span>
@@ -204,13 +213,11 @@ Corrgram display of correlations among the <code>cars</code> variables.
 <p><code><a href="reference/colldiag.html">colldiag()</a></code> calculates:</p>
 <ul>
 <li>
-<p><strong>Condition indices</strong>: The smallest of the eigenvalues, those for which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mi>j</mi></msub><mo>≈</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\lambda_j \approx 0</annotation></semantics></math>, indicate collinearity and the number of small values indicates the number of near collinear relations. Because the sum of the eigenvalues, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><msub><mi>λ</mi><mi>i</mi></msub><mo>=</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">\Sigma \lambda_i = p</annotation></semantics></math> increases with the number of predictors <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>, it is useful to scale them all in relation to the largest. This leads to <em>condition indices</em>, defined as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>κ</mi><mi>j</mi></msub><mo>=</mo><msqrt><mrow><msub><mi>λ</mi><mn>1</mn></msub><mi>/</mi><msub><mi>λ</mi><mi>j</mi></msub></mrow></msqrt></mrow><annotation encoding="application/x-tex">\kappa_j = \sqrt{ \lambda_1 / \lambda_j}</annotation></semantics></math>. These have the property that the resulting numbers have common interpretations regardless of the number of predictors.</p>
+<p><strong>Condition indices</strong>: The smallest of the eigenvalues, those for which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mi>j</mi></msub><mo>≈</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\lambda_j \approx 0</annotation></semantics></math>, indicate collinearity and the number of small values indicates the number of near collinear relations. Because the sum of the eigenvalues, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi><msub><mi>λ</mi><mi>i</mi></msub><mo>=</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">\Sigma \lambda_i = p</annotation></semantics></math> increases with the number of predictors <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>, it is useful to scale them all in relation to the largest. This leads to <em>condition indices</em>, defined as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>κ</mi><mi>j</mi></msub><mo>=</mo><msqrt><mrow><msub><mi>λ</mi><mn>1</mn></msub><mi>/</mi><msub><mi>λ</mi><mi>j</mi></msub></mrow></msqrt></mrow><annotation encoding="application/x-tex">\kappa_j = \sqrt{ \lambda_1 / \lambda_j}</annotation></semantics></math>. These have the property that the resulting numbers have common interpretations regardless of the number of predictors.</p>
 <ul>
 <li><p>For completely uncorrelated predictors, all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>κ</mi><mi>j</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\kappa_j = 1</annotation></semantics></math>.</p></li>
 <li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>κ</mi><mi>j</mi></msub><mo>→</mo><mi>∞</mi></mrow><annotation encoding="application/x-tex">\kappa_j \rightarrow \infty</annotation></semantics></math> as any <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mi>k</mi></msub><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\lambda_k \rightarrow 0</annotation></semantics></math>.</p></li>
-<li><p>In terms of the eigen-decomposition, variance inflation factors can be expressed as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">VIF</mtext><mi>j</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><mfrac><msubsup><mi>V</mi><mrow><mi>j</mi><mi>k</mi></mrow><mn>2</mn></msubsup><msub><mi>λ</mi><mi>k</mi></msub></mfrac><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">
-\text{VIF}_j = \sum_{k=1}^{p} \frac{V^2_{jk}}{\lambda_k} \; .
-</annotation></semantics></math></p></li>
+<li><p>In terms of the eigen-decomposition, variance inflation factors can be expressed as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">VIF</mtext><mi>j</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><mfrac><msubsup><mi>V</mi><mrow><mi>j</mi><mi>k</mi></mrow><mn>2</mn></msubsup><msub><mi>λ</mi><mi>k</mi></msub></mfrac><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">\text{VIF}_j = \sum_{k=1}^{p} \frac{V^2_{jk}}{\lambda_k} \; .</annotation></semantics></math></p></li>
 </ul>
 </li>
 <li><p><strong>Variance decomposition proportions</strong>: Large VIFs indicate variables that are involved in <em>some</em> nearly collinear relations, but they don’t indicate <em>which</em> other variable(s) each is involved with. For this purpose, Belsley et. al. (1980) and Belsley (1991) proposed calculation of the proportions of variance of each variable associated with each principal component as a decomposition of the coefficient variance for each dimension.</p></li>
@@ -261,22 +268,32 @@ Corrgram display of correlations among the <code>cars</code> variables.
 <!-- ``` -->
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tableplot.html">tableplot</a></span><span class="op">(</span><span class="va">cd</span>, title <span class="op">=</span> <span class="st">"Tableplot of cars data"</span>, cond.max <span class="op">=</span> <span class="fl">30</span> <span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-cars-tableplot-1.png" width="100%"></p>
+<p><img src="reference/figures/README-cars-tableplot-1.png" alt="" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="tinytable-display">
 <code>tinytable</code> display<a class="anchor" aria-label="anchor" href="#tinytable-display"></a>
 </h3>
 <p>A new display of these collinearity diagnostics is now included in a <code><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt()</a></code> method for <code>"colldiag"</code> results. This is similar to the <code>tableplot</code> display, but rendered as a <code>tinytable</code>. It uses similar background shading for the condition indices and variance proportions, but also allows the font size of the variance proportions to be made proportional to the values, scaled to a given range, 1.0 - 1.5 in this example.</p>
+<!--
+&#10;``` r
+tt(cd,
+   descending = TRUE,
+   fuzz = 0.3,
+   font.scale = c(1, 1.5)) |>
+ save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
+&#10;knitr::include_graphics("man/figures/README-tt-colldiag.png")
+```
+&#10;<img src="man/figures/README-tt-colldiag.png" alt="" width="60%" />
+-->
+<p>Or, using the new <code>print.tinytable(output = "raster")</code> method in <code>tinytable</code> v.0.16.0.7:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tt</a></span><span class="op">(</span><span class="va">cd</span>,</span>
 <span>   descending <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>   fuzz <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>   font.scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://vincentarelbundock.github.io/tinytable/man/save_tt.html" class="external-link">save_tt</a></span><span class="op">(</span><span class="st">"man/figures/README-tt-colldiag.png"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"man/figures/README-tt-colldiag.png"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-tt-colldiag.png" width="60%"></p>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"raster"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-tt-colldiag2-1.png" alt="" width="60%"></p>
 </div>
 <div class="section level3">
 <h3 id="collinearity-biplot">Collinearity biplot<a class="anchor" aria-label="anchor" href="#collinearity-biplot"></a>
@@ -324,7 +341,7 @@ Corrgram display of correlations among the <code>cars</code> variables.
 <span>       ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.8</span>, <span class="fl">0.5</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-cars-biplot-1.png" width="100%"></p>
+<p><img src="reference/figures/README-cars-biplot-1.png" alt="" width="100%"></p>
 <p>The projections of the variable vectors on the Dimension 5 and Dimension 6 axes are proportional to their variance proportions shown above. The relative lengths of these variable vectors can be considered to indicate the extent to which each variable contributes to collinearity for these two near-singular dimensions.</p>
 <p>Thus, we see again that Dimension 6 is largely determined by <code>engine</code> size, with a substantial (negative) relation to <code>cylinder</code>. Dimension 5 has its’ strongest relations to <code>weight</code> and <code>horse</code>.</p>
 <p>Moreover, there is one observation, #20, that stands out as an outlier in predictor space, far from the centroid. It turns out that this vehicle, a Buick Estate wagon, is an early-year (1970) American behemoth, with an 8-cylinder, 455 cu. in, 225 horse-power engine, and able to go from 0 to 60 mph in 10 sec. (Its MPG is only slightly under-predicted from the regression model, however.)</p>
@@ -338,7 +355,7 @@ Corrgram display of correlations among the <code>cars</code> variables.
 <li>
 <p><strong>structural collinearity</strong>: Sometimes collinearity results from structural relations among the variables:</p>
 <ul>
-<li><p>For example, polynomial terms, like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><msup><mi>x</mi><mn>2</mn></msup><mo>,</mo><msup><mi>x</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">x, x^2, x^3</annotation></semantics></math> or interaction terms like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>x</mi><mn>1</mn></msub><mo>*</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_1, x_2, x_1 * x_2</annotation></semantics></math> are necessarily correlated. A simple cure is to <em>center</em> the predictors at their means, using <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><mo>,</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>,</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><mo stretchy="true" form="postfix">)</mo></mrow><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">x - \bar{x}, (x - \bar{x})^2, (x - \bar{x})^3</annotation></semantics></math> or <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>1</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>2</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>1</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>*</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>2</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(x_1 - \bar{x}_1), (x_2 - \bar{x}_2), (x_1 - \bar{x}_1) * (x_2 - \bar{x}_2)</annotation></semantics></math></p></li>
+<li><p>For example, polynomial terms, like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><msup><mi>x</mi><mn>2</mn></msup><mo>,</mo><msup><mi>x</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">x, x^2, x^3</annotation></semantics></math> or interaction terms like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>x</mi><mn>1</mn></msub><mo>*</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_1, x_2, x_1 * x_2</annotation></semantics></math> are necessarily correlated. A simple cure is to <em>center</em> the predictors at their means, using <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><mo>,</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>,</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><msup><mo stretchy="false" form="postfix">)</mo><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">x - \bar{x}, (x - \bar{x})^2, (x - \bar{x})^3</annotation></semantics></math> or <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>*</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x_1 - \bar{x}_1), (x_2 - \bar{x}_2), (x_1 - \bar{x}_1) * (x_2 - \bar{x}_2)</annotation></semantics></math></p></li>
 <li><p>When some predictors share a common cause, as in GNP or population in time-series or cross-national data, you can reduce collinearity by re-defining predictors to reflect <em>per capita measures</em>.</p></li>
 </ul>
 </li>
@@ -361,7 +378,7 @@ Corrgram display of correlations among the <code>cars</code> variables.
 </div>
 </div>
 <div class="section level2">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<h2 id="books-references">📚 References<a class="anchor" aria-label="anchor" href="#books-references"></a>
 </h2>
 <p>Belsley, D.A., Kuh, E. and Welsch, R. (1980). <em>Regression Diagnostics</em>, New York: John Wiley &amp; Sons.</p>
 <p>Belsley, D.A. (1991). <em>Conditioning diagnostics, collinearity and weak data in regression</em>. New York: John Wiley &amp; Sons.</p>
@@ -424,7 +441,7 @@ Corrgram display of correlations among the <code>cars</code> variables.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

@@ -1,8 +1,10 @@
 # VisCollin
 
-**Visualizing Collinearity Diagnostics**
+## **Visualizing Collinearity Diagnostics**
 
-Version 0.1.4; documentation built for `pkgdown` 2025-12-23
+Version 0.1.4; documentation built for `pkgdown` 2026-09-10
+
+## 📝 Description
 
 The `VisCollin` package provides methods to calculate diagnostics for
 multicollinearity among predictors in a linear or generalized linear
@@ -19,16 +21,17 @@ These include:
 - a **collinearity biplot** of the *smallest dimensions* of predictor
   space, where collinearity is most apparent.
 
-## Installation
+## 📂 Installation
 
 |                     |                                                 |
 |---------------------|-------------------------------------------------|
 | CRAN version        | `install.packages("VisCollin")`                 |
 | Development version | `remotes::install_github("friendly/VisCollin")` |
 
-## Tutorial example
+## 📊 Tutorial example
 
 ``` r
+
 library(VisCollin)
 library(dplyr)
 library(tidyr)
@@ -42,6 +45,7 @@ size and performance on 406 models of automobiles from 1982. Interest is
 focused on predicting gas mileage, `mpg`.
 
 ``` r
+
 data(cars, package = "VisCollin")
 str(cars)
 #> 'data.frame':    406 obs. of  10 variables:
@@ -66,6 +70,7 @@ mph and model year (1970–1982). Perhaps surprisingly, only `weight` and
 here?
 
 ``` r
+
 cars.mod <- lm (mpg ~ cylinder + engine + horse + weight + accel + year, 
                 data=cars)
 Anova(cars.mod)
@@ -93,6 +98,7 @@ multiple correlations among the predictors, making the $`t`$ statistics
 smaller.
 
 ``` r
+
 lmtest::coeftest(cars.mod)
 #> 
 #> t test of coefficients:
@@ -120,6 +126,7 @@ independent variable from the others, $`R_{x_j | \text{others}}`$.
 Nonetheless, it is instructive to examine the correlations.
 
 ``` r
+
 R <- cars |> 
   select(cylinder:year) |> 
   tidyr::drop_na() |>
@@ -140,6 +147,7 @@ Or, better yet, use
 to visualize them, using color and shading of glyphs,
 
 ``` r
+
 corrplot.mixed(R, lower = "square", upper = "ellipse", tl.col = "black")
 ```
 
@@ -164,6 +172,7 @@ predictors have very high VIFs, indicating moderately severe
 multicollinearity.
 
 ``` r
+
 vif(cars.mod)
 #> cylinder   engine    horse   weight    accel     year 
 #>    10.63    19.64     9.40    10.73     2.63     1.24
@@ -207,7 +216,6 @@ calculates:
   - In terms of the eigen-decomposition, variance inflation factors can
     be expressed as
     ``` math
-
     \text{VIF}_j = \sum_{k=1}^{p} \frac{V^2_{jk}}{\lambda_k} \; .
     ```
 
@@ -224,6 +232,7 @@ indices and variance proportions. However, even for a small example, it
 is often difficult to know what numbers to pay attention to.
 
 ``` r
+
 (cd <- colldiag(cars.mod, center=TRUE))
 #> Condition
 #> Index      -- Variance Decomposition Proportions --
@@ -243,6 +252,7 @@ on *two* or more predictors. The print method for `"colldiag"` objects
 has a `fuzz` argument controlling this.
 
 ``` r
+
 print(cd, fuzz = 0.5)
 #> Condition
 #> Index      -- Variance Decomposition Proportions --
@@ -298,6 +308,7 @@ should attend to collinearities with large condition indices **and**
 large variance proportions implicating two or more predictors.
 
 ``` r
+
 tableplot(cd, title = "Tableplot of cars data", cond.max = 30 )
 ```
 
@@ -313,17 +324,19 @@ shading for the condition indices and variance proportions, but also
 allows the font size of the variance proportions to be made proportional
 to the values, scaled to a given range, 1.0 - 1.5 in this example.
 
+Or, using the new `print.tinytable(output = "raster")` method in
+`tinytable` v.0.16.0.7:
+
 ``` r
+
 tt(cd,
    descending = TRUE,
    fuzz = 0.3,
    font.scale = c(1, 1.5)) |>
-  save_tt("man/figures/README-tt-colldiag.png", overwrite = TRUE)
-
-knitr::include_graphics("man/figures/README-tt-colldiag.png")
+  print(output = "raster")
 ```
 
-![](reference/figures/README-tt-colldiag.png)
+![](reference/figures/README-tt-colldiag2-1.png)
 
 ### Collinearity biplot
 
@@ -346,6 +359,7 @@ leverage points. We use `prcomp(X, scale.=TRUE)` to obtain the PCA of
 the correlation matrix of the predictors:
 
 ``` r
+
 cars.X <- cars |>
   select(where(is.numeric)) |>
   select(-mpg) |>
@@ -371,6 +385,7 @@ of the eigenvalues of the correlation matrix, and are returned in the
 in the `rotation` component, whose directions are arbitrary.
 
 ``` r
+
 # Make labels for dimensions include % of variance
 pct <- 100 *(cars.pca$sdev^2) / sum(cars.pca$sdev^2)
 lab <- glue::glue("Dimension {1:6} ({round(pct, 2)}%)")
@@ -382,6 +397,7 @@ cars.pca$rotation <- -cars.pca$rotation
 The collinearity biplot is then constructed as follows:
 
 ``` r
+
 op <- par(lwd = 2, xpd = NA )
 biplot(cars.pca,
        choices=6:5,           # only the last two dimensions
@@ -466,7 +482,7 @@ techniques to address this problem.
     coefficient from being estimated precisely, then a prior on that
     coefficient will help to reduce its posterior variance.
 
-## References
+## 📚 References
 
 Belsley, D.A., Kuh, E. and Welsch, R. (1980). *Regression Diagnostics*,
 New York: John Wiley & Sons.

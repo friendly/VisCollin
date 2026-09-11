@@ -1,8 +1,8 @@
-pandoc: 3.6.3
-pkgdown: 2.2.0
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-12-23T18:28Z
+last_built: 2026-09-11T02:00Z
 urls:
   reference: https://friendly.github.io/VisCollin/reference
   article: https://friendly.github.io/VisCollin/articles
