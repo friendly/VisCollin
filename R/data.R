@@ -60,7 +60,7 @@ NULL
 #' }
 #' @source
 #' The data was provided for the ASA Data Exposition
-#' in a "shar" file, \url{http://lib.stat.cmu.edu/datasets/cars.data}.
+#' in a "shar" file, \url{https://lib.stat.cmu.edu/datasets/cars.data}.
 #' It is a version of that used by Donoho and Ramos (1982) to illustrate PRIM-H.
 #' @references
 #' Donoho, David and Ramos, Ernesto (1982), ``PRIMDATA: Data Sets for Use With PRIM-H'' (Draft).

@@ -36,7 +36,7 @@
 #' @references
 #' Friendly, M., & Kwan, E. (2009).
 #' "Where’s Waldo: Visualizing Collinearity Diagnostics." \emph{The American Statistician}, \bold{63}, 56–65.
-#' Online: \url{https://www.datavis.ca/papers/viscollin-tast.pdf}.
+#' \doi{10.1198/tast.2009.0012}.
 #'
 #' @importFrom stats xtabs
 #' @return NULL

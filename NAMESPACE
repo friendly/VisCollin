@@ -11,8 +11,12 @@ export(colldiag)
 export(make.patterns)
 export(tableplot)
 import(grid)
-importFrom(stats,na.omit)
-importFrom(stats,xtabs)
-importFrom(tinytable,style_tt)
-importFrom(tinytable,tt)
-importFrom(tinytable,tt_format)
+importFrom(stats,
+  na.omit,
+  xtabs
+)
+importFrom(tinytable,
+  style_tt,
+  tt,
+  tt_format
+)

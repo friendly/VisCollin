@@ -21,7 +21,7 @@ A data frame with 406 observations on the following 10 variables:
 }
 \source{
 The data was provided for the ASA Data Exposition
-in a "shar" file, \url{http://lib.stat.cmu.edu/datasets/cars.data}.
+in a "shar" file, \url{https://lib.stat.cmu.edu/datasets/cars.data}.
 It is a version of that used by Donoho and Ramos (1982) to illustrate PRIM-H.
 }
 \description{

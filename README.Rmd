@@ -392,8 +392,9 @@ New York: John Wiley & Sons.
 
 Friendly, M., & Kwan, E. (2009).
 "Where’s Waldo: Visualizing Collinearity Diagnostics." _The American Statistician_, **63**, 56–65.
-Online: [https://www.datavis.ca/papers/viscollin-tast.pdf](https://www.datavis.ca/papers/viscollin-tast.pdf).
-Supp. materials: [https://www.datavis.ca/papers/viscollin/](https://www.datavis.ca/papers/viscollin/)
+[DOI link](https://doi.org/10.1198/tast.2009.0012),
+Online: [viscollin-tast.pdf](https://friendly.github.io/papers/viscollin-tast.pdf).
+Supp. materials: [https://friendly.github.io/papers/viscollin/](https://friendly.github.io/papers/viscollin/)
 
 Gabriel, K. R. (1971). The Biplot Graphic Display of Matrices with Application to Principal Components Analysis. _Biometrics_, **58**, 453–467.
 

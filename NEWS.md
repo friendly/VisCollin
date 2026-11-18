@@ -1,3 +1,7 @@
+# VisCollin (development version)
+
+* Replaced links to `datavis.ca`, which is offline, with a DOI (documentation) and `friendly.github.io/papers` (README); `https` for the `cars` data source.
+
 # VisCollin 0.1.4
 
 * Added `tt.colldiag() using tinytable to print `"colldiag"` results as a tinytable using background shading
